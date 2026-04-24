@@ -1,0 +1,227 @@
+/* ================================================
+   GESTOO — Agency Home Styles
+   ================================================ */
+
+/* ---- HERO (Puro) ---- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- MANIFIESTO AGENCIA ---- */
+.manifesto-section {
+  padding: clamp(100px, 15vw, 200px) 0;
+  background: transparent;
+}
+
+.manifesto-text {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  max-width: 1400px;
+}
+
+/* ---- SERVICES VISUAL GRID (4 Pilares con Imagen) ---- */
+.services-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  /* Imagen con imagen (pegadas) */
+  margin-top: 3rem;
+  padding: 0 10px;
+  /* Manteniendo tu margen lateral */
+}
+
+.service-visual-item {
+  position: relative;
+  height: 600px;
+  /* Altura espectacular para las fotos */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.8s var(--ease);
+}
+
+.service-overlay {
+  position: absolute;
+  inset: 0;
+  /* Cambiamos a un degradado para un look más premium */
+  background: linear-gradient(to bottom, rgba(13, 27, 38, 0.5) 0%, rgba(13, 27, 38, 0.85) 100%);
+  transition: background 0.5s ease;
+  z-index: 1;
+}
+
+.service-visual-item:hover .service-overlay {
+  background: rgba(13, 27, 38, 0.7);
+  /* Se aclara un poco al hover */
+}
+
+.service-visual-item:hover {
+  transform: scale(1.02);
+  z-index: 2;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.service-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 400px;
+}
+
+.service-content .service-num {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: var(--fw-bold);
+  color: var(--accent-2);
+  margin-bottom: 2rem;
+  letter-spacing: 0.2em;
+}
+
+.service-content h3 {
+  font-size: 1.8rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.service-content p {
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .services-visual-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-visual-item {
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-visual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-visual-item {
+    height: 400px;
+  }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1300px) {
+  .services-agency-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .services-agency-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-agency-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- PORTFOLIO AGENCY GRID (2 Columnas Pegadas) ---- */
+/* ---- PORTFOLIO AGENCY GRID (2 Columnas Pegadas) ---- */
+.works-grid-agency {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  padding: 0 10px;
+}
+
+.works-header-agency {
+  padding: 100px 0 60px;
+}
+
+/* Reusing work-card from previous styles but cleaned up */
+.work-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.work-img {
+  width: 100%;
+  height: 100%;
+}
+
+.work-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.work-card:hover img {
+  transform: scale(1.08);
+}
+
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13, 27, 38, 0.8) 0%, transparent 70%);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 1;
+  transition: transform 0.6s var(--ease);
+}
+
+/* ---- SOLUTION B2B SECTION ---- */
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1100px) {
+  .services-agency-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-agency-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .works-grid-agency {
+    grid-template-columns: 1fr;
+  }
+
+  .manifesto-text {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/pages/inner.css';
+import '../styles/pages/services.css';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Gestoo | Servicios">
+    <Navbar />
+    <img src={`${base}/img/arbol.svg`} alt="" class="bg-illustration">
+    <main>
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="reveal">
+                    <span class="tag" data-i18n="services-tag">Ecosistema Gestoo</span>
+                    <h1 class="page-title" data-i18n="services-hero-title">Soluciones diseñadas para <br><span class="gradient-text">cada desafío.</span></h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag" data-i18n="services-grid-tag">Especialidades</span>
+                    <h2 class="section-title" data-i18n="services-grid-title">Nuestra <em>oferta B2B.</em></h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <span class="service-num">01</span>
+                        <h3 data-i18n="services-card-1-title">Consultoría de Marca</h3>
+                        <p data-i18n="services-card-1-desc">Estrategia de identidad corporativa y narrativa de marca para el sector B2B. Posicionamos tu negocio con una voz única.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Branding</span>
+                            <span class="service-tag">Estrategia</span>
+                            <span class="service-tag">Narrativa</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">02</span>
+                        <h3 data-i18n="services-card-2-title">Turismo MICE</h3>
+                        <p data-i18n="services-card-2-desc">Planificación integral y logística de congresos, incentivos y convenciones en los escenarios más majestuosos de la Patagonia.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Congresos</span>
+                            <span class="service-tag">Incentivos</span>
+                            <span class="service-tag">Logística</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">03</span>
+                        <h3 data-i18n="services-card-3-title">Producción Audiovisual</h3>
+                        <p data-i18n="services-card-3-desc">Ingeniería técnica audiovisual avanzada para eventos corporativos. Pantallas LED, sonido de alta fidelidad e iluminación emocional.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">LED Walls</span>
+                            <span class="service-tag">Sonido</span>
+                            <span class="service-tag">Iluminación</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">04</span>
+                        <h3 data-i18n="services-card-4-title">Renting & Equipos</h3>
+                        <p data-i18n="services-card-4-desc">Soporte de infraestructura mediante alquiler de audio, pantallas LED y mobiliario móvil premium para cualquier locación.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Equipamiento</span>
+                            <span class="service-tag">Renting</span>
+                            <span class="service-tag">Soporte</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">05</span>
+                        <h3 data-i18n="services-card-5-title">Eventos Corporativos</h3>
+                        <p data-i18n="services-card-5-desc">Desde lanzamientos de productos hasta galas de fin de año. Nos encargamos de que cada detalle hable bien de ti.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Galas</span>
+                            <span class="service-tag">Lanzamientos</span>
+                            <span class="service-tag">Convenciones</span>
+                        </div>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">06</span>
+                        <h3 data-i18n="services-card-6-title">Operación Regional</h3>
+                        <p data-i18n="services-card-6-desc">Conocimiento profundo del terreno en Magallanes. Operamos en locaciones remotas garantizando excelencia técnica siempre.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Patagonia</span>
+                            <span class="service-tag">Terreno</span>
+                            <span class="service-tag">Logística</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section solution-section">
+            <div class="container content-contained">
+                <div class="solution-card reveal">
+                    <span class="tag" data-i18n="services-tag">Problem Solvers</span>
+                    <h2 class="cta-title" data-i18n="services-cta-title">¿Tienes un desafío? <br> Somos la <span class="solution-highlight">solución.</span></h2>
+                    <p data-i18n="services-cta-desc">Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.</p>
+                    <a href={`${base}/contact`} class="btn-orange-glow" data-i18n="about-cta-btn">Cotiza tu solución ahora →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

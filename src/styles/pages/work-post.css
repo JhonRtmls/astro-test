@@ -1,0 +1,256 @@
+/* ================================================
+    GESTOO — Work Post (Case Study) Styles
+   ================================================ */
+
+.work-post {
+  background-color: var(--blue-900);
+  color: var(--white);
+}
+
+.post-hero {
+  padding: 160px 0 80px;
+  background: var(--blue-900);
+}
+
+.post-breadcrumb {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.post-hero-flex {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.post-hero-info {
+  flex: 1;
+}
+
+.post-tag {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.post-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: var(--fw-black);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.post-reading-time {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-2);
+  margin-bottom: 2.5rem;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.author-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-info strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.author-info span {
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+.post-hero-media {
+  flex: 1.2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+}
+
+.post-hero-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Content Section */
+.post-content-section {
+  padding: 80px 0;
+  background: var(--blue-900);
+}
+
+.post-main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.post-content-wrap {
+  position: relative;
+}
+
+.post-share-sidebar {
+  position: absolute;
+  left: -120px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.share-label {
+  font-size: 0.7rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+.share-link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s var(--ease);
+}
+
+.share-link:hover {
+  background: var(--accent);
+  transform: translateY(-3px);
+}
+
+.share-link img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+.post-intro {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: var(--white);
+  font-weight: var(--fw-medium);
+  margin-bottom: 4rem;
+}
+
+.post-body {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+
+.post-body p {
+  margin-bottom: 2rem;
+}
+
+.post-body h2, .post-body h3 {
+  color: var(--white);
+  margin: 4rem 0 1.5rem;
+}
+
+.post-callout {
+  padding: 3rem;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  margin: 4rem 0;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+
+.post-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 4rem 0;
+}
+
+.gallery-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-full {
+  grid-column: span 2;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .post-share-sidebar {
+    position: relative;
+    left: auto;
+    flex-direction: row;
+    margin-bottom: 40px;
+    justify-content: flex-start;
+  }
+  .share-label {
+    writing-mode: horizontal-tb;
+    margin-bottom: 0;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .post-hero-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  .post-author {
+    justify-content: center;
+  }
+  .post-hero-media {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-hero {
+    padding-top: 120px;
+  }
+  .post-title {
+    font-size: 2.8rem;
+  }
+  .post-intro {
+    font-size: 1.2rem;
+  }
+  .post-gallery {
+    grid-template-columns: 1fr;
+  }
+  .gallery-full {
+    grid-column: span 1;
+  }
+}

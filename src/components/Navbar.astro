@@ -1,0 +1,49 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href={`${base}/`} class="nav-logo">
+      <img src={`${base}/img/logo.png`} alt="Gestoo" />
+    </a>
+    <nav class="nav-links">
+      <a href={`${base}/about`} data-i18n="nav-about">Nosotros</a>
+      <a href={`${base}/services`} data-i18n="nav-services">Servicios</a>
+      <a href={`${base}/works`} data-i18n="nav-works">Proyectos</a>
+      <a href={`${base}/contact`} class="btn-nav" data-i18n="nav-contact">Hablemos</a>
+      <div class="lang-switcher">
+        <button class="lang-btn" id="langBtn">
+          <span class="lang-code">ES</span>
+          <svg class="lang-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <ul class="lang-dropdown">
+          <li><button data-lang="es">ES</button></li>
+          <li><button data-lang="en">EN</button></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="nav-burger" id="navBurger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+    <span></span><span></span>
+  </button>
+  <nav>
+    <a href={`${base}/about`} data-i18n="nav-about">Nosotros</a>
+    <a href={`${base}/services`} data-i18n="nav-services">Servicios</a>
+    <a href={`${base}/works`} data-i18n="nav-works">Proyectos</a>
+    <a href={`${base}/contact`} data-i18n="nav-contact">Contacto</a>
+    <div class="mobile-lang">
+      <button data-lang="es">ES</button>
+      <span>|</span>
+      <button data-lang="en">EN</button>
+    </div>
+  </nav>
+</div>

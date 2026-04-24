@@ -1,0 +1,18 @@
+Ancho web 1200px ajustes para fotos.
+
+Paisaje (Landscape): 1200 x 675px (Relación 16:9 - Estándar de cine/TV).
+
+Cuadrado: 1200 x 1200px.
+
+Retrato (Portrait): 1200 x 1500px (Ideal para mostrar mucho detalle en vertical).
+
+SERVICIOS: 800 x 600 px.
+
+PORTAFOLIO: 1200 x 750px.
+
+FORMATO: WebP (para que idelmente pesen entre 200 y 300kb, optimizar al maximo)
+
+i18n   traduccion
+GSAP
+Lenis 
+

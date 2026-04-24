@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/pages/inner.css';
+import '../styles/pages/contact.css';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Gestoo | Contacto">
+    <Navbar />
+    <img src={`${base}/img/pinguino.svg`} alt="" class="bg-illustration bg-pinguino" />
+    <main>
+        <section class="section contact-section">
+            <div class="container content-contained">
+                <div class="contact-grid">
+                    <div class="contact-info-column reveal">
+                        <span class="tag" data-i18n="nav-contact">Contacto</span>
+                        <h1 class="page-title" data-i18n="contact-hero-title" style="margin-bottom: 2rem">Diseñemos algo <br><span class="gradient-text">extraordinario.</span></h1>
+                        <p class="contact-description" data-i18n="contact-hero-desc">Desde la Patagonia para todo Chile, transformamos la complejidad en experiencias memorables. Cuéntanos qué tienes en mente.</p>
+
+                        <div class="contact-methods">
+                            <div class="method-item">
+                                <div class="method-icon"><img src={`${base}/img/contacto_icons/location.svg`} alt="Ubicación" /></div>
+                                <div class="method-text">
+                                    <label data-i18n="contact-info-location">Ubicación</label>
+                                    <p>Av. Independencia 313, <br />Punta Arenas, Magallanes, Chile</p>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-icon"><img src={`${base}/img/contacto_icons/mail.svg`} alt="Email" /></div>
+                                <div class="method-text">
+                                    <label data-i18n="contact-info-email">Email Corporativo</label>
+                                    <a href="mailto:contacto@gestoo.cl">contacto@gestoo.cl</a>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-icon"><img src={`${base}/img/contacto_icons/whatsapp.svg`} alt="WhatsApp" /></div>
+                                <div class="method-text">
+                                    <label data-i18n="contact-info-whatsapp">WhatsApp Business</label>
+                                    <a href="tel:+56981887723">+56 9 8188 7723</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-column reveal">
+                        <form class="premium-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label data-i18n="contact-form-name">Nombre Completo *</label>
+                                    <input type="text" placeholder="Ej: Juan Pérez" required />
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="contact-form-company">Empresa / Institución</label>
+                                    <input type="text" placeholder="Nombre de tu organización" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label data-i18n="contact-form-email">Email de Contacto *</label>
+                                    <input type="email" placeholder="tu@email.com" required />
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="contact-sidebar-phone">Teléfono</label>
+                                    <input type="tel" placeholder="+56 9 xxxx xxxx" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="contact-form-service">Servicio de Interés *</label>
+                                <select required>
+                                    <option value="" disabled selected data-i18n="contact-form-select">Selecciona una opción</option>
+                                    <option value="corporativo">Consultoría B2B</option>
+                                    <option value="mice">Turismo MICE / Congresos</option>
+                                    <option value="audiovisual">Producción Audiovisual</option>
+                                    <option value="branding">Identidad de Marca</option>
+                                    <option value="otro">Otro Requerimiento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="contact-form-message">Detalles del Desafío *</label>
+                                <textarea placeholder="Cuéntanos brevemente sobre los objetivos de tu proyecto..." required></textarea>
+                            </div>
+                            <div class="form-submit">
+                                <button type="submit" class="btn-orange-glow" id="submitBtn" data-i18n="contact-form-btn">Enviar Requerimiento →</button>
+                            </div>
+                            <div id="formSuccess" style="display: none; margin-top: 1rem; padding: 1.5rem; background: rgba(var(--accent-rgb), 0.1); border: 1px solid var(--border-accent); border-radius: var(--radius); color: var(--accent-light); font-weight: var(--fw-semibold);">✓ Solicitud recibida. Un consultor se pondrá en contacto pronto.</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+
+    <script is:inline>
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+            contactForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const btn = document.getElementById("submitBtn");
+                btn.textContent = "Enviando...";
+                btn.disabled = true;
+                setTimeout(() => {
+                    document.getElementById("formSuccess").style.display = "block";
+                    btn.style.display = "none";
+                    this.reset();
+                }, 1200);
+            });
+        }
+    </script>
+</Layout>

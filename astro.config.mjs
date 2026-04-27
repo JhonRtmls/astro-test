@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://JhonRtmls.github.io',
   base: '/astro-test',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
 });

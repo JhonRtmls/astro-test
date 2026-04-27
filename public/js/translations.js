@@ -42,11 +42,16 @@ const translations = {
     "service-4-title": "Alquiler de Equipos",
     "service-4-desc":
       "Soporte de infraestructura mediante renting de audio, pantallas LED y mobiliario móvil.",
-    "services-hub-center": "Transformamos desafíos complejos en experiencias memorables.",
-    "service-1-detail": "Potenciamos tu identidad corporativa con estrategias de branding que trascienden, alineando tu visión con el impacto en el mercado.",
-    "service-2-detail": "Operación experta en logística para grandes grupos. Convertimos la Patagonia en el escenario perfecto para tu convención.",
-    "service-3-detail": "Dominio técnico total: sonido, iluminación y video de última generación para asegurar que tu mensaje llegue con fuerza.",
-    "service-4-detail": "Infraestructura móvil de alta gama. Equipamiento de punta disponible donde lo necesites, con respaldo técnico permanente.",
+    "services-hub-center":
+      "Transformamos desafíos complejos en experiencias memorables.",
+    "service-1-detail":
+      "Potenciamos tu identidad corporativa con estrategias de branding que trascienden, alineando tu visión con el impacto en el mercado.",
+    "service-2-detail":
+      "Operación experta en logística para grandes grupos. Convertimos la Patagonia en el escenario perfecto para tu convención.",
+    "service-3-detail":
+      "Dominio técnico total: sonido, iluminación y video de última generación para asegurar que tu mensaje llegue con fuerza.",
+    "service-4-detail":
+      "Infraestructura móvil de alta gama. Equipamiento de punta disponible donde lo necesites, con respaldo técnico permanente.",
 
     // Works Section
     "works-tag": "Selection",
@@ -85,7 +90,8 @@ const translations = {
 
     // About Page Specific
     "about-hero-tag": "ADN Patagónico",
-    "about-hero-title": "Transformamos visión en <br><span class=\"gradient-text\">impacto real.</span>",
+    "about-hero-title":
+      'Transformamos visión en <br><span class="gradient-text">impacto real.</span>',
     "about-intro-title":
       "Una agencia creativa que diseña el futuro de los eventos en la Patagonia.",
     "about-intro-p1":
@@ -110,12 +116,15 @@ const translations = {
     "about-team-tag": "Capital Humano",
     "about-team-title": "El equipo detrás de la magia.",
     "about-cta-tag": "Problem Solvers",
-    "about-cta-title": "¿Tienes un desafío? <br> Somos la <span class=\"solution-highlight\">solución.</span>",
-    "about-cta-desc": "Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.",
+    "about-cta-title":
+      '¿Tienes un desafío? <br> Somos la <span class="solution-highlight">solución.</span>',
+    "about-cta-desc":
+      "Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.",
     "about-cta-btn": "Cotiza tu solución ahora →",
 
     // Services Page Specific
-    "services-hero-title": "Soluciones diseñadas para <br><span class=\"gradient-text\">cada desafío.</span>",
+    "services-hero-title":
+      'Soluciones diseñadas para <br><span class="gradient-text">cada desafío.</span>',
     "services-grid-tag": "Especialidades",
     "services-grid-title": "Nuestra oferta B2B.",
     "services-card-1-title": "Consultoría de Marca",
@@ -136,19 +145,22 @@ const translations = {
     "services-card-6-title": "Operación Regional",
     "services-card-6-desc":
       "Conocimiento profundo del terreno en Magallanes. Operamos en locaciones remotas garantizando excelencia técnica siempre.",
-    "services-cta-title": "¿Tienes un desafío? <br> Somos la <span class=\"solution-highlight\">solución.</span>",
+    "services-cta-title":
+      '¿Tienes un desafío? <br> Somos la <span class="solution-highlight">solución.</span>',
     "services-cta-desc":
       "Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.",
 
     // Works Page Specific
-    "works-hero-title": "Experiencias que hablan <br><span class=\"gradient-text\">por nosotros.</span>",
+    "works-hero-title":
+      'Experiencias que hablan <br><span class="gradient-text">por nosotros.</span>',
     "works-filter-all": "Todos",
     "works-filter-corp": "Corporativo",
     "works-filter-social": "Social",
     "works-filter-show": "Show & Cultura",
 
     // Contact Page Specific
-    "contact-hero-title": "Diseñemos algo <br><span class=\"gradient-text\">extraordinario.</span>",
+    "contact-hero-title":
+      'Expertos en soluciones <br><span class="gradient-text">MICE y B2B.</span>',
     "contact-hero-subtitle":
       "¿Tienes un proyecto en mente? Estamos listos para escucharte y transformarlo en una experiencia memorable.",
     "contact-form-name": "Nombre completo",
@@ -204,11 +216,16 @@ const translations = {
     "service-4-title": "Equipment Rental",
     "service-4-desc":
       "Infrastructure support through audio renting, LED screens, and mobile furniture.",
-    "services-hub-center": "We transform complex challenges into memorable experiences.",
-    "service-1-detail": "We empower your corporate identity with branding strategies that transcend, aligning your vision with market impact.",
-    "service-2-detail": "Expert operation in logistics for large groups. We turn Patagonia into the perfect setting for your convention.",
-    "service-3-detail": "Total technical mastery: state-of-the-art sound, lighting, and video to ensure your message arrives with strength.",
-    "service-4-detail": "High-end mobile infrastructure. Cutting-edge equipment available where you need it, with permanent technical support.",
+    "services-hub-center":
+      "We transform complex challenges into memorable experiences.",
+    "service-1-detail":
+      "We empower your corporate identity with branding strategies that transcend, aligning your vision with market impact.",
+    "service-2-detail":
+      "Expert operation in logistics for large groups. We turn Patagonia into the perfect setting for your convention.",
+    "service-3-detail":
+      "Total technical mastery: state-of-the-art sound, lighting, and video to ensure your message arrives with strength.",
+    "service-4-detail":
+      "High-end mobile infrastructure. Cutting-edge equipment available where you need it, with permanent technical support.",
 
     // Works Section
     "works-tag": "Selection",
@@ -247,7 +264,8 @@ const translations = {
 
     // About Page Specific
     "about-hero-tag": "Patagonian DNA",
-    "about-hero-title": "Transforming vision into <br><span class=\"gradient-text\">real impact.</span>",
+    "about-hero-title":
+      'Transforming vision into <br><span class="gradient-text">real impact.</span>',
     "about-intro-title":
       "A creative agency designing the future of events in Patagonia.",
     "about-intro-p1":
@@ -272,12 +290,15 @@ const translations = {
     "about-team-tag": "Human Capital",
     "about-team-title": "The team behind the magic.",
     "about-cta-tag": "Problem Solvers",
-    "about-cta-title": "Do you have a challenge? <br> We are the <span class=\"solution-highlight\">solution.</span>",
-    "about-cta-desc": "We optimize processes, elevate your brand, and guarantee that every event is an investment, not an expense. Your success is our metric.",
+    "about-cta-title":
+      'Do you have a challenge? <br> We are the <span class="solution-highlight">solution.</span>',
+    "about-cta-desc":
+      "We optimize processes, elevate your brand, and guarantee that every event is an investment, not an expense. Your success is our metric.",
     "about-cta-btn": "Quote your solution now →",
 
     // Services Page Specific
-    "services-hero-title": "Solutions designed for <br><span class=\"gradient-text\">every challenge.</span>",
+    "services-hero-title":
+      'Solutions designed for <br><span class="gradient-text">every challenge.</span>',
     "services-grid-tag": "Specialties",
     "services-grid-title": "Our B2B offer.",
     "services-card-1-title": "Brand Consulting",
@@ -298,19 +319,22 @@ const translations = {
     "services-card-6-title": "Regional Operation",
     "services-card-6-desc":
       "Deep knowledge of the terrain in Magallanes. We operate in remote locations guaranteeing technical excellence always.",
-    "services-cta-title": "Do you have a challenge? <br> We are the <span class=\"solution-highlight\">solution.</span>",
+    "services-cta-title":
+      'Do you have a challenge? <br> We are the <span class="solution-highlight">solution.</span>',
     "services-cta-desc":
       "We optimize processes, elevate your brand, and guarantee that every event is an investment, not an expense. Your success is our metric.",
 
     // Works Page Specific
-    "works-hero-title": "Experiences that speak <br><span class=\"gradient-text\">for us.</span>",
+    "works-hero-title":
+      'Experiences that speak <br><span class="gradient-text">for us.</span>',
     "works-filter-all": "All",
     "works-filter-corp": "Corporate",
     "works-filter-social": "Social",
     "works-filter-show": "Show & Culture",
 
     // Contact Page Specific
-    "contact-hero-title": "Let's design something <br><span class=\"gradient-text\">extraordinary.</span>",
+    "contact-hero-title":
+      'Let\'s design something <br><span class="gradient-text">extraordinary.</span>',
     "contact-hero-subtitle":
       "Do you have a project in mind? We are ready to listen and transform it into a memorable experience.",
     "contact-form-name": "Full name",

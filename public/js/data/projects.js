@@ -5,7 +5,7 @@ const projectsData = [
     category: "corporativo",
     tag: "B2B Strategy",
     description: "Consultoría integral y producción de alta gama.",
-    image: "../img/work-1.jpeg"
+    image: "../img/work-1.webp",
   },
   {
     id: "gala-corporativa",
@@ -13,7 +13,7 @@ const projectsData = [
     category: "social",
     tag: "Brand Experience",
     description: "Diseño de marca y producción técnica sensorial.",
-    image: "../img/work-2.jpeg"
+    image: "../img/work-2.jpeg",
   },
   {
     id: "incentivo-regional",
@@ -21,7 +21,7 @@ const projectsData = [
     category: "social",
     tag: "MICE & Tourism",
     description: "Logística de lujo y operación técnica en terreno.",
-    image: "../img/work-3.jpeg"
+    image: "../img/work-3.webp",
   },
   {
     id: "launch-interactive",
@@ -29,6 +29,6 @@ const projectsData = [
     category: "show",
     tag: "Equipment Rental",
     description: "Renting de tecnología interactiva y pantallas LED.",
-    image: "../img/work-4.jpeg"
-  }
+    image: "../img/work-4.jpeg",
+  },
 ];

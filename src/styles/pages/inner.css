@@ -31,11 +31,6 @@
   line-height: 1.6;
 }
 
-
-
-
-
-
 /* ── Background Illustrations ── */
 .bg-illustration {
   position: fixed;
@@ -47,7 +42,6 @@
   pointer-events: none;
   z-index: -1;
 }
-
 
 /* ── Responsive ── */
 @media (max-width: 768px) {

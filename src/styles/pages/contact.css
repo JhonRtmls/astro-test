@@ -3,17 +3,16 @@
    ================================================ */
 
 .contact-section {
-  padding: 180px 0 120px;
+  padding: 200px 0 100px; /* Mas espacio arriba */
   min-height: 100vh;
-  display: flex;
-  align-items: center;
+  display: block; /* Cambiamos de flex a block para mejor control de flujo */
 }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 80px;
-  align-items: flex-start;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: start; /* Alineamos arriba */
 }
 
 /* ── Column 1: Info ── */

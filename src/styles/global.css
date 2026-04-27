@@ -38,7 +38,6 @@ h4 {
   letter-spacing: -0.02em;
 }
 
-
 /* ── NAVBAR (v.1 Style) ── */
 .navbar {
   position: fixed;
@@ -47,13 +46,13 @@ h4 {
   width: 100%;
   height: var(--header-height);
   background: rgba(21, 42, 60, 0.65);
-  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   z-index: 1000;
   display: flex;
   align-items: center;
   transition: all var(--t-base) var(--ease);
-  margin: 0 !important; /* Asegurar que no haya margen que lo despegue */
+  margin: 0 !important;
 }
 
 .navbar.scrolled {
@@ -150,6 +149,7 @@ h4 {
   top: 100%;
   right: 0;
   background: rgba(21, 42, 60, 0.9);
+  -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -644,7 +644,6 @@ h4 {
   opacity: 1;
 }
 
-
 /* ── PROBLEM SOLVER (v.2 Style) ── */
 .solver-section {
   height: 100vh;
@@ -689,7 +688,6 @@ h4 {
   margin: 0 auto;
   max-width: 1200px;
 }
-
 
 .solver-actions {
   margin-top: 3rem;

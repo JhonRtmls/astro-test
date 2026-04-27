@@ -1,319 +1,445 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/pages/home.css';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/pages/home.css";
 const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Gestoo — Agencia Creativa">
-    <Navbar />
-    <main>
-      <!-- ============ HERO VIDEO ============ -->
-      <section class="hero" id="home">
-        <div class="hero-video-wrapper">
+  <Navbar />
+  <main>
+    <!-- ============ HERO VIDEO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-video-wrapper">
+        <img
+          src={`${base}/img/hero.jpg`}
+          alt="Gestoo Hero — Agencia Creativa"
+          class="hero-video"
+        />
+        <div class="hero-overlay"></div>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="manifesto-premium" id="about">
+      <div class="manifesto-ghost-illustration" aria-hidden="true">
+        <img src={`${base}/img/infinito.svg`} alt="" />
+      </div>
+
+      <div class="manifesto-container">
+        <div class="manifesto-images">
           <img
-            src={`${base}/img/hero.jpg`}
-            alt="Gestoo Hero — Agencia Creativa"
-            class="hero-video"
+            src={`${base}/img/work-1.webp`}
+            class="floating-img img-1"
+            alt="Producción de eventos en Punta Arenas"
           />
-          <div class="hero-overlay"></div>
+          <img
+            src={`${base}/img/work-2.jpeg`}
+            class="floating-img img-2"
+            alt="Diseño de marca y branding corporativo"
+          />
+          <img
+            src={`${base}/img/work-3.webp`}
+            class="floating-img img-3"
+            alt="Turismo MICE y convenciones en la Patagonia"
+          />
         </div>
-      </section>
 
-      <!-- ============ MANIFESTO ============ -->
-      <section class="manifesto-premium" id="about">
-        <div class="manifesto-ghost-illustration" aria-hidden="true">
-          <img src={`${base}/img/infinito.svg`} alt="" />
+        <div class="manifesto-content">
+          <h1 class="manifesto-title" data-i18n="manifesto-title">
+            SOMOS <br />
+            PARA QUIENES <br />
+            BUSCAN SOLUCIONES <br />
+            CREATIVAS <br />
+            A DESAFÍOS <br />
+            COMPLEJOS.
+          </h1>
         </div>
 
-        <div class="manifesto-container">
-          <div class="manifesto-images">
-            <img
-              src={`${base}/img/work-1.jpeg`}
-              class="floating-img img-1"
-              alt="Producción de eventos en Punta Arenas"
-            />
-            <img
-              src={`${base}/img/work-2.jpeg`}
-              class="floating-img img-2"
-              alt="Diseño de marca y branding corporativo"
-            />
-            <img
-              src={`${base}/img/work-3.jpeg`}
-              class="floating-img img-3"
-              alt="Turismo MICE y convenciones en la Patagonia"
-            />
-          </div>
-
-          <div class="manifesto-content">
-            <h1 class="manifesto-title" data-i18n="manifesto-title">
-              SOMOS <br />
-              PARA QUIENES <br />
-              BUSCAN SOLUCIONES <br />
-              CREATIVAS <br />
-              A DESAFÍOS <br />
-              COMPLEJOS.
-            </h1>
-          </div>
-
-          <div class="manifesto-detail-box">
-            <p data-i18n="manifesto-detail">
-              Creando experiencias únicas desde lo más profundo de la Patagonia
-              Chilena para el mundo entero.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ STRATEGIC MARQUEE 1 ============ -->
-      <div class="marquee-wrap strategic-marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <div class="marquee-block">
-            <span data-i18n="mq-creativity">Creatividad</span><span class="dot">·</span>
-            <span data-i18n="mq-events">Eventos</span><span class="dot">·</span>
-            <span data-i18n="mq-mice">MICE</span><span class="dot">·</span>
-            <span data-i18n="mq-branding">Branding</span><span class="dot">·</span>
-            <span data-i18n="mq-patagonia">Patagonia</span><span class="dot">·</span>
-            <span data-i18n="mq-solutions">Soluciones</span><span class="dot">·</span>
-          </div>
-          <div class="marquee-block" aria-hidden="true">
-            <span data-i18n="mq-creativity">Creatividad</span><span class="dot">·</span>
-            <span data-i18n="mq-events">Eventos</span><span class="dot">·</span>
-            <span data-i18n="mq-mice">MICE</span><span class="dot">·</span>
-            <span data-i18n="mq-branding">Branding</span><span class="dot">·</span>
-            <span data-i18n="mq-patagonia">Patagonia</span><span class="dot">·</span>
-            <span data-i18n="mq-solutions">Soluciones</span><span class="dot">·</span>
-          </div>
+        <div class="manifesto-detail-box">
+          <p data-i18n="manifesto-detail">
+            Creando experiencias únicas desde lo más profundo de la Patagonia
+            Chilena para el mundo entero.
+          </p>
         </div>
       </div>
+    </section>
 
-      <!-- ============ SERVICES HUB ============ -->
-      <section class="services-hub" id="services">
-        <div class="hub-rings" aria-hidden="true">
-          <div class="hub-ring ring-1"></div>
-          <div class="hub-ring ring-2"></div>
-          <div class="hub-ring ring-3"></div>
+    <!-- ============ STRATEGIC MARQUEE 1 ============ -->
+    <div class="marquee-wrap strategic-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          <span data-i18n="mq-creativity">Creatividad</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-events">Eventos</span><span class="dot">·</span>
+          <span data-i18n="mq-mice">MICE</span><span class="dot">·</span>
+          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span
+          >
+          <span data-i18n="mq-patagonia">Patagonia</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-solutions">Soluciones</span><span class="dot"
+            >·</span
+          >
         </div>
-
-        <div class="container hub-container">
-          <div class="hub-center">
-            <div class="hub-center-circle">
-              <h2 data-i18n="services-hub-center">
-                Transformamos desafíos complejos en experiencias memorables.
-              </h2>
-            </div>
-          </div>
-
-          <div class="hub-cards">
-            <!-- Card 01 -->
-            <a href="#" class="hub-card card-1" data-parallax="0.15">
-              <div class="hub-card-image" style={`background-image: url('${base}/img/service-marca.jpg')`}></div>
-              <div class="hub-card-content">
-                <span class="hub-card-num">01</span>
-                <h3 data-i18n="service-1-title">Consultoría de Marca</h3>
-                <p class="short-desc" data-i18n="service-1-desc">
-                  Estrategia de identidad corporativa y narrativa de marca para
-                  el sector B2B.
-                </p>
-                <p class="long-desc" data-i18n="service-1-detail">
-                  Potenciamos tu identidad corporativa con estrategias de
-                  branding que trascienden, alineando tu visión con el impacto
-                  en el mercado.
-                </p>
-              </div>
-            </a>
-
-            <!-- Card 02 -->
-            <a href="#" class="hub-card card-2" data-parallax="0.25">
-              <div class="hub-card-image" style={`background-image: url('${base}/img/service-mice.jpg')`}></div>
-              <div class="hub-card-content">
-                <span class="hub-card-num">02</span>
-                <h3 data-i18n="service-2-title">Turismo MICE</h3>
-                <p class="short-desc" data-i18n="service-2-desc">
-                  Planificación integral y logística de congresos, incentivos y
-                  convenciones en Patagonia.
-                </p>
-                <p class="long-desc" data-i18n="service-2-detail">
-                  Operación experta en logística para grandes grupos.
-                  Convertimos la Patagonia en el escenario perfecto para tu
-                  convención.
-                </p>
-              </div>
-            </a>
-
-            <!-- Card 03 -->
-            <a href="#" class="hub-card card-3" data-parallax="0.1">
-              <div class="hub-card-image" style={`background-image: url('${base}/img/service-produccion.jpg')`}></div>
-              <div class="hub-card-content">
-                <span class="hub-card-num">03</span>
-                <h3 data-i18n="service-3-title">Producción de Impacto</h3>
-                <p class="short-desc" data-i18n="service-3-desc">
-                  Ingeniería técnica audiovisual avanzada para eventos
-                  corporativos y masivos.
-                </p>
-                <p class="long-desc" data-i18n="service-3-detail">
-                  Dominio técnico total: sonido, iluminación y video de última
-                  generación para asegurar que tu mensaje llegue con fuerza.
-                </p>
-              </div>
-            </a>
-
-            <!-- Card 04 -->
-            <a href="#" class="hub-card card-4" data-parallax="0.2">
-              <div class="hub-card-image" style={`background-image: url('${base}/img/service-renting.jpg')`}></div>
-              <div class="hub-card-content">
-                <span class="hub-card-num">04</span>
-                <h3 data-i18n="service-4-title">Alquiler de Equipos</h3>
-                <p class="short-desc" data-i18n="service-4-desc">
-                  Soporte de infraestructura mediante renting de audio,
-                  pantallas LED y mobiliario móvil.
-                </p>
-                <p class="long-desc" data-i18n="service-4-detail">
-                  Infraestructura móvil de alta gama. Equipamiento de punta
-                  disponible donde lo necesites, con respaldo técnico
-                  permanente.
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ BRAND MARQUEE ============ -->
-      <div class="marquee-wrap brand-marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <div class="marquee-block">
-            <img src={`${base}/img/marcas/marca-1.svg`} class="brand-logo" alt="Marca 1" />
-            <img src={`${base}/img/marcas/marca-2.svg`} class="brand-logo" alt="Marca 2" />
-            <img src={`${base}/img/marcas/marca-3.svg`} class="brand-logo" alt="Marca 3" />
-            <img src={`${base}/img/marcas/marca-4.svg`} class="brand-logo" alt="Marca 4" />
-            <img src={`${base}/img/marcas/marca-5.svg`} class="brand-logo" alt="Marca 5" />
-            <img src={`${base}/img/marcas/marca-6.svg`} class="brand-logo" alt="Marca 6" />
-            <img src={`${base}/img/marcas/marca-7.svg`} class="brand-logo" alt="Marca 7" />
-            <img src={`${base}/img/marcas/marca-8.svg`} class="brand-logo" alt="Marca 8" />
-          </div>
-          <div class="marquee-block" aria-hidden="true">
-            <img src={`${base}/img/marcas/marca-1.svg`} class="brand-logo" alt="Marca 1" />
-            <img src={`${base}/img/marcas/marca-2.svg`} class="brand-logo" alt="Marca 2" />
-            <img src={`${base}/img/marcas/marca-3.svg`} class="brand-logo" alt="Marca 3" />
-            <img src={`${base}/img/marcas/marca-4.svg`} class="brand-logo" alt="Marca 4" />
-            <img src={`${base}/img/marcas/marca-5.svg`} class="brand-logo" alt="Marca 5" />
-            <img src={`${base}/img/marcas/marca-6.svg`} class="brand-logo" alt="Marca 6" />
-            <img src={`${base}/img/marcas/marca-7.svg`} class="brand-logo" alt="Marca 7" />
-            <img src={`${base}/img/marcas/marca-8.svg`} class="brand-logo" alt="Marca 8" />
-          </div>
+        <div class="marquee-block" aria-hidden="true">
+          <span data-i18n="mq-creativity">Creatividad</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-events">Eventos</span><span class="dot">·</span>
+          <span data-i18n="mq-mice">MICE</span><span class="dot">·</span>
+          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span
+          >
+          <span data-i18n="mq-patagonia">Patagonia</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-solutions">Soluciones</span><span class="dot"
+            >·</span
+          >
         </div>
       </div>
+    </div>
 
-      <!-- ============ WORKS / PORTFOLIO ============ -->
-      <section class="works-section" id="works">
-        <div class="container">
-          <div class="section-header content-contained">
-            <span class="tag" data-i18n="works-tag">Selection</span>
-            <h2 class="section-title" data-i18n="works-title">
-              Casos de <em>éxito.</em>
+    <!-- ============ SERVICES HUB ============ -->
+    <section class="services-hub" id="services">
+      <div class="hub-rings" aria-hidden="true">
+        <div class="hub-ring ring-1"></div>
+        <div class="hub-ring ring-2"></div>
+        <div class="hub-ring ring-3"></div>
+      </div>
+
+      <div class="container hub-container">
+        <div class="hub-center">
+          <div class="hub-center-circle">
+            <h2 data-i18n="services-hub-center">
+              Transformamos desafíos complejos en experiencias memorables.
             </h2>
           </div>
         </div>
 
-        <div class="works-grid">
-          <article class="work-card">
-            <div class="work-media">
-              <img src={`${base}/img/work-5.jpeg`} alt="Patagonia Summit" />
+        <div class="hub-cards">
+          <!-- Card 01 -->
+          <a href="#" class="hub-card card-1" data-parallax="0.15">
+            <div
+              class="hub-card-image"
+              style={`background-image: url('${base}/img/service-marca.jpg')`}
+            >
             </div>
-            <div class="work-overlay">
-              <span class="work-cat" data-i18n="work-1-cat">B2B Strategy</span>
-              <h3 data-i18n="work-1-title">Patagonia Summit</h3>
-              <p data-i18n="work-1-desc">
-                Consultoría integral y producción de alta gama.
+            <div class="hub-card-content">
+              <span class="hub-card-num">01</span>
+              <h3 data-i18n="service-1-title">Consultoría de Marca</h3>
+              <p class="short-desc" data-i18n="service-1-desc">
+                Estrategia de identidad corporativa y narrativa de marca para el
+                sector B2B.
+              </p>
+              <p class="long-desc" data-i18n="service-1-detail">
+                Potenciamos tu identidad corporativa con estrategias de branding
+                que trascienden, alineando tu visión con el impacto en el
+                mercado.
               </p>
             </div>
-          </article>
-          <article class="work-card">
-            <div class="work-media">
-              <img src={`${base}/img/work-6.jpeg`} alt="Gala Corporativa" />
-            </div>
-            <div class="work-overlay">
-              <span class="work-cat" data-i18n="work-2-cat">Brand Experience</span>
-              <h3 data-i18n="work-2-title">Gala Corporativa</h3>
-              <p data-i18n="work-2-desc">
-                Diseño de marca y producción técnica sensorial.
-              </p>
-            </div>
-          </article>
-          <article class="work-card">
-            <div class="work-media">
-              <img src={`${base}/img/work-3.jpeg`} alt="Producción de eventos regionales de alta gama" />
-            </div>
-            <div class="work-overlay">
-              <span class="work-cat" data-i18n="work-3-cat">MICE & Tourism</span>
-              <h3 data-i18n="work-3-title">Incentivo Regional</h3>
-              <p data-i18n="work-3-desc">
-                Logística de lujo y operación técnica en terreno.
-              </p>
-            </div>
-          </article>
-          <article class="work-card">
-            <div class="work-media">
-              <img src={`${base}/img/work-4.jpeg`} alt="Renting de tecnología interactiva y pantallas LED" />
-            </div>
-            <div class="work-overlay">
-              <span class="work-cat" data-i18n="work-4-cat">Equipment Rental</span>
-              <h3 data-i18n="work-4-title">Launch Interactive</h3>
-              <p data-i18n="work-4-desc">
-                Renting de tecnología interactiva y pantallas LED.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
+          </a>
 
-      <!-- ============ STRATEGIC MARQUEE 2 ============ -->
-      <div class="marquee-wrap strategic-marquee highlight" aria-hidden="true">
-        <div class="marquee-track">
-          <div class="marquee-block">
-            <span data-i18n="mq-branding">Branding</span><span class="dot">·</span>
-            <span data-i18n="mq-logistics">Logística</span><span class="dot">·</span>
-            <span data-i18n="mq-production">Producción</span><span class="dot">·</span>
-            <span data-i18n="mq-creativity">Creatividad</span><span class="dot">·</span>
-            <span data-i18n="mq-experience">Experiencia</span><span class="dot">·</span>
-          </div>
-          <div class="marquee-block" aria-hidden="true">
-            <span data-i18n="mq-branding">Branding</span><span class="dot">·</span>
-            <span data-i18n="mq-logistics">Logística</span><span class="dot">·</span>
-            <span data-i18n="mq-production">Producción</span><span class="dot">·</span>
-            <span data-i18n="mq-creativity">Creatividad</span><span class="dot">·</span>
-            <span data-i18n="mq-experience">Experiencia</span><span class="dot">·</span>
-          </div>
+          <!-- Card 02 -->
+          <a href="#" class="hub-card card-2" data-parallax="0.25">
+            <div
+              class="hub-card-image"
+              style={`background-image: url('${base}/img/service-mice.jpg')`}
+            >
+            </div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">02</span>
+              <h3 data-i18n="service-2-title">Turismo MICE</h3>
+              <p class="short-desc" data-i18n="service-2-desc">
+                Planificación integral y logística de congresos, incentivos y
+                convenciones en Patagonia.
+              </p>
+              <p class="long-desc" data-i18n="service-2-detail">
+                Operación experta en logística para grandes grupos. Convertimos
+                la Patagonia en el escenario perfecto para tu convención.
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 03 -->
+          <a href="#" class="hub-card card-3" data-parallax="0.1">
+            <div
+              class="hub-card-image"
+              style={`background-image: url('${base}/img/service-produccion.jpg')`}
+            >
+            </div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">03</span>
+              <h3 data-i18n="service-3-title">Producción de Impacto</h3>
+              <p class="short-desc" data-i18n="service-3-desc">
+                Ingeniería técnica audiovisual avanzada para eventos
+                corporativos y masivos.
+              </p>
+              <p class="long-desc" data-i18n="service-3-detail">
+                Dominio técnico total: sonido, iluminación y video de última
+                generación para asegurar que tu mensaje llegue con fuerza.
+              </p>
+            </div>
+          </a>
+
+          <!-- Card 04 -->
+          <a href="#" class="hub-card card-4" data-parallax="0.2">
+            <div
+              class="hub-card-image"
+              style={`background-image: url('${base}/img/service-renting.jpg')`}
+            >
+            </div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">04</span>
+              <h3 data-i18n="service-4-title">Alquiler de Equipos</h3>
+              <p class="short-desc" data-i18n="service-4-desc">
+                Soporte de infraestructura mediante renting de audio, pantallas
+                LED y mobiliario móvil.
+              </p>
+              <p class="long-desc" data-i18n="service-4-detail">
+                Infraestructura móvil de alta gama. Equipamiento de punta
+                disponible donde lo necesites, con respaldo técnico permanente.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BRAND MARQUEE ============ -->
+    <div class="marquee-wrap brand-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          <img
+            src={`${base}/img/marcas/marca-1.svg`}
+            class="brand-logo"
+            alt="Marca 1"
+          />
+          <img
+            src={`${base}/img/marcas/marca-2.svg`}
+            class="brand-logo"
+            alt="Marca 2"
+          />
+          <img
+            src={`${base}/img/marcas/marca-3.svg`}
+            class="brand-logo"
+            alt="Marca 3"
+          />
+          <img
+            src={`${base}/img/marcas/marca-4.svg`}
+            class="brand-logo"
+            alt="Marca 4"
+          />
+          <img
+            src={`${base}/img/marcas/marca-5.svg`}
+            class="brand-logo"
+            alt="Marca 5"
+          />
+          <img
+            src={`${base}/img/marcas/marca-6.svg`}
+            class="brand-logo"
+            alt="Marca 6"
+          />
+          <img
+            src={`${base}/img/marcas/marca-7.svg`}
+            class="brand-logo"
+            alt="Marca 7"
+          />
+          <img
+            src={`${base}/img/marcas/marca-8.svg`}
+            class="brand-logo"
+            alt="Marca 8"
+          />
+        </div>
+        <div class="marquee-block" aria-hidden="true">
+          <img
+            src={`${base}/img/marcas/marca-1.svg`}
+            class="brand-logo"
+            alt="Marca 1"
+          />
+          <img
+            src={`${base}/img/marcas/marca-2.svg`}
+            class="brand-logo"
+            alt="Marca 2"
+          />
+          <img
+            src={`${base}/img/marcas/marca-3.svg`}
+            class="brand-logo"
+            alt="Marca 3"
+          />
+          <img
+            src={`${base}/img/marcas/marca-4.svg`}
+            class="brand-logo"
+            alt="Marca 4"
+          />
+          <img
+            src={`${base}/img/marcas/marca-5.svg`}
+            class="brand-logo"
+            alt="Marca 5"
+          />
+          <img
+            src={`${base}/img/marcas/marca-6.svg`}
+            class="brand-logo"
+            alt="Marca 6"
+          />
+          <img
+            src={`${base}/img/marcas/marca-7.svg`}
+            class="brand-logo"
+            alt="Marca 7"
+          />
+          <img
+            src={`${base}/img/marcas/marca-8.svg`}
+            class="brand-logo"
+            alt="Marca 8"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ WORKS / PORTFOLIO ============ -->
+    <section class="works-section" id="works">
+      <div class="container">
+        <div class="section-header content-contained">
+          <span class="tag" data-i18n="works-tag">Selection</span>
+          <h2 class="section-title" data-i18n="works-title">
+            Casos de <em>éxito.</em>
+          </h2>
         </div>
       </div>
 
-      <!-- ============ PROBLEM SOLVER ============ -->
-      <section class="solver-section" id="contact">
-        <div class="solver-sticky">
-          <div class="solver-layer layer-problem">
-            <div class="container content-contained">
-              <span class="status-badge" data-i18n="solver-problem-tag">El Problema</span>
-              <h2 class="solver-text" data-i18n="solver-problem-text">
-                ¿NECESITAS PRODUCCIÓN Y LOGÍSTICA PARA TU PRÓXIMO PROYECTO?
-              </h2>
-            </div>
+      <div class="works-grid">
+        <article class="work-card">
+          <div class="work-media">
+            <img src={`${base}/img/work-5.jpeg`} alt="Patagonia Summit" />
           </div>
-          <div class="solver-layer layer-solution">
-            <div class="container content-contained">
-              <span class="status-badge white" data-i18n="solver-solution-tag">La Solución</span>
-              <h2 class="solver-text" data-i18n="solver-solution-text">
-                TE AYUDAMOS A QUE CADA PROYECTO SEA UNA INVERSIÓN,<br />
-                NO UN GASTO.
-              </h2>
-              <div class="solver-actions">
-                <a href={`${base}/contact`} class="btn-primary" data-i18n="solver-btn">COTIZA TU SOLUCIÓN</a>
-              </div>
+          <div class="work-overlay">
+            <span class="work-cat" data-i18n="work-1-cat">B2B Strategy</span>
+            <h3 data-i18n="work-1-title">Patagonia Summit</h3>
+            <p data-i18n="work-1-desc">
+              Consultoría integral y producción de alta gama.
+            </p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-media">
+            <img src={`${base}/img/work-6.jpeg`} alt="Gala Corporativa" />
+          </div>
+          <div class="work-overlay">
+            <span class="work-cat" data-i18n="work-2-cat">Brand Experience</span
+            >
+            <h3 data-i18n="work-2-title">Gala Corporativa</h3>
+            <p data-i18n="work-2-desc">
+              Diseño de marca y producción técnica sensorial.
+            </p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-media">
+            <img
+              src={`${base}/img/work-3.webp`}
+              alt="Producción de eventos regionales de alta gama"
+            />
+          </div>
+          <div class="work-overlay">
+            <span class="work-cat" data-i18n="work-3-cat">MICE & Tourism</span>
+            <h3 data-i18n="work-3-title">Incentivo Regional</h3>
+            <p data-i18n="work-3-desc">
+              Logística de lujo y operación técnica en terreno.
+            </p>
+          </div>
+        </article>
+        <article class="work-card">
+          <div class="work-media">
+            <img
+              src={`${base}/img/work-4.jpeg`}
+              alt="Renting de tecnología interactiva y pantallas LED"
+            />
+          </div>
+          <div class="work-overlay">
+            <span class="work-cat" data-i18n="work-4-cat">Equipment Rental</span
+            >
+            <h3 data-i18n="work-4-title">Launch Interactive</h3>
+            <p data-i18n="work-4-desc">
+              Renting de tecnología interactiva y pantallas LED.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ STRATEGIC MARQUEE 2 ============ -->
+    <div class="marquee-wrap strategic-marquee highlight" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span
+          >
+          <span data-i18n="mq-logistics">Logística</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-production">Producción</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-creativity">Creatividad</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-experience">Experiencia</span><span class="dot"
+            >·</span
+          >
+        </div>
+        <div class="marquee-block" aria-hidden="true">
+          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span
+          >
+          <span data-i18n="mq-logistics">Logística</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-production">Producción</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-creativity">Creatividad</span><span class="dot"
+            >·</span
+          >
+          <span data-i18n="mq-experience">Experiencia</span><span class="dot"
+            >·</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PROBLEM SOLVER ============ -->
+    <section class="solver-section" id="contact">
+      <div class="solver-sticky">
+        <div class="solver-layer layer-problem">
+          <div class="container content-contained">
+            <span class="status-badge" data-i18n="solver-problem-tag"
+              >El Problema</span
+            >
+            <h2 class="solver-text" data-i18n="solver-problem-text">
+              ¿NECESITAS PRODUCCIÓN Y LOGÍSTICA PARA TU PRÓXIMO PROYECTO?
+            </h2>
+          </div>
+        </div>
+        <div class="solver-layer layer-solution">
+          <div class="container content-contained">
+            <span class="status-badge white" data-i18n="solver-solution-tag"
+              >La Solución</span
+            >
+            <h2 class="solver-text" data-i18n="solver-solution-text">
+              TE AYUDAMOS A QUE CADA PROYECTO SEA UNA INVERSIÓN,<br />
+              NO UN GASTO.
+            </h2>
+            <div class="solver-actions">
+              <a
+                href={`${base}/contact`}
+                class="btn-primary"
+                data-i18n="solver-btn">COTIZA TU SOLUCIÓN</a
+              >
             </div>
           </div>
         </div>
-      </section>
-    </main>
-    <Footer />
+      </div>
+    </section>
+  </main>
+  <Footer />
 </Layout>

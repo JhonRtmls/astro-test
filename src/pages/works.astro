@@ -8,6 +8,10 @@ import "../styles/pages/works.css";
 const base = import.meta.env.BASE_URL;
 
 const projects = await getCollection("projects");
+
+// Extraer categorías únicas de los proyectos MDX
+const allCategories = [...new Set(projects.map((p) => p.data.category))];
+const categories = allCategories.slice(0, 6); // Limitamos a 6 como pediste
 ---
 
 <Layout title="Gestoo | Proyectos">
@@ -43,21 +47,9 @@ const projects = await getCollection("projects");
             data-filter="all"
             data-i18n="works-filter-all">Todos</button
           >
-          <button
-            class="filter-btn"
-            data-filter="B2B Strategy"
-            data-i18n="works-filter-corp">Corporativo</button
-          >
-          <button
-            class="filter-btn"
-            data-filter="MICE & Tourism"
-            data-i18n="works-filter-social">Social</button
-          >
-          <button
-            class="filter-btn"
-            data-filter="Show & Cultura"
-            data-i18n="works-filter-show">Show & Cultura</button
-          >
+          {categories.map((cat) => (
+            <button class="filter-btn" data-filter={cat}>{cat}</button>
+          ))}
         </div>
 
         <div class="portfolio-grid" id="portfolioGrid">

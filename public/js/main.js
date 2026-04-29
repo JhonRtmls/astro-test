@@ -1,8 +1,8 @@
 /* ================================================
-    GESTOO — Main JavaScript v.4
+    GESTOO — Main JavaScript v.6 (Astro Optimized)
    ================================================ */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("astro:page-load", () => {
   // ── Lenis Smooth Scroll ──
   const lenis = new Lenis();
 

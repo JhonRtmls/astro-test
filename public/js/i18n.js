@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("astro:page-load", () => {
   const langButtons = document.querySelectorAll("[data-lang]");
   const langCodeEl = document.querySelector(".lang-code");
 

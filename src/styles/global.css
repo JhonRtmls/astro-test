@@ -64,34 +64,48 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* Cambiado de calc(100% - 20px) para evitar que parezca despegado */
-  max-width: var(--container-width);
+  width: 100%;
+  max-width: var(--container-width-wide);
   margin: 0 auto;
-  padding: 0 var(--container-pad);
+  padding: 0 4rem; /* Más aire a los lados */
+}
+
+.nav-logo {
+  flex: 0 0 200px; /* Ancho fijo para el logo */
 }
 
 .nav-logo img {
-  height: 32px;
+  height: 35px;
   filter: brightness(0) invert(1);
-  padding-left: 50px;
 }
 
-.nav-links {
+.nav-menu {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
-  margin-left: auto;
+  gap: 3.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.nav-links a:not(.btn-nav) {
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+}
+
+.nav-menu a, 
+.nav-actions a:not(.btn-nav) {
   position: relative;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: var(--fw-medium);
   color: var(--text-2);
   transition: color var(--t-fast);
 }
 
-.nav-links a:not(.btn-nav)::after {
+.nav-menu a::after {
   content: "";
   position: absolute;
   bottom: -6px;
@@ -102,11 +116,11 @@ h4 {
   transition: width var(--t-base) var(--ease);
 }
 
-.nav-links a:not(.btn-nav):hover {
+.nav-menu a:hover {
   color: var(--white);
 }
 
-.nav-links a:not(.btn-nav):hover::after {
+.nav-menu a:hover::after {
   width: 100%;
 }
 
@@ -207,11 +221,12 @@ h4 {
 }
 
 /* ── Navbar Contrast (for white bg) ── */
-.navbar.nav-dark-text .nav-links a:not(.btn-nav) {
+.navbar.nav-dark-text .nav-menu a,
+.navbar.nav-dark-text .nav-actions a:not(.btn-nav) {
   color: var(--blue-900);
 }
 
-.navbar.nav-dark-text .nav-links a:not(.btn-nav):hover {
+.navbar.nav-dark-text .nav-menu a:hover {
   color: var(--accent-2);
 }
 
@@ -549,8 +564,14 @@ h4 {
 }
 
 .marquee-block .dot {
-  color: var(--accent-2);
-  opacity: 0.4;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-2);
+  border-radius: 50%;
+  margin: 0 1.5rem;
+  vertical-align: middle;
+  opacity: 0.6;
 }
 
 @keyframes scroll {
@@ -705,17 +726,16 @@ h4 {
 }
 
 .footer .container {
-  max-width: var(--container-width);
+  max-width: var(--container-width-wide);
   margin: 0 auto;
-  padding: 0 var(--container-pad);
+  padding: 0 4rem;
 }
 
 .footer-grid {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 40px;
-  flex-wrap: wrap;
+  gap: 60px;
 }
 
 .footer-brand {
@@ -846,7 +866,7 @@ h4 {
 }
 
 @media (max-width: 768px) {
-  .nav-links {
+  .nav-menu, .nav-actions {
     display: none;
   }
 

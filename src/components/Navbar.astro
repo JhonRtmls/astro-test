@@ -7,10 +7,13 @@ const base = import.meta.env.BASE_URL;
     <a href={`${base}`} class="nav-logo">
       <img src={`${base}/img/logo.png`} alt="Gestoo" />
     </a>
-    <nav class="nav-links">
+    <nav class="nav-menu">
       <a href={`${base}/about`} data-i18n="nav-about">Nosotros</a>
       <a href={`${base}/services`} data-i18n="nav-services">Servicios</a>
       <a href={`${base}/works`} data-i18n="nav-works">Proyectos</a>
+    </nav>
+
+    <div class="nav-actions">
       <a href={`${base}/contact`} class="btn-nav" data-i18n="nav-contact"
         >Hablemos</a
       >
@@ -37,7 +40,7 @@ const base = import.meta.env.BASE_URL;
           <li><button data-lang="en">EN</button></li>
         </ul>
       </div>
-    </nav>
+    </div>
     <button class="nav-burger" id="navBurger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>

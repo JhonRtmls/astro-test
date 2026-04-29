@@ -59,6 +59,7 @@
 
   /* ── Layout ── */
   --container-width: 1200px;
+  --container-width-wide: 1800px;
   --container-pad: 2rem;
 
   /* ── Radius ── */

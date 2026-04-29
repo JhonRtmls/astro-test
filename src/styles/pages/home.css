@@ -42,10 +42,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  /* Imagen con imagen (pegadas) */
   margin-top: 3rem;
-  padding: 0 10px;
-  /* Manteniendo tu margen lateral */
+  padding: 0;
+  max-width: 100%;
 }
 
 .service-visual-item {

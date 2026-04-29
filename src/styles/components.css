@@ -430,7 +430,8 @@
   left: 0;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.1s var(--ease);
+  will-change: transform;
+  /* Removed CSS transition to allow GSAP to handle motion smoothly */
 }
 
 .cursor-follower {
@@ -443,7 +444,8 @@
   left: 0;
   pointer-events: none;
   z-index: 9998;
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+  /* Removed CSS transition to allow GSAP to handle motion smoothly */
 }
 
 /* ── Utilities ── */

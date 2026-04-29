@@ -79,23 +79,26 @@ document.addEventListener("astro:page-load", () => {
     });
   }
 
-  // ── Custom Cursor ──
+  // ── Custom Cursor (Optimized for v6) ──
   const cursor = document.querySelector(".cursor");
   const follower = document.querySelector(".cursor-follower");
 
   if (cursor && follower) {
-    document.addEventListener("mousemove", (e) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-      });
-      gsap.to(follower, {
-        x: e.clientX - 16,
-        y: e.clientY - 16,
-        duration: 0.3,
-      });
-    });
+    // Usamos quickTo para máxima fluidez y evitar saltos (GSAP 3.10+)
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.1, ease: "power3" });
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.1, ease: "power3" });
+    
+    const xFollowerTo = gsap.quickTo(follower, "x", { duration: 0.4, ease: "power2.out" });
+    const yFollowerTo = gsap.quickTo(follower, "y", { duration: 0.4, ease: "power2.out" });
+
+    const moveCursor = (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+      xFollowerTo(e.clientX - 16);
+      yFollowerTo(e.clientY - 16);
+    };
+
+    window.addEventListener("mousemove", moveCursor);
 
     // Hover effects for interactive elements
     const interactives = document.querySelectorAll(
@@ -103,14 +106,19 @@ document.addEventListener("astro:page-load", () => {
     );
     interactives.forEach((el) => {
       el.addEventListener("mouseenter", () => {
-        gsap.to(cursor, { scale: 1.5, backgroundColor: "var(--white)" });
-        gsap.to(follower, { scale: 1.5, borderColor: "var(--white)" });
+        gsap.to(cursor, { scale: 1.5, backgroundColor: "var(--white)", duration: 0.3 });
+        gsap.to(follower, { scale: 1.5, borderColor: "var(--white)", duration: 0.3 });
       });
       el.addEventListener("mouseleave", () => {
-        gsap.to(cursor, { scale: 1, backgroundColor: "var(--accent-2)" });
-        gsap.to(follower, { scale: 1, borderColor: "var(--accent-2)" });
+        gsap.to(cursor, { scale: 1, backgroundColor: "var(--accent-2)", duration: 0.3 });
+        gsap.to(follower, { scale: 1, borderColor: "var(--accent-2)", duration: 0.3 });
       });
     });
+
+    // Limpieza al cambiar de página para evitar duplicados
+    document.addEventListener("astro:before-preparation", () => {
+      window.removeEventListener("mousemove", moveCursor);
+    }, { once: true });
   }
 
   // ── Manifesto Animations (v.2 style) ──

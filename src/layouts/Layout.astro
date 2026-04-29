@@ -45,6 +45,19 @@ import { ClientRouter } from 'astro:transitions';
         <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
         <script is:inline src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
         <ClientRouter />
+
+        <!-- Script de Reseteo Crítico -->
+        <script is:inline>
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            document.addEventListener('astro:after-swap', () => {
+                window.scrollTo(0, 0);
+                if (window.lenis) {
+                    window.lenis.scrollTo(0, { immediate: true });
+                }
+            });
+        </script>
 	</head>
 	<body>
         <div class="cursor"></div>

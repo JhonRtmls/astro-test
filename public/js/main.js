@@ -3,8 +3,20 @@
    ================================================ */
 
 document.addEventListener("astro:page-load", () => {
+  // ── Scroll Reset ──
+  window.scrollTo(0, 0);
+
   // ── Lenis Smooth Scroll ──
-  const lenis = new Lenis();
+  if (window.lenis) {
+    window.lenis.destroy();
+  }
+  
+  const lenis = new Lenis({
+    lerp: 0.1,
+    smoothWheel: true
+  });
+  window.lenis = lenis;
+  lenis.scrollTo(0, { immediate: true });
 
   lenis.on("scroll", ScrollTrigger.update);
 
@@ -14,23 +26,31 @@ document.addEventListener("astro:page-load", () => {
 
   gsap.ticker.lagSmoothing(0);
 
-  // ── Dynamic Background Color Scrub ──
+  // ── Dynamic Background Color Scrub (Only for Home/Manifesto) ──
+  const manifestoSection = document.querySelector(".manifesto-premium");
   const body = document.body;
-  const bgBlue = "#152A3C"; // var(--bg)
-  const bgWhite = "#FFFFFF";
+  
+  if (manifestoSection) {
+    const bgBlue = getComputedStyle(document.documentElement).getPropertyValue('--blue-900').trim() || "#152A3C";
+    const bgWhite = "#FFFFFF";
 
-  gsap.set(body, { backgroundColor: bgWhite });
+    // Iniciamos en blanco solo si estamos en el Home
+    gsap.set(body, { backgroundColor: bgWhite });
 
-  // Transition: White -> Blue (Entering Marquee/Services)
-  gsap.to(body, {
-    backgroundColor: bgBlue,
-    scrollTrigger: {
-      trigger: ".strategic-marquee",
-      start: "top 90%",
-      end: "top 20%",
-      scrub: true,
-    },
-  });
+    // Transición: Blanco -> Azul al hacer scroll
+    gsap.to(body, {
+      backgroundColor: bgBlue,
+      scrollTrigger: {
+        trigger: ".strategic-marquee",
+        start: "top 90%",
+        end: "top 20%",
+        scrub: true,
+      },
+    });
+  } else {
+    // En cualquier otra página, aseguramos que el fondo sea el oscuro por defecto
+    gsap.set(body, { backgroundColor: "var(--blue-900)" });
+  }
 
   // ── Utility: Split text into spans (Words) ──
   const splitText = (el) => {
@@ -118,11 +138,14 @@ document.addEventListener("astro:page-load", () => {
     // Limpieza al cambiar de página para evitar duplicados
     document.addEventListener("astro:before-preparation", () => {
       window.removeEventListener("mousemove", moveCursor);
+      if (window.lenis) {
+        window.lenis.stop();
+        window.lenis.destroy();
+      }
     }, { once: true });
   }
 
   // ── Manifesto Animations (v.2 style) ──
-  const manifestoSection = document.querySelector(".manifesto-premium");
   if (manifestoSection) {
     const title = manifestoSection.querySelector(".manifesto-title");
     splitText(title);
@@ -324,5 +347,7 @@ document.addEventListener("astro:page-load", () => {
   revealElements.forEach((el) => revealObserver.observe(el));
 
   // Refresh ScrollTrigger after everything is loaded
-  ScrollTrigger.refresh();
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100);
 });

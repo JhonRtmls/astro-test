@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import "../styles/pages/home.css";
 
 // Assets
@@ -11,6 +12,7 @@ import work1 from "../assets/img/work-1.webp";
 import work2 from "../assets/img/work-2.jpeg";
 import work3 from "../assets/img/work-3.webp";
 
+const projects = await getCollection("projects");
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -319,62 +321,23 @@ const base = import.meta.env.BASE_URL;
       </div>
 
       <div class="works-grid">
-        <article class="work-card">
-          <div class="work-media">
-            <img src={`${base}/img/work-5.jpeg`} alt="Patagonia Summit" />
-          </div>
-          <div class="work-overlay">
-            <span class="work-cat" data-i18n="work-1-cat">B2B Strategy</span>
-            <h3 data-i18n="work-1-title">Patagonia Summit</h3>
-            <p data-i18n="work-1-desc">
-              Consultoría integral y producción de alta gama.
-            </p>
-          </div>
-        </article>
-        <article class="work-card">
-          <div class="work-media">
-            <img src={`${base}/img/work-6.jpeg`} alt="Gala Corporativa" />
-          </div>
-          <div class="work-overlay">
-            <span class="work-cat" data-i18n="work-2-cat">Brand Experience</span
-            >
-            <h3 data-i18n="work-2-title">Gala Corporativa</h3>
-            <p data-i18n="work-2-desc">
-              Diseño de marca y producción técnica sensorial.
-            </p>
-          </div>
-        </article>
-        <article class="work-card">
-          <div class="work-media">
-            <img
-              src={`${base}/img/work-3.webp`}
-              alt="Producción de eventos regionales de alta gama"
-            />
-          </div>
-          <div class="work-overlay">
-            <span class="work-cat" data-i18n="work-3-cat">MICE & Tourism</span>
-            <h3 data-i18n="work-3-title">Incentivo Regional</h3>
-            <p data-i18n="work-3-desc">
-              Logística de lujo y operación técnica en terreno.
-            </p>
-          </div>
-        </article>
-        <article class="work-card">
-          <div class="work-media">
-            <img
-              src={`${base}/img/work-4.jpeg`}
-              alt="Renting de tecnología interactiva y pantallas LED"
-            />
-          </div>
-          <div class="work-overlay">
-            <span class="work-cat" data-i18n="work-4-cat">Equipment Rental</span
-            >
-            <h3 data-i18n="work-4-title">Launch Interactive</h3>
-            <p data-i18n="work-4-desc">
-              Renting de tecnología interactiva y pantallas LED.
-            </p>
-          </div>
-        </article>
+        {projects.map((project) => (
+          <a href={`${base}/projects/${project.id}`} class="work-link">
+            <article class="work-card">
+              <div class="work-media">
+                <img 
+                  src={project.data.heroImage ? (project.data.heroImage.startsWith('/') ? `${base}${project.data.heroImage}` : project.data.heroImage) : `${base}/img/work-default.jpg`} 
+                  alt={project.data.title} 
+                />
+              </div>
+              <div class="work-overlay">
+                <span class="work-cat">{project.data.category}</span>
+                <h3>{project.data.title}</h3>
+                <p>{project.data.description}</p>
+              </div>
+            </article>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -382,36 +345,18 @@ const base = import.meta.env.BASE_URL;
     <div class="marquee-wrap strategic-marquee highlight" aria-hidden="true">
       <div class="marquee-track">
         <div class="marquee-block">
-          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span
-          >
-          <span data-i18n="mq-logistics">Logística</span><span class="dot"
-            >·</span
-          >
-          <span data-i18n="mq-production">Producción</span><span class="dot"
-            >·</span
-          >
-          <span data-i18n="mq-creativity">Creatividad</span><span class="dot"
-            >·</span
-          >
-          <span data-i18n="mq-experience">Experiencia</span><span class="dot"
-            >·</span
-          >
+          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span>
+          <span data-i18n="mq-logistics">Logística</span><span class="dot">·</span>
+          <span data-i18n="mq-production">Producción</span><span class="dot">·</span>
+          <span data-i18n="mq-creativity">Creatividad</span><span class="dot">·</span>
+          <span data-i18n="mq-experience">Experiencia</span><span class="dot">·</span>
         </div>
         <div class="marquee-block" aria-hidden="true">
-          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span
-          >
-          <span data-i18n="mq-logistics">Logística</span><span class="dot"
-            >·</span
-          >
-          <span data-i18n="mq-production">Producción</span><span class="dot"
-            >·</span
-          >
-          <span data-i18n="mq-creativity">Creatividad</span><span class="dot"
-            >·</span
-          >
-          <span data-i18n="mq-experience">Experiencia</span><span class="dot"
-            >·</span
-          >
+          <span data-i18n="mq-branding">Branding</span><span class="dot">·</span>
+          <span data-i18n="mq-logistics">Logística</span><span class="dot">·</span>
+          <span data-i18n="mq-production">Producción</span><span class="dot">·</span>
+          <span data-i18n="mq-creativity">Creatividad</span><span class="dot">·</span>
+          <span data-i18n="mq-experience">Experiencia</span><span class="dot">·</span>
         </div>
       </div>
     </div>
@@ -421,9 +366,7 @@ const base = import.meta.env.BASE_URL;
       <div class="solver-sticky">
         <div class="solver-layer layer-problem">
           <div class="container content-contained">
-            <span class="status-badge" data-i18n="solver-problem-tag"
-              >El Problema</span
-            >
+            <span class="status-badge" data-i18n="solver-problem-tag">El Problema</span>
             <h2 class="solver-text" data-i18n="solver-problem-text">
               ¿NECESITAS PRODUCCIÓN Y LOGÍSTICA PARA TU PRÓXIMO PROYECTO?
             </h2>
@@ -431,9 +374,7 @@ const base = import.meta.env.BASE_URL;
         </div>
         <div class="solver-layer layer-solution">
           <div class="container content-contained">
-            <span class="status-badge white" data-i18n="solver-solution-tag"
-              >La Solución</span
-            >
+            <span class="status-badge white" data-i18n="solver-solution-tag">La Solución</span>
             <h2 class="solver-text" data-i18n="solver-solution-text">
               TE AYUDAMOS A QUE CADA PROYECTO SEA UNA INVERSIÓN,<br />
               NO UN GASTO.
@@ -442,8 +383,7 @@ const base = import.meta.env.BASE_URL;
               <a
                 href={`${base}/contact`}
                 class="btn-primary"
-                data-i18n="solver-btn">COTIZA TU SOLUCIÓN</a
-              >
+                data-i18n="solver-btn">COTIZA TU SOLUCIÓN</a>
             </div>
           </div>
         </div>
@@ -452,3 +392,11 @@ const base = import.meta.env.BASE_URL;
   </main>
   <Footer />
 </Layout>
+
+<style>
+    .work-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>

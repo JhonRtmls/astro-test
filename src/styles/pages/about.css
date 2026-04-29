@@ -42,9 +42,21 @@
 /* ── Team ── */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin-top: 60px;
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .team-card {
@@ -91,6 +103,34 @@
   font-size: 0.9rem;
   color: var(--text-2);
   line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.team-social {
+  display: flex;
+  gap: 12px;
+}
+
+.team-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  font-size: 0.9rem;
+  transition: all 0.3s var(--ease);
+  text-decoration: none;
+}
+
+.team-social a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Responsive ── */

@@ -7,6 +7,7 @@ node_modules/
 
 # Astro temporary files
 .astro/
+.vscode/
 
 # Build logs
 npm-debug.log*

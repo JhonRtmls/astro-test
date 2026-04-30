@@ -84,13 +84,13 @@ const base = import.meta.env.BASE_URL;
               <div class="form-row">
                 <div class="form-group">
                   <label data-i18n="contact-form-name">Nombre Completo *</label>
-                  <input type="text" placeholder="Ej: Juan Pérez" required />
+                  <input type="text" data-i18n="ph-name" placeholder="Ej: Juan Pérez" required />
                 </div>
                 <div class="form-group">
                   <label data-i18n="contact-form-company"
                     >Empresa / Institución</label
                   >
-                  <input type="text" placeholder="Nombre de tu organización" />
+                  <input type="text" data-i18n="ph-company" placeholder="Nombre de tu organización" />
                 </div>
               </div>
               <div class="form-row">
@@ -98,11 +98,11 @@ const base = import.meta.env.BASE_URL;
                   <label data-i18n="contact-form-email"
                     >Email de Contacto *</label
                   >
-                  <input type="email" placeholder="tu@email.com" required />
+                  <input type="email" data-i18n="ph-email" placeholder="tu@email.com" required />
                 </div>
                 <div class="form-group">
-                  <label data-i18n="contact-sidebar-phone">Teléfono</label>
-                  <input type="tel" placeholder="+56 9 xxxx xxxx" />
+                  <label data-i18n="contact-form-phone">Teléfono</label>
+                  <input type="tel" data-i18n="ph-phone" placeholder="+56 9 xxxx xxxx" />
                 </div>
               </div>
               <div class="form-group">
@@ -117,11 +117,11 @@ const base = import.meta.env.BASE_URL;
                     data-i18n="contact-form-select"
                     >Selecciona una opción</option
                   >
-                  <option value="corporativo">Consultoría B2B</option>
-                  <option value="mice">Turismo MICE / Congresos</option>
-                  <option value="audiovisual">Producción Audiovisual</option>
-                  <option value="branding">Identidad de Marca</option>
-                  <option value="otro">Otro Requerimiento</option>
+                  <option value="corporativo" data-i18n="contact-option-b2b">Consultoría B2B</option>
+                  <option value="mice" data-i18n="contact-option-mice">Turismo MICE / Congresos</option>
+                  <option value="audiovisual" data-i18n="contact-option-audio">Producción Audiovisual</option>
+                  <option value="branding" data-i18n="contact-option-branding">Identidad de Marca</option>
+                  <option value="otro" data-i18n="contact-option-other">Otro Requerimiento</option>
                 </select>
               </div>
               <div class="form-group">
@@ -129,6 +129,7 @@ const base = import.meta.env.BASE_URL;
                   >Detalles del Desafío *</label
                 >
                 <textarea
+                  data-i18n="ph-message"
                   placeholder="Cuéntanos brevemente sobre los objetivos de tu proyecto..."
                   required></textarea>
               </div>
@@ -142,6 +143,7 @@ const base = import.meta.env.BASE_URL;
               </div>
               <div
                 id="formSuccess"
+                data-i18n="contact-form-success"
                 style="display: none; margin-top: 1rem; padding: 1.5rem; background: rgba(var(--accent-rgb), 0.1); border: 1px solid var(--border-accent); border-radius: var(--radius); color: var(--accent-light); font-weight: var(--fw-semibold);"
               >
                 ✓ Solicitud recibida. Un consultor se pondrá en contacto pronto.

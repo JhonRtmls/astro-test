@@ -48,7 +48,11 @@ const categories = allCategories.slice(0, 6); // Limitamos a 6 como pediste
             data-i18n="works-filter-all">Todos</button
           >
           {categories.map((cat) => (
-            <button class="filter-btn" data-filter={cat}>{cat}</button>
+            <button 
+              class="filter-btn" 
+              data-filter={cat} 
+              data-i18n={`tag-${cat.toLowerCase().replace(' & ', '-').replace(' ', '-')}`}
+            >{cat}</button>
           ))}
         </div>
 
@@ -64,7 +68,7 @@ const categories = allCategories.slice(0, 6); // Limitamos a 6 como pediste
                         />
                     </div>
                     <div class="portfolio-info">
-                        <span class="work-cat">{project.data.category}</span>
+                        <span class="work-cat" data-i18n={`tag-${project.data.category.toLowerCase().replace(' & ', '-').replace(' ', '-')}`}>{project.data.category}</span>
                         <h3>{project.data.title}</h3>
                         <p>{project.data.description}</p>
                     </div>

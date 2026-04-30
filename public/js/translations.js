@@ -122,11 +122,30 @@ const translations = {
       "Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.",
     "about-cta-btn": "Cotiza tu solución ahora →",
 
+    // Team Roles & Descriptions
+    "team-1-role": "Director Creativo",
+    "team-1-desc":
+      "Estratega creativo con enfoque en soluciones B2B y experiencias de marca.",
+    "team-2-role": "Producción Técnica",
+    "team-2-desc":
+      "Experto en ingeniería audiovisual y logística de eventos de alto impacto.",
+    "team-3-role": "Administración",
+    "team-3-desc": "Encargada del área contable y administrativa de Gestoo.",
+    "team-4-role": "Logística Senior",
+    "team-4-desc":
+      "Especialista en operaciones de campo y montaje en condiciones extremas.",
+    "team-5-role": "Diseño Visual",
+    "team-5-desc":
+      "Responsable de la narrativa visual y piezas gráficas de los eventos.",
+    "team-6-role": "Producción",
+    "team-6-desc":
+      "Ingeniero de sonido y especialista en sistemas de iluminación LED.",
+
     // Services Page Specific
     "services-hero-title":
       'Soluciones diseñadas para <br><span class="gradient-text">cada desafío.</span>',
     "services-grid-tag": "Especialidades",
-    "services-grid-title": "Nuestra oferta B2B.",
+    "services-grid-title": "Nuestra <em>oferta B2B.</em>",
     "services-card-1-title": "Consultoría de Marca",
     "services-card-1-desc":
       "Estrategia de identidad corporativa y narrativa de marca para el sector B2B. Posicionamos tu negocio con una voz única.",
@@ -150,6 +169,27 @@ const translations = {
     "services-cta-desc":
       "Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.",
 
+    // Service Sub-tags
+    "tag-branding": "Branding",
+    "tag-b2b-strategy": "Estrategia B2B",
+    "tag-narrative": "Narrativa",
+    "tag-congress": "Congresos",
+    "tag-incentive": "Incentivos",
+    "tag-logistics": "Logística",
+    "tag-led": "LED Walls",
+    "tag-sound": "Sonido",
+    "tag-lighting": "Iluminación",
+    "tag-equipment": "Equipamiento",
+    "tag-renting": "Renting",
+    "tag-support": "Soporte",
+    "tag-galas": "Galas",
+    "tag-launches": "Lanzamientos",
+    "tag-conventions": "Convenciones",
+    "tag-patagonia": "Patagonia",
+    "tag-terrain": "Terreno",
+    "tag-mice": "MICE",
+    "tag-show-cultura": "Show & Cultura",
+
     // Works Page Specific
     "works-hero-title":
       'Experiencias que hablan <br><span class="gradient-text">por nosotros.</span>',
@@ -161,17 +201,39 @@ const translations = {
     // Contact Page Specific
     "contact-hero-title":
       'Expertos en soluciones <br><span class="gradient-text">MICE y B2B.</span>',
+    "contact-hero-desc":
+      "Desde la Patagonia para todo Chile, transformamos la complejidad en experiencias memorables. Cuéntanos qué tienes en mente.",
     "contact-hero-subtitle":
       "¿Tienes un proyecto en mente? Estamos listos para escucharte y transformarlo en una experiencia memorable.",
-    "contact-form-name": "Nombre completo",
-    "contact-form-email": "Correo electrónico",
-    "contact-form-company": "Empresa",
+    "contact-info-location": "Ubicación",
+    "contact-info-email": "Email Corporativo",
+    "contact-info-whatsapp": "WhatsApp Business",
+    "contact-form-name": "Nombre Completo *",
+    "contact-form-email": "Email de Contacto *",
+    "contact-form-company": "Empresa / Institución",
     "contact-form-subject": "Asunto",
-    "contact-form-message": "Mensaje",
-    "contact-form-btn": "Enviar mensaje →",
+    "contact-form-phone": "Teléfono",
+    "contact-form-service": "Servicio de Interés *",
+    "contact-form-select": "Selecciona una opción",
+    "contact-form-message": "Detalles del Desafío *",
+    "contact-form-btn": "Enviar Requerimiento →",
+    "contact-option-b2b": "Consultoría B2B",
+    "contact-option-mice": "Turismo MICE / Congresos",
+    "contact-option-audio": "Producción Audiovisual",
+    "contact-option-branding": "Identidad de Marca",
+    "contact-option-other": "Otro Requerimiento",
+    "contact-form-success":
+      "✓ Solicitud recibida. Un consultor se pondrá en contacto pronto.",
     "contact-sidebar-email": "Email",
     "contact-sidebar-phone": "Teléfono",
     "contact-sidebar-location": "Ubicación",
+
+    // Placeholders
+    "ph-name": "Ej: Juan Pérez",
+    "ph-company": "Nombre de tu organización",
+    "ph-email": "tu@email.com",
+    "ph-phone": "+56 9 xxxx xxxx",
+    "ph-message": "Cuéntanos brevemente sobre los objetivos de tu proyecto...",
   },
   en: {
     // Navbar
@@ -296,11 +358,29 @@ const translations = {
       "We optimize processes, elevate your brand, and guarantee that every event is an investment, not an expense. Your success is our metric.",
     "about-cta-btn": "Quote your solution now →",
 
+    // Team Roles & Descriptions
+    "team-1-role": "Creative Director",
+    "team-1-desc":
+      "Creative strategist focused on B2B solutions and brand experiences.",
+    "team-2-role": "Technical Production",
+    "team-2-desc":
+      "Expert in audiovisual engineering and logistics for high-impact events.",
+    "team-3-role": "Administration",
+    "team-3-desc": "In charge of Gestoo\'s accounting and administrative area.",
+    "team-4-role": "Senior Logistics",
+    "team-4-desc":
+      "Specialist in field operations and assembly in extreme conditions.",
+    "team-5-role": "Visual Design",
+    "team-5-desc":
+      "Responsible for the visual narrative and graphic pieces of the events.",
+    "team-6-role": "Production",
+    "team-6-desc": "Sound engineer and specialist in LED lighting systems.",
+
     // Services Page Specific
     "services-hero-title":
       'Solutions designed for <br><span class="gradient-text">every challenge.</span>',
-    "services-grid-tag": "Specialties",
-    "services-grid-title": "Our B2B offer.",
+    "services-grid-tag": "Especialidades",
+    "services-grid-title": "Our <em>B2B offer.</em>",
     "services-card-1-title": "Brand Consulting",
     "services-card-1-desc":
       "Corporate identity strategy and brand narrative for the B2B sector. We position your business with a unique voice.",
@@ -324,6 +404,27 @@ const translations = {
     "services-cta-desc":
       "We optimize processes, elevate your brand, and guarantee that every event is an investment, not an expense. Your success is our metric.",
 
+    // Service Sub-tags
+    "tag-branding": "Branding",
+    "tag-b2b-strategy": "B2B Strategy",
+    "tag-narrative": "Narrative",
+    "tag-congress": "Congresses",
+    "tag-incentive": "Incentives",
+    "tag-logistics": "Logistics",
+    "tag-led": "LED Walls",
+    "tag-sound": "Sound",
+    "tag-lighting": "Lighting",
+    "tag-equipment": "Equipment",
+    "tag-renting": "Renting",
+    "tag-support": "Support",
+    "tag-galas": "Galas",
+    "tag-launches": "Launches",
+    "tag-conventions": "Conventions",
+    "tag-patagonia": "Patagonia",
+    "tag-terrain": "Terrain",
+    "tag-mice": "MICE",
+    "tag-show-cultura": "Show & Culture",
+
     // Works Page Specific
     "works-hero-title":
       'Experiences that speak <br><span class="gradient-text">for us.</span>',
@@ -334,17 +435,39 @@ const translations = {
 
     // Contact Page Specific
     "contact-hero-title":
-      'Let\'s design something <br><span class="gradient-text">extraordinary.</span>',
+      'Experts in <br><span class="gradient-text">MICE and B2B solutions.</span>',
+    "contact-hero-desc":
+      "From Patagonia for all of Chile, we transform complexity into memorable experiences. Tell us what you have in mind.",
     "contact-hero-subtitle":
       "Do you have a project in mind? We are ready to listen and transform it into a memorable experience.",
-    "contact-form-name": "Full name",
-    "contact-form-email": "Email address",
-    "contact-form-company": "Company",
+    "contact-info-location": "Location",
+    "contact-info-email": "Corporate Email",
+    "contact-info-whatsapp": "WhatsApp Business",
+    "contact-form-name": "Full Name *",
+    "contact-form-email": "Contact Email *",
+    "contact-form-company": "Company / Institution",
     "contact-form-subject": "Subject",
-    "contact-form-message": "Message",
-    "contact-form-btn": "Send message →",
+    "contact-form-phone": "Phone",
+    "contact-form-service": "Service of Interest *",
+    "contact-form-select": "Select an option",
+    "contact-form-message": "Challenge Details *",
+    "contact-form-btn": "Send Requirement →",
+    "contact-option-b2b": "B2B Consulting",
+    "contact-option-mice": "MICE Tourism / Congresses",
+    "contact-option-audio": "Audiovisual Production",
+    "contact-option-branding": "Brand Identity",
+    "contact-option-other": "Other Requirement",
+    "contact-form-success":
+      "✓ Request received. A consultant will get in touch soon.",
     "contact-sidebar-email": "Email",
     "contact-sidebar-phone": "Phone",
     "contact-sidebar-location": "Location",
+
+    // Placeholders
+    "ph-name": "e.g., John Doe",
+    "ph-company": "Your organization name",
+    "ph-email": "you@email.com",
+    "ph-phone": "+56 9 xxxx xxxx",
+    "ph-message": "Briefly tell us about your project goals...",
   },
 };

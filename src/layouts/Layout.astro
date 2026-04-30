@@ -40,6 +40,35 @@ import { ClientRouter } from 'astro:transitions';
 
         <link rel="canonical" href="https://gestoo.cl/" />
 
+        <!-- AI Search Readiness: Schema.org -->
+        <script type="application/ld+json" is:inline>
+            {
+                "@context": "https://schema.org",
+                "@type": "ProfessionalService",
+                "name": "Gestoo",
+                "url": "https://gestoo.cl/astro-test/",
+                "logo": "https://gestoo.cl/astro-test/img/logo-dark.png",
+                "image": "https://gestoo.cl/astro-test/img/hero.jpg",
+                "description": "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística B2B.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Av. Independencia 313",
+                    "addressLocality": "Punta Arenas",
+                    "addressRegion": "Magallanes",
+                    "addressCountry": "CL"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -53.1626,
+                    "longitude": -70.9078
+                },
+                "sameAs": [
+                    "https://www.linkedin.com/company/gestoo",
+                    "https://www.instagram.com/gestoo.cl"
+                ]
+            }
+        </script>
+
         <!-- GSAP & Lenis via CDN (Keep them as in original) -->
         <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

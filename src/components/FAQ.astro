@@ -142,3 +142,37 @@
     }
     document.addEventListener('astro:page-load', initAccordion);
 </script>
+
+<!-- FAQ Schema for AI Search Readiness -->
+<script is:inline>
+    (function() {
+        // Obtenemos las traducciones (asumiendo que translations.js ya cargó)
+        // Usamos un pequeño delay para asegurar que el diccionario esté disponible
+        setTimeout(() => {
+            if (typeof translations === 'undefined') return;
+            
+            // Detectamos el idioma actual (siguiendo la lógica de i18n.js)
+            const currentLang = localStorage.getItem('preferredLanguage') || 'es';
+            const t = translations[currentLang];
+            
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [1, 2, 3, 4].map(i => ({
+                    "@type": "Question",
+                    "name": t[`faq-q${i}`],
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": t[`faq-a${i}`]
+                    }
+                }))
+            };
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.id = 'faq-schema';
+            script.text = JSON.stringify(schema);
+            document.head.appendChild(script);
+        }, 500);
+    })();
+</script>

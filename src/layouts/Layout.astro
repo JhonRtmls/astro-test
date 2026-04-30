@@ -62,54 +62,52 @@ const breadcrumbs = [
 
         <link rel="canonical" href={canonicalURL} />
 
-        <script type="application/ld+json" is:inline>
-            {
-                "@context": "https://schema.org",
-                "@type": "ProfessionalService",
-                "name": "Gestoo",
-                "url": "https://gestoo.cl/astro-test/",
-                "logo": "https://gestoo.cl/astro-test/img/logo-dark.png",
-                "image": "https://gestoo.cl/astro-test/img/hero.jpg",
-                "description": "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística B2B.",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Av. Independencia 313",
-                    "addressLocality": "Punta Arenas",
-                    "addressRegion": "Magallanes",
-                    "postalCode": "6200000",
-                    "addressCountry": "CL"
+        <script type="application/ld+json" is:inline set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Gestoo",
+            "url": new URL(import.meta.env.BASE_URL, Astro.site).href,
+            "logo": new URL(`${import.meta.env.BASE_URL}/img/logo-dark.png`, Astro.site).href,
+            "image": new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, Astro.site).href,
+            "description": "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística B2B.",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Av. Independencia 313",
+                "addressLocality": "Punta Arenas",
+                "addressRegion": "Magallanes",
+                "postalCode": "6200000",
+                "addressCountry": "CL"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -53.1626,
+                "longitude": -70.9078
+            },
+            "telephone": "+56981887723",
+            "email": "contacto@gestoo.cl",
+            "priceRange": "$$$",
+            "areaServed": [
+                {
+                    "@type": "Country",
+                    "name": "Chile"
                 },
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -53.1626,
-                    "longitude": -70.9078
-                },
-                "telephone": "+56981887723",
-                "email": "contacto@gestoo.cl",
-                "priceRange": "$$$",
-                "areaServed": [
-                    {
-                        "@type": "Country",
-                        "name": "Chile"
-                    },
-                    {
-                        "@type": "AdministrativeArea",
-                        "name": "Patagonia"
-                    }
-                ],
-                "knowsAbout": [
-                    "Branding Corporativo",
-                    "Turismo MICE",
-                    "Producción de Eventos",
-                    "Logística en Climas Extremos",
-                    "Marketing B2B"
-                ],
-                "sameAs": [
-                    "https://www.linkedin.com/company/gestoo",
-                    "https://www.instagram.com/gestoo.cl"
-                ]
-            }
-        </script>
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Patagonia"
+                }
+            ],
+            "knowsAbout": [
+                "Branding Corporativo",
+                "Turismo MICE",
+                "Producción de Eventos",
+                "Logística en Climas Extremos",
+                "Marketing B2B"
+            ],
+            "sameAs": [
+                "https://www.linkedin.com/company/gestoo",
+                "https://www.instagram.com/gestoo.cl"
+            ]
+        })} />
 
         <!-- GSAP & Lenis optimized (added defer to prevent render blocking) -->
         <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

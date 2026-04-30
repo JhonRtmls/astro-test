@@ -146,6 +146,7 @@ const translations = {
       'Soluciones diseñadas para <br><span class="gradient-text">cada desafío.</span>',
     "services-grid-tag": "Especialidades",
     "services-grid-title": "Nuestra <em>oferta B2B.</em>",
+    "services-lead-text": "Somos la empresa de MICE líder en Magallanes, especializada en transformar desafíos complejos en experiencias memorables.",
     "services-card-1-title": "Consultoría de Marca",
     "services-card-1-desc":
       "Estrategia de identidad corporativa y narrativa de marca para el sector B2B. Posicionamos tu negocio con una voz única.",
@@ -393,6 +394,7 @@ const translations = {
       'Solutions designed for <br><span class="gradient-text">every challenge.</span>',
     "services-grid-tag": "Especialidades",
     "services-grid-title": "Our <em>B2B offer.</em>",
+    "services-lead-text": "We are the leading MICE company in Magallanes, specialized in transforming complex challenges into memorable experiences.",
     "services-card-1-title": "Brand Consulting",
     "services-card-1-desc":
       "Corporate identity strategy and brand narrative for the B2B sector. We position your business with a unique voice.",

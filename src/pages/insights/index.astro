@@ -79,9 +79,9 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
     .insight-card {
         background: var(--blue-800);
         border: 1px solid rgba(255,255,255,0.05);
-        border-radius: 4px;
+        border-radius: 24px; /* Estilo redondeado Gestoo */
         overflow: hidden;
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s ease;
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s ease, box-shadow 0.4s ease;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -90,12 +90,15 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
     .insight-card:hover {
         transform: translateY(-10px);
         border-color: var(--accent);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
 
     .insight-image {
         position: relative;
         height: 240px;
         overflow: hidden;
+        margin: 10px; /* Margen interno para que no toque el borde de la tarjeta si queremos */
+        border-radius: 18px; /* Un poco menos que la tarjeta para encajar */
     }
 
     .insight-image img {
@@ -120,6 +123,7 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
         font-weight: var(--fw-bold);
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        border-radius: 100px; /* Pill style */
     }
 
     .insight-content {

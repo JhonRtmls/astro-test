@@ -13,14 +13,15 @@ import '../styles/components.css';
 import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const site = Astro.site || new URL('https://jhonrtmls.github.io');
+const canonicalURL = new URL(Astro.url.pathname, site);
 
 // Breadcrumb Logic for AI
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const breadcrumbs = [
-    { name: 'Inicio', item: Astro.site.href },
+    { name: 'Inicio', item: site.href },
     ...pathSegments.map((segment, index) => {
-        const url = new URL(pathSegments.slice(0, index + 1).join('/'), Astro.site);
+        const url = new URL(pathSegments.slice(0, index + 1).join('/'), site);
         return {
             name: segment.charAt(0).toUpperCase() + segment.slice(1),
             item: url.href
@@ -55,14 +56,14 @@ const breadcrumbs = [
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, Astro.site)} />
+        <meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, site)} />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={canonicalURL} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, Astro.site)} />
+        <meta property="twitter:image" content={new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, site)} />
 
         <link rel="canonical" href={canonicalURL} />
 
@@ -70,9 +71,9 @@ const breadcrumbs = [
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Gestoo",
-            "url": new URL(import.meta.env.BASE_URL, Astro.site).href,
-            "logo": new URL(`${import.meta.env.BASE_URL}/img/logo-dark.png`, Astro.site).href,
-            "image": new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, Astro.site).href,
+            "url": new URL(import.meta.env.BASE_URL, site).href,
+            "logo": new URL(`${import.meta.env.BASE_URL}/img/logo-dark.png`, site).href,
+            "image": new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, site).href,
             "description": "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística B2B.",
             "address": {
                 "@type": "PostalAddress",

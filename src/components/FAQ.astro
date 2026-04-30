@@ -1,0 +1,144 @@
+---
+---
+<section class="section faq-section">
+    <div class="container content-contained">
+        <div class="section-header reveal">
+            <span class="tag" data-i18n="faq-tag">Consultas</span>
+            <h2 class="section-title" data-i18n="faq-title">Preguntas <em>frecuentes.</em></h2>
+        </div>
+
+        <div class="faq-accordion reveal">
+            {[1, 2, 3, 4].map((i) => (
+                <div class="faq-item">
+                    <button class="faq-trigger" aria-expanded="false" id={`faq-btn-${i}`}>
+                        <span data-i18n={`faq-q${i}`}>Pregunta...</span>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-body">
+                            <p data-i18n={`faq-a${i}`}>Respuesta...</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-section {
+        background-color: var(--blue-900);
+        padding: 120px 0;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .content-contained {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .faq-accordion {
+        margin-top: 4rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .faq-item {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .faq-trigger {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2.5rem 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        color: var(--white);
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        font-weight: var(--fw-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+    }
+    .faq-trigger:hover {
+        color: var(--accent-2);
+    }
+    .faq-icon {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-left: 1.5rem;
+    }
+    .faq-icon::before, .faq-icon::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--accent-2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-icon::before { width: 100%; height: 2px; }
+    .faq-icon::after { width: 2px; height: 100%; }
+
+    .faq-trigger[aria-expanded="true"] .faq-icon::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+        opacity: 0;
+    }
+    .faq-trigger[aria-expanded="true"] {
+        color: var(--accent-2);
+    }
+
+    .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-body {
+        padding: 0 0 3rem;
+    }
+    .faq-body p {
+        color: var(--text-2);
+        font-size: 1.15rem;
+        line-height: 1.7;
+        max-width: 850px;
+    }
+
+    @media (max-width: 768px) {
+        .faq-trigger {
+            padding: 2rem 0;
+        }
+        .faq-body {
+            padding-bottom: 2rem;
+        }
+    }
+</style>
+
+<script is:inline>
+    function initAccordion() {
+        const triggers = document.querySelectorAll('.faq-trigger');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const expanded = trigger.getAttribute('aria-expanded') === 'true';
+                
+                // Cerrar otros
+                triggers.forEach(t => {
+                    if (t !== trigger) {
+                        t.setAttribute('aria-expanded', 'false');
+                        t.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                // Alternar actual
+                trigger.setAttribute('aria-expanded', !expanded);
+                const content = trigger.nextElementSibling;
+                if (!expanded) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+    }
+    document.addEventListener('astro:page-load', initAccordion);
+</script>

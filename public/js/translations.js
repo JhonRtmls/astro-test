@@ -228,6 +228,18 @@ const translations = {
     "contact-sidebar-phone": "Teléfono",
     "contact-sidebar-location": "Ubicación",
 
+    // FAQ Section
+    "faq-tag": "Consultas",
+    "faq-title": "Preguntas frecuentes.",
+    "faq-q1": "¿Operan fuera de la Patagonia?",
+    "faq-a1": "Sí, aunque nuestra base está en Punta Arenas, realizamos producciones y eventos en todo Chile, adaptándonos a los desafíos logísticos de cualquier locación.",
+    "faq-q2": "¿Qué tipo de eventos producen?",
+    "faq-a2": "Nos especializamos en el segmento B2B y MICE: congresos, lanzamientos de productos, convenciones y galas corporativas de alto impacto.",
+    "faq-q3": "¿Cuentan con equipamiento propio?",
+    "faq-a3": "Disponemos de un inventario completo de pantallas LED, sistemas de sonido e iluminación de última generación, garantizando autonomía y excelencia técnica.",
+    "faq-q4": "¿Cómo solicitamos una cotización?",
+    "faq-a4": "Puedes usar nuestro formulario de contacto o escribirnos por WhatsApp. Generalmente entregamos una propuesta preliminar en menos de 24 horas.",
+
     // Placeholders
     "ph-name": "Ej: Juan Pérez",
     "ph-company": "Nombre de tu organización",
@@ -462,6 +474,18 @@ const translations = {
     "contact-sidebar-email": "Email",
     "contact-sidebar-phone": "Phone",
     "contact-sidebar-location": "Location",
+
+    // FAQ Section
+    "faq-tag": "Queries",
+    "faq-title": "Common questions.",
+    "faq-q1": "Do you operate outside Patagonia?",
+    "faq-a1": "Yes, although our base is in Punta Arenas, we carry out productions and events throughout Chile, adapting to the logistical challenges of any location.",
+    "faq-q2": "What types of events do you produce?",
+    "faq-a2": "We specialize in the B2B and MICE segments: congresses, product launches, conventions, and high-impact corporate galas.",
+    "faq-q3": "Do you have your own equipment?",
+    "faq-a3": "We have a complete inventory of state-of-the-art LED screens, sound systems, and lighting, guaranteeing autonomy and technical excellence.",
+    "faq-q4": "How do we request a quote?",
+    "faq-a4": "You can use our contact form or write to us on WhatsApp. We usually deliver a preliminary proposal in less than 24 hours.",
 
     // Placeholders
     "ph-name": "e.g., John Doe",

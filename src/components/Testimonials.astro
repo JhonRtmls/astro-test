@@ -238,8 +238,10 @@ const testimonials = [
     let currentIndex = 0;
 
     function updateCarousel() {
-      const offset = currentIndex * -100;
-      track.style.transform = `translateX(${offset}%)`;
+      requestAnimationFrame(() => {
+        const offset = currentIndex * -100;
+        track.style.transform = `translateX(${offset}%)`;
+      });
     }
 
     nextBtn.addEventListener('click', () => {

@@ -203,23 +203,30 @@ const base = import.meta.env.BASE_URL;
         triggers.forEach(trigger => {
             trigger.addEventListener('click', () => {
                 const expanded = trigger.getAttribute('aria-expanded') === 'true';
+                const content = trigger.nextElementSibling;
                 
-                // Cerrar otros
-                triggers.forEach(t => {
-                    if (t !== trigger) {
-                        t.setAttribute('aria-expanded', 'false');
-                        t.nextElementSibling.style.maxHeight = null;
+                // Usamos requestAnimationFrame para evitar layout thrashing
+                requestAnimationFrame(() => {
+                    // Cerrar otros
+                    triggers.forEach(t => {
+                        if (t !== trigger) {
+                            t.setAttribute('aria-expanded', 'false');
+                            t.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+
+                    // Alternar actual
+                    const nextState = !expanded;
+                    trigger.setAttribute('aria-expanded', nextState);
+                    
+                    if (nextState) {
+                        // Leemos la medida una sola vez
+                        const height = content.scrollHeight;
+                        content.style.maxHeight = height + "px";
+                    } else {
+                        content.style.maxHeight = null;
                     }
                 });
-
-                // Alternar actual
-                trigger.setAttribute('aria-expanded', !expanded);
-                const content = trigger.nextElementSibling;
-                if (!expanded) {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                } else {
-                    content.style.maxHeight = null;
-                }
             });
         });
     }

@@ -10,16 +10,46 @@
   background: var(--bg);
 }
 
-.hero-video-wrap {
+.hero-video-wrapper {
   position: absolute;
   inset: 0;
   z-index: 1;
+  background: var(--blue-900);
 }
 
-.hero-video-wrap video {
+.hero-video-fallback {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 1;
+}
+
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 ratio */
+  min-height: 100vh;
+  min-width: 177.77vh; /* 16:9 ratio */
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none; /* Evita que el usuario interactúe con el video */
+}
+
+.hero-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(13, 27, 38, 0.3) 0%, rgba(13, 27, 38, 0.6) 100%);
+  z-index: 3;
 }
 
 /* ---- MANIFIESTO AGENCIA ---- */

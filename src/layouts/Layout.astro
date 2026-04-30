@@ -81,19 +81,38 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             }
         </script>
 
-        <!-- GSAP & Lenis via CDN (Keep them as in original) -->
-        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-        <script is:inline src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <!-- GSAP & Lenis optimized (added defer to prevent render blocking) -->
+        <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script is:inline defer src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+        
+        <!-- FontAwesome optimized -->
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
         <ClientRouter />
 
-        <!-- Script de Reseteo Crítico -->
+        <!-- Script de Reseteo Crítico y Utilidades -->
         <script is:inline>
             if ('scrollRestoration' in history) {
                 history.scrollRestoration = 'manual';
             }
+
+            function decodeEmails() {
+                document.querySelectorAll('.email-link').forEach(link => {
+                    const user = link.getAttribute('data-name');
+                    const domain = link.getAttribute('data-domain');
+                    if (user && domain) {
+                        const email = `${user}@${domain}`;
+                        link.href = `mailto:${email}`;
+                        link.textContent = email;
+                    }
+                });
+            }
+
+            // Ejecutar al cargar y después de cada transición de Astro
+            decodeEmails();
             document.addEventListener('astro:after-swap', () => {
+                decodeEmails();
                 window.scrollTo(0, 0);
                 if (window.lenis) {
                     window.lenis.scrollTo(0, { immediate: true });

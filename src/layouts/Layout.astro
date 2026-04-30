@@ -49,6 +49,10 @@ const breadcrumbs = [
         <meta name="author" content="Gestoo" />
         <meta name="owner" content="Gestoo" />
         
+        <!-- Security Headers (Meta tag equivalent) -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
         <!-- Language targeting -->
         <link rel="alternate" hreflang="es" href={canonicalURL} />
         <link rel="alternate" hreflang="x-default" href={canonicalURL} />
@@ -184,6 +188,7 @@ const breadcrumbs = [
         </script>
 	</head>
 	<body>
+        <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3TDG6QC"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

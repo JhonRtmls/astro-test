@@ -755,7 +755,7 @@ h4 {
   filter: brightness(0) invert(1);
 }
 
-.footer h4 {
+.footer h3 {
   font-size: 0.8rem;
   font-weight: var(--fw-bold);
   text-transform: uppercase;

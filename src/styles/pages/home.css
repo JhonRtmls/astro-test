@@ -30,13 +30,14 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
-  height: 56.25vw; /* 16:9 ratio */
-  min-height: 100vh;
-  min-width: 177.77vh; /* 16:9 ratio */
+  /* Sobredimensionamos para ocultar controles de YouTube en los bordes */
+  width: 115vw; 
+  height: 64.68vw; /* Proporción 16:9 de 115vw */
+  min-height: 115vh;
+  min-width: 204.44vh; /* Proporción 16:9 de 115vh */
   transform: translate(-50%, -50%);
   z-index: 2;
-  pointer-events: none; /* Evita que el usuario interactúe con el video */
+  pointer-events: none;
 }
 
 .hero-iframe {

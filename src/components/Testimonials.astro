@@ -58,18 +58,22 @@ const testimonials = [
       <div class="testimonials-track">
         {testimonials.map((t) => (
           <div class="testimonial-card">
-            <div class="testimonial-quote">
-              <svg width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 17.1429V0H14.2857V17.1429H5.71429C5.71429 21.8857 9.54286 25.7143 14.2857 25.7143V30C7.17143 30 0 22.8286 0 17.1429ZM25.7143 17.1429V0H40V17.1429H31.4286C31.4286 21.8857 35.2571 25.7143 40 25.7143V30C32.8857 30 25.7143 22.8286 25.7143 17.1429Z" fill="var(--accent)" fill-opacity="0.2"/>
-              </svg>
-            </div>
-            <p class="testimonial-text">{t.testimonio}</p>
-            <div class="testimonial-author">
-              <div class="author-info">
-                <span class="author-name">{t.nombre}</span>
-                <span class="author-role">{t.cargo} {t.empresa ? `| ${t.empresa}` : ''}</span>
+            <figure class="testimonial-figure">
+              <div class="testimonial-quote">
+                <svg width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 17.1429V0H14.2857V17.1429H5.71429C5.71429 21.8857 9.54286 25.7143 14.2857 25.7143V30C7.17143 30 0 22.8286 0 17.1429ZM25.7143 17.1429V0H40V17.1429H31.4286C31.4286 21.8857 35.2571 25.7143 40 25.7143V30C32.8857 30 25.7143 22.8286 25.7143 17.1429Z" fill="var(--accent)" fill-opacity="0.2"/>
+                </svg>
               </div>
-            </div>
+              <blockquote class="testimonial-text">
+                <p>"{t.testimonio}"</p>
+              </blockquote>
+              <figcaption class="testimonial-author">
+                <div class="author-info">
+                  <cite class="author-name">{t.nombre}</cite>
+                  <span class="author-role">{t.cargo} {t.empresa ? `| ${t.empresa}` : ''}</span>
+                </div>
+              </figcaption>
+            </figure>
           </div>
         ))}
       </div>
@@ -85,6 +89,44 @@ const testimonials = [
     </div>
   </div>
 </section>
+
+<!-- SEO & GEO Schema for Testimonials -->
+<script is:inline define:vars={{ testimonials }}>
+  (function() {
+    setTimeout(() => {
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": testimonials.map((t, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": t.nombre
+            },
+            "reviewBody": t.testimonio,
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Gestoo"
+            }
+          }
+        }))
+      };
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(schema);
+      document.head.appendChild(script);
+    }, 1000);
+  })();
+</script>
 
 <style>
   .testimonials-section {

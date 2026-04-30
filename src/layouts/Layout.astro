@@ -178,13 +178,20 @@ const breadcrumbs = [
 
             // Ejecutar al cargar y después de cada transición de Astro
             decodeEmails();
+            
             document.addEventListener('astro:after-swap', () => {
-                decodeEmails();
-                window.scrollTo(0, 0);
+                // Forzar el scroll al inicio inmediatamente
+                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                
                 if (window.lenis) {
                     window.lenis.scrollTo(0, { immediate: true });
                 }
+                
+                decodeEmails();
             });
+
+            // Asegurar que el scroll empiece arriba siempre
+            window.scrollTo(0, 0);
         </script>
 	</head>
 	<body>

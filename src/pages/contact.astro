@@ -8,6 +8,25 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Gestoo | Contacto">
+  <!-- Schema.org for AI -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "mainEntity": {
+        "@type": "ProfessionalService",
+        "name": "Gestoo",
+        "telephone": "+56981887723",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Independencia 313",
+          "addressLocality": "Punta Arenas",
+          "addressRegion": "Magallanes",
+          "addressCountry": "CL"
+        }
+      }
+    }
+  </script>
   <Navbar />
   <img
     src={`${base}/img/pinguino.svg`}

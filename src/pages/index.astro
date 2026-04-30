@@ -33,6 +33,9 @@ const base = import.meta.env.BASE_URL;
           class="hero-video"
           loading="eager"
           fetchpriority="high"
+          widths={[400, 800, 1200, 1920]}
+          sizes="(max-width: 768px) 100vw, 100vw"
+          format="webp"
         />
         <div class="hero-overlay"></div>
       </div>
@@ -52,6 +55,8 @@ const base = import.meta.env.BASE_URL;
             alt="Producción de eventos en Punta Arenas"
             width={300}
             height={400}
+            widths={[300, 600]}
+            format="webp"
           />
           <Image
             src={work2}
@@ -59,6 +64,8 @@ const base = import.meta.env.BASE_URL;
             alt="Diseño de marca y branding corporativo"
             width={240}
             height={320}
+            widths={[240, 480]}
+            format="webp"
           />
           <Image
             src={work3}
@@ -66,6 +73,8 @@ const base = import.meta.env.BASE_URL;
             alt="Turismo MICE y convenciones en la Patagonia"
             width={260}
             height={350}
+            widths={[260, 520]}
+            format="webp"
           />
         </div>
 

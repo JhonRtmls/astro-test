@@ -1,26 +1,40 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
-<section class="section faq-section">
-    <div class="container content-contained">
-        <div class="section-header reveal">
-            <span class="tag" data-i18n="faq-tag">Consultas</span>
-            <h2 class="section-title" data-i18n="faq-title">Preguntas <em>frecuentes.</em></h2>
-        </div>
-
-        <div class="faq-accordion reveal">
-            {[1, 2, 3, 4].map((i) => (
-                <div class="faq-item">
-                    <button class="faq-trigger" aria-expanded="false" id={`faq-btn-${i}`}>
-                        <span data-i18n={`faq-q${i}`}>Pregunta...</span>
-                        <span class="faq-icon"></span>
-                    </button>
-                    <div class="faq-content">
-                        <div class="faq-body">
-                            <p data-i18n={`faq-a${i}`}>Respuesta...</p>
-                        </div>
-                    </div>
+<section class="section faq-section" id="faq">
+    <div class="container">
+        <div class="faq-grid">
+            <!-- Columna Izquierda: Imagen -->
+            <div class="faq-image-side reveal">
+                <div class="faq-image-container">
+                    <img src={`${base}/img/work-3.webp`} alt="Gestoo MICE & Logistics" loading="lazy" />
+                    <div class="image-accent-box"></div>
                 </div>
-            ))}
+            </div>
+
+            <!-- Columna Derecha: Contenido -->
+            <div class="faq-content-side">
+                <div class="section-header reveal">
+                    <span class="tag" data-i18n="faq-tag">Consultas</span>
+                    <h2 class="section-title" data-i18n="faq-title">Preguntas <em>frecuentes.</em></h2>
+                </div>
+
+                <div class="faq-accordion reveal">
+                    {[1, 2, 3, 4].map((i) => (
+                        <div class="faq-item">
+                            <button class="faq-trigger" aria-expanded="false" id={`faq-btn-${i}`}>
+                                <span data-i18n={`faq-q${i}`}>Pregunta...</span>
+                                <span class="faq-icon"></span>
+                            </button>
+                            <div class="faq-content">
+                                <div class="faq-body">
+                                    <p data-i18n={`faq-a${i}`}>Respuesta...</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -31,17 +45,56 @@
         padding: 120px 0;
         border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .content-contained {
-        max-width: 900px;
-        margin: 0 auto;
+    
+    .faq-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 6rem;
+        align-items: start;
     }
+
+    /* Lado Imagen */
+    .faq-image-side {
+        position: sticky;
+        top: 120px;
+    }
+
+    .faq-image-container {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+    }
+
+    .faq-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image-accent-box {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        border: 2px solid var(--accent);
+        z-index: -1;
+    }
+
+    /* Lado Contenido */
+    .faq-content-side .section-header {
+        margin-bottom: 3rem;
+    }
+
     .faq-accordion {
-        margin-top: 4rem;
         border-top: 1px solid rgba(255,255,255,0.1);
     }
+    
     .faq-item {
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+    
     .faq-trigger {
         width: 100%;
         display: flex;
@@ -53,15 +106,17 @@
         cursor: pointer;
         text-align: left;
         color: var(--white);
-        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        font-size: clamp(1.1rem, 1.5vw, 1.3rem);
         font-weight: var(--fw-bold);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         transition: color 0.3s ease;
     }
+    
     .faq-trigger:hover {
-        color: var(--accent-2);
+        color: var(--accent);
     }
+    
     .faq-icon {
         position: relative;
         width: 20px;
@@ -69,15 +124,17 @@
         flex-shrink: 0;
         margin-left: 1.5rem;
     }
+    
     .faq-icon::before, .faq-icon::after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: var(--accent-2);
+        background-color: var(--accent);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    
     .faq-icon::before { width: 100%; height: 2px; }
     .faq-icon::after { width: 2px; height: 100%; }
 
@@ -85,8 +142,9 @@
         transform: translate(-50%, -50%) rotate(90deg);
         opacity: 0;
     }
+    
     .faq-trigger[aria-expanded="true"] {
-        color: var(--accent-2);
+        color: var(--accent);
     }
 
     .faq-content {
@@ -94,22 +152,26 @@
         overflow: hidden;
         transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    
     .faq-body {
         padding: 0 0 3rem;
     }
+    
     .faq-body p {
-        color: var(--text-2);
-        font-size: 1.15rem;
+        color: rgba(255,255,255,0.6);
+        font-size: 1.1rem;
         line-height: 1.7;
-        max-width: 850px;
     }
 
-    @media (max-width: 768px) {
-        .faq-trigger {
-            padding: 2rem 0;
+    @media (max-width: 1024px) {
+        .faq-grid {
+            grid-template-columns: 1fr;
+            gap: 4rem;
         }
-        .faq-body {
-            padding-bottom: 2rem;
+        .faq-image-side {
+            position: static;
+            max-width: 500px;
+            margin: 0 auto;
         }
     }
 </style>

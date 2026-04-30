@@ -4,6 +4,7 @@ const translations = {
     "nav-about": "Nosotros",
     "nav-services": "Servicios",
     "nav-works": "Proyectos",
+    "nav-insights": "Insights",
     "nav-contact": "Hablemos",
     "nav-home": "Inicio",
 
@@ -253,6 +254,7 @@ const translations = {
     "nav-about": "About",
     "nav-services": "Services",
     "nav-works": "Projects",
+    "nav-insights": "Insights",
     "nav-contact": "Let's Talk",
     "nav-home": "Home",
 

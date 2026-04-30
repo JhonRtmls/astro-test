@@ -1,0 +1,165 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/pages/inner.css';
+
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('posts')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Metadata para SEO
+const title = "Insights & Noticias | MICE Chile y Logística Patagonia | Gestoo";
+const description = "Explora las últimas noticias y análisis sobre el sector MICE en Chile, logística en la Patagonia y tendencias en eventos corporativos de la mano de los expertos de Gestoo.";
+---
+
+<Layout title={title} description={description}>
+    <Navbar />
+    
+    <main>
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="reveal">
+                    <span class="tag">Conocimiento</span>
+                    <h1 class="page-title">Nuestros <br><span class="gradient-text">Insights.</span></h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="container">
+                <div class="insights-grid">
+                    {posts.map((post) => (
+                        <a href={`${base}/insights/${post.id}`} class="insight-link">
+                            <article class="insight-card reveal">
+                                <div class="insight-image">
+                                    <img src={post.data.heroImage ? (post.data.heroImage.startsWith('/') ? `${base}${post.data.heroImage}` : post.data.heroImage) : `${base}/img/news-default.jpg`} alt={post.data.title} loading="lazy" />
+                                    <span class="insight-category">{post.data.category}</span>
+                                </div>
+                                <div class="insight-content">
+                                    <time datetime={post.data.pubDate.toISOString()}>
+                                        {post.data.pubDate.toLocaleDateString('es-ES', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric',
+                                        })}
+                                    </time>
+                                    <h3>{post.data.title}</h3>
+                                    <p>{post.data.description}</p>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </article>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    .insight-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .insight-card {
+        background: var(--blue-800);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .insight-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+    }
+
+    .insight-image {
+        position: relative;
+        height: 240px;
+        overflow: hidden;
+    }
+
+    .insight-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease;
+    }
+
+    .insight-card:hover .insight-image img {
+        transform: scale(1.05);
+    }
+
+    .insight-category {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: var(--accent);
+        color: var(--blue-900);
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+        font-weight: var(--fw-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .insight-content {
+        padding: 2rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .insight-content time {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.5);
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .insight-content h3 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        color: var(--white);
+    }
+
+    .insight-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 2rem;
+    }
+
+    .read-more {
+        margin-top: auto;
+        color: var(--accent);
+        font-weight: var(--fw-bold);
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .insights-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

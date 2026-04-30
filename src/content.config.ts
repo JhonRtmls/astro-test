@@ -15,4 +15,18 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { projects };
+const posts = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		pubDate: z.coerce.date(),
+		updatedDate: z.coerce.date().optional(),
+		heroImage: z.string().optional(),
+		category: z.string().default('Noticias'),
+		author: z.string().default('Equipo Gestoo'),
+		tags: z.array(z.string()).optional(),
+	}),
+});
+
+export const collections = { projects, posts };

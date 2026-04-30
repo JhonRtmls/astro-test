@@ -36,16 +36,30 @@ const base = import.meta.env.BASE_URL;
           fetchpriority="high"
         />
         
-        <!-- Background Video -->
-        <div class="video-background">
-          <iframe 
-            src="https://www.youtube.com/embed/XF5vgnIgLFg?autoplay=1&mute=1&controls=0&loop=1&playlist=XF5vgnIgLFg&rel=0&showinfo=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen
-            class="hero-iframe"
-          ></iframe>
+        <!-- Background Video (Deferred for Performance) -->
+        <div class="video-background" id="hero-video-container" data-video-id="XF5vgnIgLFg">
+          <!-- El iframe se inyectará por JS para no bloquear el inicio -->
         </div>
+
+        <script is:inline>
+          document.addEventListener('astro:page-load', () => {
+            const container = document.getElementById('hero-video-container');
+            if (container) {
+              const videoId = container.getAttribute('data-video-id');
+              // Retrasamos la carga 2 segundos para dar prioridad al renderizado
+              setTimeout(() => {
+                container.innerHTML = `
+                  <iframe 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&rel=0&showinfo=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    class="hero-iframe"
+                  ></iframe>
+                `;
+              }, 2000);
+            }
+          });
+        </script>
         
         <div class="hero-overlay"></div>
       </div>
@@ -63,16 +77,22 @@ const base = import.meta.env.BASE_URL;
             src={work1}
             class="floating-img img-1"
             alt="Producción de eventos en Punta Arenas"
+            width={300}
+            height={400}
           />
           <Image
             src={work2}
             class="floating-img img-2"
             alt="Diseño de marca y branding corporativo"
+            width={240}
+            height={320}
           />
           <Image
             src={work3}
             class="floating-img img-3"
             alt="Turismo MICE y convenciones en la Patagonia"
+            width={260}
+            height={350}
           />
         </div>
 

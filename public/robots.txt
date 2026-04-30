@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gestoo.cl/astro-test/sitemap-index.xml
+Sitemap: https://jhonrtmls.github.io/astro-test/sitemap-index.xml

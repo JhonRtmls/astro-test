@@ -213,88 +213,36 @@ const base = import.meta.env.BASE_URL;
     <div class="marquee-wrap brand-marquee" aria-hidden="true">
       <div class="marquee-track">
         <div class="marquee-block">
-          <img
-            src={`${base}/img/marcas/marca-1.svg`}
-            class="brand-logo"
-            alt="Marca 1"
-          />
-          <img
-            src={`${base}/img/marcas/marca-2.svg`}
-            class="brand-logo"
-            alt="Marca 2"
-          />
-          <img
-            src={`${base}/img/marcas/marca-3.svg`}
-            class="brand-logo"
-            alt="Marca 3"
-          />
-          <img
-            src={`${base}/img/marcas/marca-4.svg`}
-            class="brand-logo"
-            alt="Marca 4"
-          />
-          <img
-            src={`${base}/img/marcas/marca-5.svg`}
-            class="brand-logo"
-            alt="Marca 5"
-          />
-          <img
-            src={`${base}/img/marcas/marca-6.svg`}
-            class="brand-logo"
-            alt="Marca 6"
-          />
-          <img
-            src={`${base}/img/marcas/marca-7.svg`}
-            class="brand-logo"
-            alt="Marca 7"
-          />
-          <img
-            src={`${base}/img/marcas/marca-8.svg`}
-            class="brand-logo"
-            alt="Marca 8"
-          />
+          {[
+            "bancointeramericanodedesarrollo", "corfo", "gobiernoregionaldemagallanesyantarticachilena", 
+            "camarachilenadelaconstruccion", "UMAG", "municipalidaddepuntaarenas", 
+            "institutonacionaldedeportes", "edelmag", "laaraucana",
+            "visitsaudi", "tourismfiji", "marcaperú", "adventuretravel", 
+            "cormag", "colegiodentistaschile", "AOBAC", "NEMa", "elaguilamts"
+          ].map((brand) => (
+            <img
+              src={`${base}/img/marcas/${brand}.svg`}
+              class="brand-logo"
+              alt={`Logo ${brand} - Cliente de Gestoo`}
+              loading="lazy"
+            />
+          ))}
         </div>
         <div class="marquee-block" aria-hidden="true">
-          <img
-            src={`${base}/img/marcas/marca-1.svg`}
-            class="brand-logo"
-            alt="Marca 1"
-          />
-          <img
-            src={`${base}/img/marcas/marca-2.svg`}
-            class="brand-logo"
-            alt="Marca 2"
-          />
-          <img
-            src={`${base}/img/marcas/marca-3.svg`}
-            class="brand-logo"
-            alt="Marca 3"
-          />
-          <img
-            src={`${base}/img/marcas/marca-4.svg`}
-            class="brand-logo"
-            alt="Marca 4"
-          />
-          <img
-            src={`${base}/img/marcas/marca-5.svg`}
-            class="brand-logo"
-            alt="Marca 5"
-          />
-          <img
-            src={`${base}/img/marcas/marca-6.svg`}
-            class="brand-logo"
-            alt="Marca 6"
-          />
-          <img
-            src={`${base}/img/marcas/marca-7.svg`}
-            class="brand-logo"
-            alt="Marca 7"
-          />
-          <img
-            src={`${base}/img/marcas/marca-8.svg`}
-            class="brand-logo"
-            alt="Marca 8"
-          />
+          {[
+            "bancointeramericanodedesarrollo", "corfo", "gobiernoregionaldemagallanesyantarticachilena", 
+            "camarachilenadelaconstruccion", "UMAG", "municipalidaddepuntaarenas", 
+            "institutonacionaldedeportes", "edelmag", "laaraucana",
+            "visitsaudi", "tourismfiji", "marcaperú", "adventuretravel", 
+            "cormag", "colegiodentistaschile", "AOBAC", "NEMa", "elaguilamts"
+          ].map((brand) => (
+            <img
+              src={`${base}/img/marcas/${brand}.svg`}
+              class="brand-logo"
+              alt={`Logo ${brand} - Cliente de Gestoo`}
+              loading="lazy"
+            />
+          ))}
         </div>
       </div>
     </div>

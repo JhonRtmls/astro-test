@@ -8,6 +8,18 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Gestoo | Nosotros">
+  <!-- Schema.org for AI -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "ProfessionalService",
+        "name": "Gestoo",
+        "description": "Agencia creativa líder en la Patagonia Chilena especializada en MICE, branding y producción de eventos."
+      }
+    }
+  </script>
   <Navbar />
   <img src={`${base}/img/antartica.svg`} alt="Mapa estilizado de la Antártica y Patagonia - Agencia Gestoo" class="bg-illustration" />
   <main>

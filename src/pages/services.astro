@@ -9,6 +9,45 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Gestoo | Servicios">
+    <!-- Schema.org for AI -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Agencia Creativa B2B",
+        "provider": {
+          "@type": "ProfessionalService",
+          "name": "Gestoo"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Catálogo de Servicios Gestoo",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Consultoría de Marca"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Turismo MICE"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Producción Audiovisual"
+              }
+            }
+          ]
+        }
+      }
+    </script>
     <Navbar />
     <img src={`${base}/img/arbol.svg`} alt="Ilustración de árbol de la Patagonia - Servicios Gestoo" class="bg-illustration">
     <main>

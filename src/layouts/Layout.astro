@@ -14,6 +14,19 @@ import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Breadcrumb Logic for AI
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbs = [
+    { name: 'Inicio', item: Astro.site.href },
+    ...pathSegments.map((segment, index) => {
+        const url = new URL(pathSegments.slice(0, index + 1).join('/'), Astro.site);
+        return {
+            name: segment.charAt(0).toUpperCase() + segment.slice(1),
+            item: url.href
+        };
+    })
+];
 ---
 
 <!doctype html>
@@ -49,7 +62,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <link rel="canonical" href={canonicalURL} />
 
-        <!-- AI Search Readiness: Schema.org -->
         <script type="application/ld+json" is:inline>
             {
                 "@context": "https://schema.org",
@@ -74,6 +86,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 },
                 "telephone": "+56981887723",
                 "email": "contacto@gestoo.cl",
+                "priceRange": "$$$",
+                "areaServed": [
+                    {
+                        "@type": "Country",
+                        "name": "Chile"
+                    },
+                    {
+                        "@type": "AdministrativeArea",
+                        "name": "Patagonia"
+                    }
+                ],
+                "knowsAbout": [
+                    "Branding Corporativo",
+                    "Turismo MICE",
+                    "Producción de Eventos",
+                    "Logística en Climas Extremos",
+                    "Marketing B2B"
+                ],
                 "sameAs": [
                     "https://www.linkedin.com/company/gestoo",
                     "https://www.instagram.com/gestoo.cl"
@@ -90,6 +120,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
         <ClientRouter />
+
+        <script type="application/ld+json" is:inline set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": breadcrumbs.map((bc, i) => ({
+                "@type": "ListItem",
+                "position": i + 1,
+                "name": bc.name,
+                "item": bc.item
+            }))
+        })} />
 
         <!-- Script de Reseteo Crítico y Utilidades -->
         <script is:inline>

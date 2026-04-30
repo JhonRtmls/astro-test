@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Gestoo | Contacto">
-  <!-- Schema.org for AI -->
+  <!-- Schema.org for AI & Local SEO -->
   <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
@@ -16,14 +16,33 @@ const base = import.meta.env.BASE_URL;
       "mainEntity": {
         "@type": "ProfessionalService",
         "name": "Gestoo",
+        "image": "https://gestoo.cl/img/hero.jpg",
         "telephone": "+56981887723",
+        "url": "https://gestoo.cl",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Av. Independencia 313",
           "addressLocality": "Punta Arenas",
           "addressRegion": "Magallanes",
           "addressCountry": "CL"
-        }
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -53.1627,
+          "longitude": -70.9081
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:30"
+        },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Magallanes" },
+          { "@type": "AdministrativeArea", "name": "Patagonia Chilena" },
+          { "@type": "AdministrativeArea", "name": "Chile" }
+        ],
+        "priceRange": "$$$"
       }
     }
   </script>

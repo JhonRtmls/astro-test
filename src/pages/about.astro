@@ -8,7 +8,7 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Gestoo | Nosotros">
-  <!-- Schema.org for AI -->
+  <!-- Schema.org for AI & Authority -->
   <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
@@ -16,7 +16,19 @@ const base = import.meta.env.BASE_URL;
       "mainEntity": {
         "@type": "ProfessionalService",
         "name": "Gestoo",
-        "description": "Agencia creativa líder en la Patagonia Chilena especializada en MICE, branding y producción de eventos."
+        "description": "Agencia creativa líder en la Patagonia Chilena especializada en MICE, branding y producción de eventos de alto impacto.",
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Jaime Almonacid",
+            "jobTitle": "Director Creativo"
+          },
+          {
+            "@type": "Person",
+            "name": "Paola Almonacid Vargas",
+            "jobTitle": "Producción Técnica"
+          }
+        ]
       }
     }
   </script>

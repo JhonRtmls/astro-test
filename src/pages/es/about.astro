@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import "../../styles/pages/inner.css";
+import "../../styles/pages/about.css";
+
+const currentLang = Astro.currentLocale || 'es';
+---
+
+<Layout title={currentLang === 'es' ? "Gestoo | Nosotros" : "Gestoo | About"}>
+  <Navbar />
+  <img src="/astro-test/img/antartica.svg" alt="Mapa estilizado de la Antártica y Patagonia" class="bg-illustration" />
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-content">
+        <div class="reveal">
+          <span class="tag">{currentLang === 'es' ? 'ADN Patagónico' : 'Patagonian DNA'}</span>
+          <h1 class="page-title">
+            {currentLang === 'es' ? 'Transformamos visión en' : 'We transform vision into'} <br /><span class="gradient-text">{currentLang === 'es' ? 'impacto real.' : 'real impact.'}</span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="about-intro">
+          <div class="about-intro-text reveal">
+            <h2>
+              {currentLang === 'es' 
+                ? 'Una agencia creativa que diseña el futuro de los eventos en la Patagonia.'
+                : 'A creative agency designing the future of events in Patagonia.'}
+            </h2>
+            <p>
+              {currentLang === 'es'
+                ? 'Nacimos con la convicción de que un evento no es solo una reunión de personas: es una oportunidad para crear algo memorable. Somos un equipo apasionado por los detalles, por la narrativa y por el impacto emocional.'
+                : 'We were born with the conviction that an event is not just a gathering of people: it is an opportunity to create something memorable. We are a team passionate about details, narrative, and emotional impact.'}
+            </p>
+            <br />
+            <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-primary">
+              {currentLang === 'es' ? 'Trabaja con nosotros' : 'Work with us'}
+            </a>
+          </div>
+          <div class="about-img-block reveal">
+            <img src="/astro-test/img/team.jpg" alt="Equipo Gestoo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="testimonial-inner reveal" style="max-width:800px; margin:0 auto; text-align:center; position:relative;">
+          <blockquote>
+            <p>
+              {currentLang === 'es'
+                ? 'No organizamos eventos. Diseñamos experiencias que transforman momentos en recuerdos que duran toda la vida.'
+                : 'We don\'t just organize events. We design experiences that transform moments into lifelong memories.'}
+            </p>
+          </blockquote>
+          <cite><strong>{currentLang === 'es' ? 'El Equipo Gestoo' : 'The Gestoo Team'}</strong></cite>
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution-section">
+      <div class="container content-contained">
+        <div class="solution-card reveal">
+          <span class="tag">Problem Solvers</span>
+          <h2 class="cta-title">
+            {currentLang === 'es' ? '¿Tienes un desafío?' : 'Have a challenge?'} <br /> {currentLang === 'es' ? 'Somos la' : 'We are the'} <span class="solution-highlight">{currentLang === 'es' ? 'solución.' : 'solution.'}</span>
+          </h2>
+          <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-orange-glow">
+            {currentLang === 'es' ? 'Cotiza tu solución ahora →' : 'Quote your solution now →'}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

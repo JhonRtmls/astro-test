@@ -1,45 +1,35 @@
 ---
-const base = import.meta.env.BASE_URL;
+import { getRelativeLocaleUrl } from 'astro:i18n';
+const currentLang = Astro.currentLocale || 'es';
 ---
 
 <header class="navbar" id="navbar">
   <div class="navbar-inner">
-    <a href={`${base}`} class="nav-logo">
-      <img src={`${base}/img/logo.png`} alt="Gestoo" />
+    <a href={getRelativeLocaleUrl(currentLang, '/')} class="nav-logo">
+      <img src="/astro-test/img/logo.png" alt="Gestoo" />
     </a>
     <nav class="nav-menu">
-      <a href={`${base}`} data-i18n="nav-home">Inicio</a>
-      <a href={`${base}/about`} data-i18n="nav-about">Nosotros</a>
-      <a href={`${base}/services`} data-i18n="nav-services">Servicios</a>
-      <a href={`${base}/works`} data-i18n="nav-works">Proyectos</a>
-      <a href={`${base}/insights`} data-i18n="nav-insights">Insights</a>
+      <a href={getRelativeLocaleUrl(currentLang, '/')} data-i18n="nav-home">{currentLang === 'es' ? 'Inicio' : 'Home'}</a>
+      <a href={getRelativeLocaleUrl(currentLang, '/about')} data-i18n="nav-about">{currentLang === 'es' ? 'Nosotros' : 'About'}</a>
+      <a href={getRelativeLocaleUrl(currentLang, '/services')} data-i18n="nav-services">{currentLang === 'es' ? 'Servicios' : 'Services'}</a>
+      <a href={getRelativeLocaleUrl(currentLang, '/works')} data-i18n="nav-works">{currentLang === 'es' ? 'Proyectos' : 'Works'}</a>
+      <a href={getRelativeLocaleUrl(currentLang, '/insights')} data-i18n="nav-insights">Insights</a>
     </nav>
 
     <div class="nav-actions">
-      <a href={`${base}/contact`} class="btn-nav" data-i18n="nav-contact"
-        >Hablemos</a
-      >
+      <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-nav" data-i18n="nav-contact">
+        {currentLang === 'es' ? 'Hablemos' : 'Let\'s talk'}
+      </a>
       <div class="lang-switcher">
         <button class="lang-btn" id="langBtn">
-          <span class="lang-code">ES</span>
-          <svg
-            class="lang-arrow"
-            width="10"
-            height="6"
-            viewBox="0 0 10 6"
-            fill="none"
-          >
-            <path
-              d="M1 1L5 5L9 1"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
+          <span class="lang-code">{currentLang.toUpperCase()}</span>
+          <svg class="lang-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </button>
         <ul class="lang-dropdown">
-          <li><button data-lang="es">ES</button></li>
-          <li><button data-lang="en">EN</button></li>
+          <li><a href={getRelativeLocaleUrl('es', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>ES</a></li>
+          <li><a href={getRelativeLocaleUrl('en', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>EN</a></li>
         </ul>
       </div>
     </div>
@@ -51,24 +41,20 @@ const base = import.meta.env.BASE_URL;
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <button
-    class="mobile-menu-close"
-    id="mobileMenuClose"
-    aria-label="Cerrar menú"
-  >
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
     <span></span><span></span>
   </button>
   <nav>
-    <a href={`${base}`} data-i18n="nav-home">Inicio</a>
-    <a href={`${base}/about`} data-i18n="nav-about">Nosotros</a>
-    <a href={`${base}/services`} data-i18n="nav-services">Servicios</a>
-    <a href={`${base}/works`} data-i18n="nav-works">Proyectos</a>
-    <a href={`${base}/insights`} data-i18n="nav-insights">Insights</a>
-    <a href={`${base}/contact`} data-i18n="nav-contact">Contacto</a>
+    <a href={getRelativeLocaleUrl(currentLang, '/')} data-i18n="nav-home">{currentLang === 'es' ? 'Inicio' : 'Home'}</a>
+    <a href={getRelativeLocaleUrl(currentLang, '/about')} data-i18n="nav-about">{currentLang === 'es' ? 'Nosotros' : 'About'}</a>
+    <a href={getRelativeLocaleUrl(currentLang, '/services')} data-i18n="nav-services">{currentLang === 'es' ? 'Servicios' : 'Services'}</a>
+    <a href={getRelativeLocaleUrl(currentLang, '/works')} data-i18n="nav-works">{currentLang === 'es' ? 'Proyectos' : 'Works'}</a>
+    <a href={getRelativeLocaleUrl(currentLang, '/insights')} data-i18n="nav-insights">Insights</a>
+    <a href={getRelativeLocaleUrl(currentLang, '/contact')} data-i18n="nav-contact">{currentLang === 'es' ? 'Contacto' : 'Contact'}</a>
     <div class="mobile-lang">
-      <button data-lang="es">ES</button>
+      <a href={getRelativeLocaleUrl('es', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>ES</a>
       <span>|</span>
-      <button data-lang="en">EN</button>
+      <a href={getRelativeLocaleUrl('en', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>EN</a>
     </div>
   </nav>
 </div>

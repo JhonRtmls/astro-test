@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import '../../styles/pages/inner.css';
+import '../../styles/pages/services.css';
+
+const currentLang = Astro.currentLocale || 'es';
+---
+
+<Layout 
+    title={currentLang === 'es' ? "MICE Chile | Agencia Líder en Congresos y Eventos Corporativos | Gestoo" : "MICE Chile | Leading Agency for Congresses and Corporate Events | Gestoo"}
+    description={currentLang === 'es' ? "Especialistas en MICE Chile. Producción técnica y logística en Patagonia." : "MICE specialists in Chile. Technical production and logistics in Patagonia."}
+>
+    <Navbar />
+    <img src="/astro-test/img/arbol.svg" alt="Ilustración de árbol de la Patagonia" class="bg-illustration">
+    <main>
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="reveal">
+                    <span class="tag">Ecosistema Gestoo</span>
+                    <h1 class="page-title">
+                        {currentLang === 'es' ? 'Soluciones diseñadas para' : 'Solutions designed for'} <br><span class="gradient-text">{currentLang === 'es' ? 'cada desafío.' : 'every challenge.'}</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag">Especialidades</span>
+                    <h2 class="section-title">{currentLang === 'es' ? 'Nuestra' : 'Our'} <em>{currentLang === 'es' ? 'oferta B2B.' : 'B2B offer.'}</em></h2>
+                    <p class="lead-text">
+                        {currentLang === 'es' 
+                            ? 'Somos la empresa de MICE líder en Magallanes, especializada en transformar desafíos complejos en experiencias memorables.'
+                            : 'We are the leading MICE company in Magallanes, specializing in transforming complex challenges into memorable experiences.'}
+                    </p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <span class="service-num">01</span>
+                        <h3>{currentLang === 'es' ? 'Consultoría de Marca' : 'Brand Consulting'}</h3>
+                        <p>{currentLang === 'es' ? 'Estrategia de identidad corporativa y narrativa de marca para el sector B2B.' : 'Corporate identity strategy and brand narrative for the B2B sector.'}</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">02</span>
+                        <h3>Turismo MICE</h3>
+                        <p>{currentLang === 'es' ? 'Planificación integral y logística de congresos e incentivos en la Patagonia.' : 'Comprehensive planning and logistics for congresses and incentives in Patagonia.'}</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">03</span>
+                        <h3>{currentLang === 'es' ? 'Producción Audiovisual' : 'Audiovisual Production'}</h3>
+                        <p>{currentLang === 'es' ? 'Ingeniería técnica audiovisual avanzada para eventos corporativos.' : 'Advanced audiovisual technical engineering for corporate events.'}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <FAQ />
+
+        <section class="section solution-section">
+            <div class="container content-contained">
+                <div class="solution-card reveal">
+                    <span class="tag">Problem Solvers</span>
+                    <h2 class="cta-title">
+                        {currentLang === 'es' ? '¿Tienes un desafío?' : 'Have a challenge?'} <br /> {currentLang === 'es' ? 'Somos la' : 'We are the'} <span class="solution-highlight">{currentLang === 'es' ? 'solución.' : 'solution.'}</span>
+                    </h2>
+                    <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-orange-glow">
+                        {currentLang === 'es' ? 'Cotiza tu solución ahora →' : 'Quote your solution now →'}
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

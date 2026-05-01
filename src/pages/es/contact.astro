@@ -1,0 +1,88 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import "../../styles/pages/inner.css";
+import "../../styles/pages/contact.css";
+
+const currentLang = Astro.currentLocale || 'es';
+---
+
+<Layout title={currentLang === 'es' ? "Gestoo | Contacto" : "Gestoo | Contact"}>
+  <Navbar />
+  <img src="/astro-test/img/pinguino.svg" alt="" class="bg-illustration bg-pinguino" />
+  <main>
+    <section class="section contact-section">
+      <div class="container content-contained">
+        <div class="contact-grid">
+          <div class="contact-info-column reveal">
+            <span class="tag">{currentLang === 'es' ? 'Contacto' : 'Contact'}</span>
+            <h1 class="page-title" style="margin-bottom: 2rem">
+              {currentLang === 'es' ? 'Expertos en soluciones' : 'Experts in'} <br /><span class="gradient-text">{currentLang === 'es' ? 'MICE y B2B.' : 'MICE & B2B solutions.'}</span>
+            </h1>
+            <p class="contact-description">
+              {currentLang === 'es' 
+                ? 'Desde la Patagonia para todo Chile, transformamos la complejidad en experiencias memorables. Cuéntanos qué tienes en mente.'
+                : 'From Patagonia to all of Chile, we transform complexity into memorable experiences. Tell us what you have in mind.'}
+            </p>
+
+            <div class="contact-methods">
+              <div class="method-item">
+                <div class="method-icon"><img src="/astro-test/img/contacto_icons/location.svg" alt="Ubicación" /></div>
+                <div class="method-text">
+                  <label>{currentLang === 'es' ? 'Ubicación' : 'Location'}</label>
+                  <p>Av. Independencia 313, <br />Punta Arenas, Magallanes, Chile</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <div class="method-icon"><img src="/astro-test/img/contacto_icons/mail.svg" alt="Email" /></div>
+                <div class="method-text">
+                  <label>{currentLang === 'es' ? 'Email Corporativo' : 'Corporate Email'}</label>
+                  <a href="#" class="email-link" data-name="contacto" data-domain="gestoo.cl">Cargando email...</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-column reveal">
+            <form class="premium-form" id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>{currentLang === 'es' ? 'Nombre Completo *' : 'Full Name *'}</label>
+                  <input type="text" placeholder={currentLang === 'es' ? "Ej: Juan Pérez" : "e.g. John Doe"} required />
+                </div>
+                <div class="form-group">
+                  <label>{currentLang === 'es' ? 'Empresa / Institución' : 'Company / Institution'}</label>
+                  <input type="text" placeholder={currentLang === 'es' ? "Nombre de tu organización" : "Your organization"} />
+                </div>
+              </div>
+              <div class="form-submit">
+                <button type="submit" class="btn-orange-glow" id="submitBtn">
+                  {currentLang === 'es' ? 'Enviar Requerimiento →' : 'Send Request →'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const btn = document.getElementById("submitBtn");
+        btn.textContent = "Enviando...";
+        btn.disabled = true;
+        setTimeout(() => {
+          alert("Solicitud recibida.");
+          this.reset();
+        }, 1200);
+      });
+    }
+  </script>
+</Layout>

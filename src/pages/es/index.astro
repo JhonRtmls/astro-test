@@ -1,0 +1,275 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import Testimonials from "../../components/Testimonials.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import "../../styles/pages/home.css";
+
+// Assets
+import heroImage from "../../assets/img/hero.jpg";
+import work1 from "../../assets/img/work-1.webp";
+import work2 from "../../assets/img/work-2.jpeg";
+import work3 from "../../assets/img/work-3.webp";
+
+const currentLang = Astro.currentLocale || 'es';
+const allProjects = await getCollection("projects", ({ id }) => id.startsWith(`${currentLang}/`));
+const projects = allProjects
+  .filter((p) => p.data.featured)
+  .slice(0, 4);
+---
+
+<Layout title="Gestoo — Agencia Creativa">
+  <Navbar />
+  <main>
+    <!-- ============ HERO VIDEO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-video-wrapper">
+        <Image
+          src={heroImage}
+          alt="Gestoo Hero — Agencia Creativa"
+          class="hero-video"
+          loading="eager"
+          fetchpriority="high"
+          widths={[400, 800, 1200, 1920]}
+          sizes="(max-width: 768px) 100vw, 100vw"
+          format="webp"
+        />
+        <div class="hero-overlay"></div>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="manifesto-premium" id="about">
+      <div class="manifesto-ghost-illustration" aria-hidden="true">
+        <img src="/astro-test/img/infinito.svg" alt="Símbolo de infinito estilizado" />
+      </div>
+
+      <div class="manifesto-container">
+        <div class="manifesto-images">
+          <Image
+            src={work1}
+            class="floating-img img-1"
+            alt="Producción de eventos"
+            width={300}
+            height={400}
+            format="webp"
+          />
+          <Image
+            src={work2}
+            class="floating-img img-2"
+            alt="Diseño de marca"
+            width={240}
+            height={320}
+            format="webp"
+          />
+          <Image
+            src={work3}
+            class="floating-img img-3"
+            alt="Turismo MICE"
+            width={260}
+            height={350}
+            format="webp"
+          />
+        </div>
+
+        <div class="manifesto-content">
+          <h1 class="manifesto-title">
+            {currentLang === 'es' ? 'SOMOS' : 'WE ARE'} <br />
+            {currentLang === 'es' ? 'PARA QUIENES' : 'FOR THOSE'} <br />
+            {currentLang === 'es' ? 'BUSCAN SOLUCIONES' : 'SEEKING'} <br />
+            {currentLang === 'es' ? 'CREATIVAS' : 'CREATIVE'} <br />
+            {currentLang === 'es' ? 'A DESAFÍOS' : 'SOLUTIONS TO'} <br />
+            {currentLang === 'es' ? 'COMPLEJOS.' : 'COMPLEX CHALLENGES.'}
+          </h1>
+        </div>
+
+        <div class="manifesto-detail-box">
+          <p>
+            {currentLang === 'es' 
+              ? 'Creando experiencias únicas desde lo más profundo de la Patagonia Chilena para el mundo entero.'
+              : 'Creating unique experiences from the heart of Chilean Patagonia for the entire world.'}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STRATEGIC MARQUEE 1 ============ -->
+    <div class="marquee-wrap strategic-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          <span>{currentLang === 'es' ? 'Creatividad' : 'Creativity'}</span><span class="dot"></span>
+          <span>{currentLang === 'es' ? 'Eventos' : 'Events'}</span><span class="dot"></span>
+          <span>MICE</span><span class="dot"></span>
+          <span>Branding</span><span class="dot"></span>
+          <span>Patagonia</span><span class="dot"></span>
+          <span>{currentLang === 'es' ? 'Soluciones' : 'Solutions'}</span><span class="dot"></span>
+        </div>
+        <div class="marquee-block" aria-hidden="true">
+          <span>{currentLang === 'es' ? 'Creatividad' : 'Creativity'}</span><span class="dot"></span>
+          <span>{currentLang === 'es' ? 'Eventos' : 'Events'}</span><span class="dot"></span>
+          <span>MICE</span><span class="dot"></span>
+          <span>Branding</span><span class="dot"></span>
+          <span>Patagonia</span><span class="dot"></span>
+          <span>{currentLang === 'es' ? 'Soluciones' : 'Solutions'}</span><span class="dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SERVICES HUB ============ -->
+    <section class="services-hub" id="services">
+      <div class="hub-rings" aria-hidden="true">
+        <div class="hub-ring ring-1"></div>
+        <div class="hub-ring ring-2"></div>
+        <div class="hub-ring ring-3"></div>
+      </div>
+
+      <div class="container hub-container">
+        <div class="hub-center">
+          <div class="hub-center-circle">
+            <h2>
+              {currentLang === 'es' 
+                ? 'Transformamos desafíos complejos en experiencias memorables.'
+                : 'We transform complex challenges into memorable experiences.'}
+            </h2>
+          </div>
+        </div>
+
+        <div class="hub-cards">
+          <!-- Card 01 -->
+          <a href={getRelativeLocaleUrl(currentLang, '/services')} class="hub-card card-1" data-parallax="0.15">
+            <div class="hub-card-image" style="background-image: url('/astro-test/img/service-marca.jpg')"></div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">01</span>
+              <h3>{currentLang === 'es' ? 'Consultoría de Marca' : 'Brand Consulting'}</h3>
+              <p class="short-desc">{currentLang === 'es' ? 'Estrategia de identidad corporativa.' : 'Corporate identity strategy.'}</p>
+            </div>
+          </a>
+
+          <!-- Card 02 -->
+          <a href={getRelativeLocaleUrl(currentLang, '/services')} class="hub-card card-2" data-parallax="0.25">
+            <div class="hub-card-image" style="background-image: url('/astro-test/img/service-mice.jpg')"></div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">02</span>
+              <h3>Turismo MICE</h3>
+              <p class="short-desc">{currentLang === 'es' ? 'Congresos e incentivos en Patagonia.' : 'Congresses and incentives in Patagonia.'}</p>
+            </div>
+          </a>
+
+          <!-- Card 03 -->
+          <a href={getRelativeLocaleUrl(currentLang, '/services')} class="hub-card card-3" data-parallax="0.1">
+            <div class="hub-card-image" style="background-image: url('/astro-test/img/service-produccion.jpg')"></div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">03</span>
+              <h3>{currentLang === 'es' ? 'Producción de Impacto' : 'Impact Production'}</h3>
+              <p class="short-desc">{currentLang === 'es' ? 'Ingeniería técnica audiovisual.' : 'Technical audiovisual engineering.'}</p>
+            </div>
+          </a>
+
+          <!-- Card 04 -->
+          <a href={getRelativeLocaleUrl(currentLang, '/services')} class="hub-card card-4" data-parallax="0.2">
+            <div class="hub-card-image" style="background-image: url('/astro-test/img/service-renting.jpg')"></div>
+            <div class="hub-card-content">
+              <span class="hub-card-num">04</span>
+              <h3>{currentLang === 'es' ? 'Alquiler de Equipos' : 'Equipment Rental'}</h3>
+              <p class="short-desc">{currentLang === 'es' ? 'Soporte de infraestructura.' : 'Infrastructure support.'}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BRAND MARQUEE ============ -->
+    <div class="marquee-wrap brand-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          {[
+            "bancointeramericanodedesarrollo", "corfo", "gobiernoregionaldemagallanesyantarticachilena", 
+            "camarachilenadelaconstruccion", "UMAG", "municipalidaddepuntaarenas", 
+            "institutonacionaldedeportes", "edelmag", "laaraucana",
+            "visitsaudi", "tourismfiji", "marcaperú", "adventuretravel", 
+            "cormag", "colegiodentistaschile", "AOBAC", "NEMa", "elaguilamts"
+          ].map((brand) => (
+            <img src={`/astro-test/img/marcas/${brand}.svg`} class="brand-logo" alt={`Logo ${brand}`} loading="lazy" />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ WORKS / PORTFOLIO ============ -->
+    <section class="works-section" id="works">
+      <div class="container">
+        <div class="section-header content-contained">
+          <span class="tag">Selection</span>
+          <h2 class="section-title">
+            {currentLang === 'es' ? 'Casos de' : 'Success'} <em>{currentLang === 'es' ? 'éxito.' : 'stories.'}</em>
+          </h2>
+        </div>
+      </div>
+
+      <div class="works-grid">
+        {projects.map((project) => (
+          <a href={getRelativeLocaleUrl(currentLang, `/projects/${project.id.replace(`${currentLang}/`, '')}`)} class="work-link">
+            <article class="work-card">
+              <div class="work-media">
+                <img 
+                  src={project.data.heroImage ? (project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage) : `/astro-test/img/work-default.jpg`} 
+                  alt={project.data.title} 
+                />
+              </div>
+              <div class="work-overlay">
+                <span class="work-cat">{project.data.category}</span>
+                <h3>{project.data.title}</h3>
+                <p>{project.data.description}</p>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <Testimonials />
+
+    <!-- ============ PROBLEM SOLVER ============ -->
+    <section class="solver-section" id="contact">
+      <div class="solver-sticky">
+        <div class="solver-layer layer-problem">
+          <div class="container content-contained">
+            <span class="status-badge">{currentLang === 'es' ? 'El Problema' : 'The Problem'}</span>
+            <h2 class="solver-text">
+              {currentLang === 'es' ? '¿NECESITAS PRODUCCIÓN Y LOGÍSTICA PARA TU PRÓXIMO PROYECTO?' : 'NEED PRODUCTION AND LOGISTICS FOR YOUR NEXT PROJECT?'}
+            </h2>
+          </div>
+        </div>
+        <div class="solver-layer layer-solution">
+          <div class="container content-contained">
+            <span class="status-badge white">{currentLang === 'es' ? 'La Solución' : 'The Solution'}</span>
+            <h2 class="solver-text">
+              {currentLang === 'es' 
+                ? 'TE AYUDAMOS A QUE CADA PROYECTO SEA UNA INVERSIÓN, NO UN GASTO.'
+                : 'WE HELP YOU MAKE EVERY PROJECT AN INVESTMENT, NOT AN EXPENSE.'}
+            </h2>
+            <div class="solver-actions">
+              <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-primary">
+                {currentLang === 'es' ? 'COTIZA TU SOLUCIÓN' : 'QUOTE YOUR SOLUTION'}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <FAQ />
+  <Footer />
+</Layout>
+
+<style>
+    .work-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>

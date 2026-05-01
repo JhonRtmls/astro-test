@@ -1,35 +1,36 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.astro';
-import Footer from '../../components/Footer.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
 
 export async function getStaticPaths() {
-	const projects = await getCollection('projects');
+	const projects = await getCollection('projects', ({ id }) => id.startsWith('es/'));
 	return projects.map((project) => ({
-		params: { slug: project.id },
+		params: { slug: project.id.replace('es/', '') },
 		props: { project },
 	}));
 }
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const base = import.meta.env.BASE_URL;
+const currentLang = Astro.currentLocale || 'es';
 ---
 
-<Layout title={`${project.data.title} | Gestoo`}>
+<Layout title={`${project.data.title} | Gestoo`} description={project.data.description}>
     <Navbar />
     <main class="project-detail-page">
         <header class="project-hero">
             <div class="container content-contained">
                 <span class="tag">{project.data.category}</span>
                 <h1 class="page-title">{project.data.title}</h1>
-                <p class="project-meta">Publicado el {project.data.pubDate.toLocaleDateString()}</p>
+                <p class="project-meta">Publicado el {project.data.pubDate.toLocaleDateString(currentLang)}</p>
             </div>
             {project.data.heroImage && (
                 <div class="hero-image-wrapper">
                     <img 
-                        src={project.data.heroImage.startsWith('/') ? `${base}${project.data.heroImage}` : project.data.heroImage} 
+                        src={project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage} 
                         alt={project.data.title} 
                     />
                 </div>
@@ -45,9 +46,9 @@ const base = import.meta.env.BASE_URL;
         <section class="cta-section">
             <div class="container content-contained">
                 <div class="solution-card">
-                    <span class="tag">¿Tienes un desafío similar?</span>
-                    <h2>HAGAMOS QUE TU PRÓXIMO PROYECTO SEA <span class="solution-highlight">MEMORABLE.</span></h2>
-                    <a href="/astro-test/contact" class="btn-primary">HABLEMOS</a>
+                    <span class="tag">{currentLang === 'es' ? '¿Tienes un desafío similar?' : 'Have a similar challenge?'}</span>
+                    <h2>{currentLang === 'es' ? 'HAGAMOS QUE TU PRÓXIMO PROYECTO SEA' : 'LET\'S MAKE YOUR NEXT PROJECT'} <span class="solution-highlight">{currentLang === 'es' ? 'MEMORABLE.' : 'MEMORABLE.'}</span></h2>
+                    <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-primary">{currentLang === 'es' ? 'HABLEMOS' : 'LET\'S TALK'}</a>
                 </div>
             </div>
         </section>
@@ -92,7 +93,7 @@ const base = import.meta.env.BASE_URL;
         padding: 100px 0;
         line-height: 1.8;
     }
-    /* Estilos básicos de prosa (puedes expandirlos) */
+    /* Estilos básicos de prosa */
     .prose {
         max-width: 800px;
         margin: 0 auto;

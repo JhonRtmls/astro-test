@@ -13,29 +13,30 @@ import '../styles/components.css';
 import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
 
-const site = Astro.site || new URL('https://jhonrtmls.github.io');
+const currentLang = Astro.currentLocale || 'es';
+const site = Astro.site || new URL('https://jhonrtmls.github.io/astro-test');
 const canonicalURL = new URL(Astro.url.pathname, site);
 
 // Breadcrumb Logic for AI
-const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const pathSegments = Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, '').split('/').filter(Boolean);
 const breadcrumbs = [
-    { name: 'Inicio', item: site.href },
+    { name: currentLang === 'es' ? 'Inicio' : 'Home', item: `${site.href}/${currentLang}/` },
     ...pathSegments.map((segment, index) => {
-        const url = new URL(pathSegments.slice(0, index + 1).join('/'), site);
+        const path = pathSegments.slice(0, index + 1).join('/');
         return {
             name: segment.charAt(0).toUpperCase() + segment.slice(1),
-            item: url.href
+            item: `${site.href}/${currentLang}/${path}`
         };
     })
 ];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={currentLang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/img/favicon.png`} />
+		<link rel="icon" type="image/png" href="/astro-test/img/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -63,9 +64,10 @@ const breadcrumbs = [
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://www.youtube.com https://youtube.com; child-src https://www.youtube.com https://youtube.com;" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-        <!-- Language targeting -->
-        <link rel="alternate" hreflang="es" href={canonicalURL} />
-        <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+        <!-- Language targeting (SEO) -->
+        <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
+        <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/en'), site)} />
+        <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
         
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
@@ -73,14 +75,14 @@ const breadcrumbs = [
         <meta property="og:site_name" content="Gestoo" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, site)} />
+        <meta property="og:image" content={new URL('/astro-test/img/hero.jpg', site)} />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={canonicalURL} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, site)} />
+        <meta property="twitter:image" content={new URL('/astro-test/img/hero.jpg', site)} />
 
         <link rel="canonical" href={canonicalURL} />
 
@@ -94,7 +96,7 @@ const breadcrumbs = [
                     "url": site.href,
                     "logo": {
                         "@type": "ImageObject",
-                        "url": new URL(`${import.meta.env.BASE_URL}/img/logo-dark.png`, site).href,
+                        "url": new URL('/astro-test/img/logo-dark.png', site).href,
                         "width": 600,
                         "height": 600
                     },
@@ -107,7 +109,7 @@ const breadcrumbs = [
                         "https://www.facebook.com/AgenciaGestoo",
                         "https://www.youtube.com/@AgenciaGestoo"
                     ],
-                    "description": "Agencia creativa líder en la Patagonia Chilena especializada en MICE, branding y producción técnica para grandes instituciones como el BID, CORFO, Marca Perú y el Gobierno Regional de Magallanes."
+                    "description": currentLang === 'es' ? "Agencia creativa líder en la Patagonia Chilena..." : "Leading creative agency in Chilean Patagonia..."
                 },
                 {
                     "@type": "WebSite",
@@ -117,14 +119,14 @@ const breadcrumbs = [
                     "publisher": {
                         "@id": `${site.href}#organization`
                     },
-                    "inLanguage": "es"
+                    "inLanguage": currentLang
                 },
                 {
                     "@type": "ProfessionalService",
                     "@id": `${canonicalURL}#service`,
                     "name": "Gestoo",
                     "url": canonicalURL,
-                    "image": new URL(`${import.meta.env.BASE_URL}/img/hero.jpg`, site).href,
+                    "image": new URL('/astro-test/img/hero.jpg', site).href,
                     "address": {
                         "@type": "PostalAddress",
                         "streetAddress": "Av. Independencia 313",
@@ -212,7 +214,7 @@ const breadcrumbs = [
         </script>
 	</head>
 	<body>
-        <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+        <a href="#main-content" class="skip-link">{currentLang === 'es' ? 'Saltar al contenido principal' : 'Skip to content'}</a>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3TDG6QC"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -222,9 +224,7 @@ const breadcrumbs = [
 		<slot />
         
         <!-- Scripts -->
-        <script is:inline src={`${import.meta.env.BASE_URL}/js/translations.js`}></script>
-        <script is:inline src={`${import.meta.env.BASE_URL}/js/i18n.js`}></script>
-        <script is:inline src={`${import.meta.env.BASE_URL}/js/main.js`}></script>
+        <script is:inline src="/astro-test/js/main.js"></script>
 	</body>
 </html>
 

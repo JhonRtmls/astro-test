@@ -1,0 +1,140 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import Testimonials from "../../components/Testimonials.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import "../../styles/pages/home.css";
+
+// Assets
+import heroImage from "../../assets/img/hero.jpg";
+import work1 from "../../assets/img/work-1.webp";
+import work2 from "../../assets/img/work-2.jpeg";
+import work3 from "../../assets/img/work-3.webp";
+
+const currentLang = Astro.currentLocale || 'en';
+const allProjects = await getCollection("projects", ({ id }) => id.startsWith(`${currentLang}/`));
+const projects = allProjects
+  .filter((p) => p.data.featured)
+  .slice(0, 4);
+---
+
+<Layout title="Gestoo — Creative Agency" description="Leading creative agency in Chilean Patagonia specializing in MICE, branding and technical production.">
+  <Navbar />
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-video-wrapper">
+        <Image
+          src={heroImage}
+          alt="Gestoo Hero — Creative Agency"
+          class="hero-video"
+          loading="eager"
+          fetchpriority="high"
+          widths={[400, 800, 1200, 1920]}
+          sizes="(max-width: 768px) 100vw, 100vw"
+          format="webp"
+        />
+        <div class="hero-overlay"></div>
+      </div>
+    </section>
+
+    <section class="manifesto-premium" id="about">
+      <div class="manifesto-ghost-illustration" aria-hidden="true">
+        <img src="/astro-test/img/infinito.svg" alt="Infinity symbol" />
+      </div>
+
+      <div class="manifesto-container">
+        <div class="manifesto-images">
+          <Image src={work1} class="floating-img img-1" alt="Event production" width={300} height={400} format="webp" />
+          <Image src={work2} class="floating-img img-2" alt="Brand design" width={240} height={320} format="webp" />
+          <Image src={work3} class="floating-img img-3" alt="MICE tourism" width={260} height={350} format="webp" />
+        </div>
+
+        <div class="manifesto-content">
+          <h1 class="manifesto-title">
+            WE ARE <br />
+            FOR THOSE <br />
+            SEEKING <br />
+            CREATIVE <br />
+            SOLUTIONS TO <br />
+            COMPLEX CHALLENGES.
+          </h1>
+        </div>
+
+        <div class="manifesto-detail-box">
+          <p>
+            Creating unique experiences from the heart of Chilean Patagonia for the entire world.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STRATEGIC MARQUEE 1 ============ -->
+    <div class="marquee-wrap strategic-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          <span>Creativity</span><span class="dot"></span>
+          <span>Events</span><span class="dot"></span>
+          <span>MICE</span><span class="dot"></span>
+          <span>Branding</span><span class="dot"></span>
+          <span>Patagonia</span><span class="dot"></span>
+          <span>Solutions</span><span class="dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ WORKS / PORTFOLIO ============ -->
+    <section class="works-section" id="works">
+      <div class="container">
+        <div class="section-header content-contained">
+          <span class="tag">Selection</span>
+          <h2 class="section-title">Success <em>stories.</em></h2>
+        </div>
+      </div>
+
+      <div class="works-grid">
+        {projects.length > 0 ? projects.map((project) => (
+          <a href={getRelativeLocaleUrl(currentLang, `/projects/${project.id.replace(`${currentLang}/`, '')}`)} class="work-link">
+            <article class="work-card">
+              <div class="work-media">
+                <img src={project.data.heroImage ? (project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage) : `/astro-test/img/work-default.jpg`} alt={project.data.title} />
+              </div>
+              <div class="work-overlay">
+                <span class="work-cat">{project.data.category}</span>
+                <h3>{project.data.title}</h3>
+                <p>{project.data.description}</p>
+              </div>
+            </article>
+          </a>
+        )) : <p style="text-align:center; padding: 50px; color: var(--text-2);">Coming soon. English projects are being uploaded.</p>}
+      </div>
+    </section>
+
+    <Testimonials />
+
+    <section class="solver-section" id="contact">
+      <div class="solver-sticky">
+        <div class="solver-layer layer-problem">
+          <div class="container content-contained">
+            <span class="status-badge">The Problem</span>
+            <h2 class="solver-text">NEED PRODUCTION AND LOGISTICS FOR YOUR NEXT PROJECT?</h2>
+          </div>
+        </div>
+        <div class="solver-layer layer-solution">
+          <div class="container content-contained">
+            <span class="status-badge white">The Solution</span>
+            <h2 class="solver-text">WE HELP YOU MAKE EVERY PROJECT AN INVESTMENT, NOT AN EXPENSE.</h2>
+            <div class="solver-actions">
+              <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-primary">QUOTE YOUR SOLUTION</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <FAQ />
+  <Footer />
+</Layout>

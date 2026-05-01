@@ -1,0 +1,110 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import "../../styles/pages/inner.css";
+import "../../styles/pages/works.css";
+
+const currentLang = Astro.currentLocale || 'es';
+const projects = await getCollection("projects", ({ id }) => id.startsWith(`${currentLang}/`));
+
+// Extraer categorías únicas de los proyectos MDX
+const allCategories = [...new Set(projects.map((p) => p.data.category))];
+const categories = allCategories.slice(0, 6);
+---
+
+<Layout title={currentLang === 'es' ? "Gestoo | Proyectos" : "Gestoo | Works"}>
+  <Navbar />
+  <img src="/astro-test/img/brujula-sur.svg" alt="Ilustración de brújula apuntando al sur" class="bg-illustration" />
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-content">
+        <div class="reveal">
+          <span class="tag">{currentLang === 'es' ? 'Casos de Éxito' : 'Success Stories'}</span>
+          <h1 class="page-title">
+            {currentLang === 'es' ? 'Experiencias que hablan' : 'Experiences that speak'} <span class="gradient-text">{currentLang === 'es' ? 'por nosotros.' : 'for us.'}</span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="tag">Portfolio</span>
+          <h2 class="section-title">
+            {currentLang === 'es' ? 'Nuestra' : 'Our'} <em>{currentLang === 'es' ? 'selección.' : 'selection.'}</em>
+          </h2>
+        </div>
+
+        <div class="filter-bar reveal" id="filterBar">
+          <button class="filter-btn active" data-filter="all">{currentLang === 'es' ? 'Todos' : 'All'}</button>
+          {categories.map((cat) => (
+            <button class="filter-btn" data-filter={cat}>{cat}</button>
+          ))}
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            {projects.map((project) => (
+                <a href={getRelativeLocaleUrl(currentLang, `/projects/${project.id.replace(`${currentLang}/`, '')}`)} class="portfolio-card reveal" data-category={project.data.category}>
+                    <div class="portfolio-thumb">
+                        <img 
+                            src={project.data.heroImage ? (project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage) : `/astro-test/img/work-default.jpg`} 
+                            alt={project.data.title} 
+                            loading="lazy" 
+                        />
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="work-cat">{project.data.category}</span>
+                        <h3>{project.data.title}</h3>
+                        <p>{project.data.description}</p>
+                    </div>
+                </a>
+            ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution-section">
+      <div class="container content-contained">
+        <div class="solution-card reveal">
+          <span class="tag">Problem Solvers</span>
+          <h2 class="cta-title">
+            {currentLang === 'es' ? '¿Tienes un desafío?' : 'Have a challenge?'} <br /> {currentLang === 'es' ? 'Somos la' : 'We are the'} <span class="solution-highlight">{currentLang === 'es' ? 'solución.' : 'solution.'}</span>
+          </h2>
+          <p>
+            {currentLang === 'es' 
+              ? 'Optimizamos procesos, elevamos tu marca y garantizamos que cada evento sea una inversión, no un gasto. Tu éxito es nuestra métrica.' 
+              : 'We optimize processes, elevate your brand and guarantee that every event is an investment, not an expense. Your success is our metric.'}
+          </p>
+          <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-orange-glow">
+            {currentLang === 'es' ? 'Cotiza tu solución ahora →' : 'Quote your solution now →'}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    document.addEventListener("astro:page-load", () => {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".portfolio-card");
+
+        filterBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const filter = btn.dataset.filter;
+                filterBtns.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                cards.forEach((card) => {
+                    card.style.display = (filter === "all" || card.dataset.category === filter) ? "flex" : "none";
+                });
+            });
+        });
+    });
+  </script>
+</Layout>

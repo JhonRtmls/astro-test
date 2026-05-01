@@ -6,9 +6,16 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://jhonrtmls.github.io',
   base: '/astro-test',
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
   security: {
     checkOrigin: true,
+  },
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
   },
   image: {
     // Configuración recomendada para Astro 6.1

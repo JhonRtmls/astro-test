@@ -17,3 +17,7 @@ yarn-error.log*
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# AI Agents & Skills
+.agents/
+skills-lock.json

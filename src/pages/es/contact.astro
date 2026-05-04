@@ -5,13 +5,14 @@ import Footer from "../../components/Footer.astro";
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import "../../styles/pages/inner.css";
 import "../../styles/pages/contact.css";
+import pinguino from "../../assets/img/pinguino.svg";
 
 const currentLang = Astro.currentLocale || 'es';
 ---
 
 <Layout title={currentLang === 'es' ? "Gestoo | Contacto" : "Gestoo | Contact"}>
   <Navbar />
-  <img src="/astro-test/img/pinguino.svg" alt="" class="bg-illustration bg-pinguino" />
+  <img src={pinguino.src} alt="" class="bg-asset asset-pinguino" />
   <main>
     <section class="section contact-section">
       <div class="container content-contained">

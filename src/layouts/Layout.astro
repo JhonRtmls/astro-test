@@ -12,6 +12,8 @@ import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import fontNormal from '../assets/fonts/Montserrat-VariableFont_wght.ttf';
+import fontItalic from '../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf';
 
 const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística." } = Astro.props;
 
@@ -57,7 +59,9 @@ const breadcrumbs = [
 		<!-- End Google Tag Manager -->
         
         <meta name="author" content="Gestoo" />
-        <link rel="preload" href="/fonts/Montserrat-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+        <!-- Critical Font Preloading -->
+        <link rel="preload" href={fontNormal} as="font" type="font/ttf" crossorigin="anonymous" />
+        <link rel="preload" href={fontItalic} as="font" type="font/ttf" crossorigin="anonymous" />
 
         <!-- Language targeting (SEO) -->
         <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />

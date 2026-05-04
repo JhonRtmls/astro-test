@@ -8,6 +8,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import "../../styles/pages/inner.css";
 import "../../styles/pages/works.css";
+import brujula from "../../assets/img/brujula-sur.svg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -23,11 +24,7 @@ const categories = allCategories.slice(0, 6);
 
 <Layout title={lang === "es" ? "Gestoo | Proyectos" : "Gestoo | Works"}>
   <Navbar />
-  <img
-    src="/astro-test/img/brujula-sur.svg"
-    alt="Ilustración de brújula"
-    class="bg-illustration"
-  />
+  <img src={brujula.src} alt="" class="bg-asset asset-brujula" />
   <main id="main-content">
     <section class="page-hero">
       <div class="container page-hero-content">

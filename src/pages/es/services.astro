@@ -7,6 +7,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import '../../styles/pages/inner.css';
 import '../../styles/pages/services.css';
+import arbol from "../../assets/img/arbol.svg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -17,7 +18,7 @@ const t = useTranslations(lang);
     description={lang === 'es' ? "Especialistas en MICE Chile. Producción técnica y logística en Patagonia." : "MICE specialists in Chile. Technical production and logistics in Patagonia."}
 >
     <Navbar />
-    <img src="/astro-test/img/arbol.svg" alt="Ilustración de árbol de la Patagonia" class="bg-illustration">
+    <img src={arbol.src} alt="" class="bg-asset asset-arbol" />
     
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",

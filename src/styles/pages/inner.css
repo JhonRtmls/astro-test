@@ -31,17 +31,25 @@
   line-height: 1.6;
 }
 
-/* ── Background Illustrations ── */
-.bg-illustration {
+/* ── Background Assets (Clean Implementation) ── */
+.bg-asset {
   position: fixed;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;
-  opacity: 0.03;
+  right: 0;
+  transform: translateY(-50%);
+  width: 30vw;
+  max-width: 500px;
+  opacity: 0.07;
   pointer-events: none;
   z-index: -1;
+  user-select: none;
 }
+
+/* Individual adjustments */
+.asset-pinguino { width: 22vw; right: 4vw; }
+.asset-arbol    { width: 32vw; right: -2vw; }
+.asset-antartica { width: 38vw; right: -5vw; opacity: 0.05; }
+.asset-brujula  { width: 28vw; right: 0; top: 60%; }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {

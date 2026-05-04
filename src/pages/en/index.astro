@@ -19,6 +19,7 @@ import imgMarca from "../../assets/img/service-marca.jpg";
 import imgMice from "../../assets/img/service-mice.jpg";
 import imgProduccion from "../../assets/img/service-produccion.jpg";
 import imgRenting from "../../assets/img/service-renting.jpg";
+import infinito from "../../assets/img/infinito.svg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -62,8 +63,8 @@ const featuredProjects = allProjects
 
     <!-- ============ MANIFESTO ============ -->
     <section class="manifesto-premium" id="about">
-      <div class="manifesto-ghost-illustration" aria-hidden="true">
-        <img src="/astro-test/img/infinito.svg" alt="Infinity symbol" />
+      <div class="manifesto-asset" aria-hidden="true">
+        <img src={infinito.src} alt="" />
       </div>
 
       <div class="manifesto-container">

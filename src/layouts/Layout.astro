@@ -60,6 +60,20 @@ const breadcrumbs = [
 		})(window,document,'script','dataLayer','GTM-T3TDG6QC');</script>
 		<!-- End Google Tag Manager -->
         
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL('/astro-test/img/hero.jpg', site)} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={canonicalURL} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL('/astro-test/img/hero.jpg', site)} />
+        
         <meta name="author" content="Gestoo" />
         <!-- Critical Font Preloading -->
         <link rel="preload" href={fontNormal} as="font" type="font/ttf" crossorigin="anonymous" />
@@ -71,6 +85,10 @@ const breadcrumbs = [
         <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
         
         <link rel="canonical" href={canonicalURL} />
+
+        <!-- Security Meta Tags (Foglift Quick Wins) -->
+        <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
         <!-- Schema.org -->
         <script type="application/ld+json" is:inline set:html={JSON.stringify({
@@ -156,7 +174,7 @@ const breadcrumbs = [
         <a href="#main-content" class="skip-link">{t('nav.about') === 'Nosotros' ? 'Saltar al contenido' : 'Skip to content'}</a>
 		<slot />
         <WhatsAppButton phone="+56981887723" />
-        <script is:inline src="/astro-test/js/main.js"></script>
+        <script is:inline defer src="/astro-test/js/main.js"></script>
 	</body>
 </html>
 

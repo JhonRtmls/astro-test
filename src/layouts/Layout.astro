@@ -16,7 +16,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import fontNormal from '../assets/fonts/Montserrat-VariableFont_wght.ttf';
 import fontItalic from '../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf';
 
-const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística." } = Astro.props;
+const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística.", keywords } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

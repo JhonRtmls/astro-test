@@ -1,0 +1,125 @@
+---
+const base = import.meta.env.BASE_URL || '';
+---
+<div class="morphic-bg" aria-hidden="true" data-base={base}>
+  <svg id="morphic-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+    <!-- Los círculos se generarán dinámicamente vía JS -->
+  </svg>
+</div>
+
+<style>
+  .morphic-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Sobre el fondo pero bajo el contenido principal */
+    pointer-events: none;
+    opacity: 0.18;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #morphic-svg {
+    width: 90%;
+    height: 80%;
+    filter: blur(0.6px);
+    overflow: visible;
+  }
+
+  :global(.morphic-dot) {
+    fill: var(--accent-2);
+  }
+</style>
+
+<script is:inline>
+  async function initMorph() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      setTimeout(initMorph, 200);
+      return;
+    }
+
+    const container = document.querySelector('.morphic-bg');
+    const base = container?.getAttribute('data-base') || '';
+
+    gsap.registerPlugin(ScrollTrigger);
+    
+    try {
+      const [resP, resA] = await Promise.all([
+        fetch(`${base}/img/pinguino.svg`),
+        fetch(`${base}/img/arbol.svg`)
+      ]);
+      
+      if (!resP.ok || !resA.ok) return;
+
+      const textP = await resP.text();
+      const textA = await resA.text();
+
+      const parser = new DOMParser();
+      const docP = parser.parseFromString(textP, "image/svg+xml");
+      const docA = parser.parseFromString(textA, "image/svg+xml");
+
+      const getPoints = (doc) => {
+        let circles = Array.from(doc.getElementsByTagName('circle'));
+        if (circles.length === 0) circles = Array.from(doc.querySelectorAll('circle'));
+        return circles.map(c => ({
+          x: parseFloat(c.getAttribute('cx') || '0'),
+          y: parseFloat(c.getAttribute('cy') || '0')
+        })).filter(p => p.x !== 0 || p.y !== 0);
+      };
+
+      const pointsP = getPoints(docP).map(p => ({ x: p.x + 50, y: p.y + 50 }));
+      const pointsA = getPoints(docA).map(p => ({ x: p.x + 500, y: p.y + 130 }));
+
+      if (pointsP.length === 0 || pointsA.length === 0) return;
+
+      const svg = document.getElementById('morphic-svg');
+      if (!svg) return;
+      svg.innerHTML = '';
+
+      const maxPoints = Math.max(pointsP.length, pointsA.length);
+      const dots = [];
+
+      for (let i = 0; i < maxPoints; i++) {
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("r", "2.2");
+        circle.setAttribute("class", "morphic-dot");
+        
+        const p = pointsP[i] || pointsP[Math.floor(Math.random() * pointsP.length)];
+        circle.setAttribute("cx", p.x);
+        circle.setAttribute("cy", p.y);
+        
+        svg.appendChild(circle);
+        dots.push(circle);
+      }
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "body",
+          start: "top top",
+          // Finaliza justo cuando la sección de cierre está en su punto máximo
+          end: () => {
+            const el = document.querySelector('.solution-section');
+            return el ? el.offsetTop - 100 : "bottom center";
+          },
+          scrub: 2.5, // Un poco más de inercia para suavizar el trayecto largo
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        const target = pointsA[i] || pointsA[Math.floor(Math.random() * pointsA.length)];
+        tl.to(dot, {
+          attr: { cx: target.x, cy: target.y },
+          duration: 1,
+          ease: "power2.inOut"
+        }, 0);
+      });
+    } catch (e) {
+      // Error silencioso en producción
+    }
+  }
+
+  document.addEventListener('astro:page-load', initMorph);
+</script>

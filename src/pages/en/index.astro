@@ -15,6 +15,10 @@ import heroImage from "../../assets/img/hero.jpg";
 import work1 from "../../assets/img/work-1.webp";
 import work2 from "../../assets/img/work-2.jpeg";
 import work3 from "../../assets/img/work-3.webp";
+import imgMarca from "../../assets/img/service-marca.jpg";
+import imgMice from "../../assets/img/service-mice.jpg";
+import imgProduccion from "../../assets/img/service-produccion.jpg";
+import imgRenting from "../../assets/img/service-renting.jpg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -108,17 +112,35 @@ const featuredProjects = allProjects
           </div>
         </div>
 
+        <!-- Anillos concéntricos de fondo -->
+        <div class="hub-rings">
+          <div class="hub-ring ring-1"></div>
+          <div class="hub-ring ring-2"></div>
+          <div class="hub-ring ring-3"></div>
+        </div>
+
         <div class="hub-cards">
-          {[1, 2, 3, 4].map((num) => (
-            <a href={getRelativeLocaleUrl(lang, '/services')} class={`hub-card card-${num}`}>
-              <div class="hub-card-image" style={`background-image: url('/astro-test/img/service-${num === 1 ? 'marca' : num === 2 ? 'mice' : num === 3 ? 'produccion' : 'renting'}.jpg')`}></div>
-              <div class="hub-card-content">
-                <span class="hub-card-num">0{num}</span>
-                <h4>{t(`services.0${num}.title` as any)}</h4>
-                <p class="short-desc">{t(`services.0${num}.desc` as any)}</p>
-              </div>
-            </a>
-          ))}
+          {
+            [1, 2, 3, 4].map((num) => {
+              const imgMap = {
+                1: imgMarca,
+                2: imgMice,
+                3: imgProduccion,
+                4: imgRenting
+              };
+              const imgAsset = imgMap[num as keyof typeof imgMap];
+              return (
+                <a href={getRelativeLocaleUrl(lang, '/services')} class={`hub-card card-${num}`}>
+                  <div class="hub-card-image" style={`background-image: url('${imgAsset.src}')`}></div>
+                  <div class="hub-card-content">
+                    <span class="hub-card-num">0{num}</span>
+                    <h4>{t(`services.0${num}.title` as any)}</h4>
+                    <p class="short-desc">{t(`services.0${num}.desc` as any)}</p>
+                  </div>
+                </a>
+              )
+            })
+          }
         </div>
       </div>
     </section>

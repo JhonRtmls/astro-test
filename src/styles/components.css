@@ -143,7 +143,7 @@
 /* Central Circle */
 .hub-center {
   position: relative;
-  z-index: 10;
+  z-index: 10; /* Siempre arriba de todo */
 }
 
 .hub-center-circle {
@@ -179,7 +179,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 1; /* Al fondo */
 }
 
 .hub-ring {
@@ -187,28 +187,45 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 50%;
 }
 
 .ring-1 {
   width: 550px;
   height: 550px;
+  animation: ring-expand 4s infinite var(--ease);
 }
 .ring-2 {
   width: 850px;
   height: 850px;
+  animation: ring-expand 4s infinite var(--ease) 0.5s;
 }
 .ring-3 {
   width: 1200px;
   height: 1200px;
+  animation: ring-expand 4s infinite var(--ease) 1s;
+}
+
+@keyframes ring-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
 }
 
 /* Service Cards */
 .hub-cards {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 5; /* Por encima de los anillos, debajo del centro */
 }
 
 .hub-card {
@@ -292,8 +309,9 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 0.6s var(--ease);
   z-index: 1;
@@ -301,7 +319,7 @@
 }
 
 .hub-card:hover .hub-card-image {
-  opacity: 0.35;
+  opacity: 0.6; /* Subida de 0.35 a 0.6 para mayor visibilidad */
 }
 
 .hub-card:hover .hub-card-image::after {
@@ -310,8 +328,8 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(21, 42, 60, 0.2),
-    rgba(21, 42, 60, 0.9)
+    rgba(21, 42, 60, 0.1),
+    rgba(21, 42, 60, 0.6)
   );
 }
 

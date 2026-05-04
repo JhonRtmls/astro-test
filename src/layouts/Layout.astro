@@ -10,7 +10,7 @@ import '../styles/global.css';
 import '../styles/components.css';
 import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
-import MorphicBackground from '../components/MorphicBackground.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística." } = Astro.props;
@@ -115,9 +115,9 @@ const breadcrumbs = [
         </script>
 	</head>
 	<body>
-        <MorphicBackground />
         <a href="#main-content" class="skip-link">{t('nav.about') === 'Nosotros' ? 'Saltar al contenido' : 'Skip to content'}</a>
 		<slot />
+        <WhatsAppButton phone="+56981887723" />
         <script is:inline src="/astro-test/js/main.js"></script>
 	</body>
 </html>

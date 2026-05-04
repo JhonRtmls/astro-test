@@ -10,7 +10,10 @@ import pinguino from "../../assets/img/pinguino.svg";
 const currentLang = Astro.currentLocale || 'es';
 ---
 
-<Layout title={currentLang === 'es' ? "Gestoo | Contacto" : "Gestoo | Contact"}>
+<Layout 
+  title={currentLang === 'es' ? "Gestoo | Contacto" : "Gestoo | Contact"}
+  keywords="contacto gestoo, cotizar eventos patagonia, servicios branding chile, oficina punta arenas, presupuesto producción técnica"
+>
   <Navbar />
   <img src={pinguino.src} alt="" class="bg-asset asset-pinguino" />
   <main>

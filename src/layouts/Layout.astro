@@ -2,6 +2,7 @@
 interface Props {
 	title: string;
     description?: string;
+    keywords?: string;
 }
 
 import '../styles/reset.css';
@@ -45,6 +46,7 @@ const breadcrumbs = [
 		<meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <meta name="description" content={description} />
+        {keywords && <meta name="keywords" content={keywords} />}
 
         <!-- Performance: Preconnect to Analytics/GTM -->
         <link rel="preconnect" href="https://www.googletagmanager.com">
@@ -90,6 +92,18 @@ const breadcrumbs = [
                     "url": canonicalURL,
                     "telephone": "+56981887723",
                     "email": "contacto@gestoo.cl",
+                    "priceRange": "$$$",
+                    "areaServed": ["Punta Arenas", "Magallanes", "Chile", "Antarctica", "Patagonia"],
+                    "hasOfferCatalog": {
+                        "@type": "OfferCatalog",
+                        "name": "Servicios de Producción",
+                        "itemListElement": [
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding & Identidad" } },
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Turismo MICE" } },
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Producción Técnica de Eventos" } },
+                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Logística en Patagonia" } }
+                        ]
+                    },
                     "address": {
                         "@type": "PostalAddress",
                         "streetAddress": "Av. Independencia 313",

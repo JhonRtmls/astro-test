@@ -22,7 +22,10 @@ const allCategories = [...new Set(projects.map((p) => p.data.category))];
 const categories = allCategories.slice(0, 6);
 ---
 
-<Layout title={lang === "es" ? "Gestoo | Proyectos" : "Gestoo | Works"}>
+<Layout 
+  title={lang === "es" ? "Gestoo | Proyectos" : "Gestoo | Works"}
+  keywords="portafolio creativo, casos de éxito patagonia, eventos corporativos chile, diseño b2b, producción audiovisual patagonia"
+>
   <Navbar />
   <img src={brujula.src} alt="" class="bg-asset asset-brujula" />
   <main id="main-content">

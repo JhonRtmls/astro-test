@@ -32,7 +32,10 @@ const featuredProjects = allProjects
   .slice(0, 4);
 ---
 
-<Layout title={lang === 'es' ? "Gestoo | Producción Técnica y Creativa en Patagonia" : "Gestoo | Technical and Creative Production in Patagonia"}>
+<Layout 
+  title={lang === 'es' ? "Gestoo | Producción Técnica y Creativa en Patagonia" : "Gestoo | Technical and Creative Production in Patagonia"}
+  keywords="branding, turismo mice, producción de eventos, punta arenas, patagonia, chile, logística, eventos corporativos, agencia creativa patagonia"
+>
   <Navbar />
   <main id="main-content">
     <!-- ============ HERO ============ -->
@@ -69,9 +72,9 @@ const featuredProjects = allProjects
 
       <div class="manifesto-container">
         <div class="manifesto-images">
-          <Image src={work1} class="floating-img img-1" alt="Producción técnica" width={300} height={400} format="webp" />
-          <Image src={work2} class="floating-img img-2" alt="Diseño B2B" width={240} height={320} format="webp" />
-          <Image src={work3} class="floating-img img-3" alt="MICE Patagonia" width={260} height={350} format="webp" />
+          <Image src={work1} class="floating-img img-1" alt="Producción técnica de eventos corporativos en Punta Arenas" width={300} height={400} format="webp" />
+          <Image src={work2} class="floating-img img-2" alt="Diseño de identidad visual B2B en Patagonia" width={240} height={320} format="webp" />
+          <Image src={work3} class="floating-img img-3" alt="Turismo MICE y logística en la Patagonia Chilena" width={260} height={350} format="webp" />
         </div>
 
         <div class="manifesto-content">
@@ -165,7 +168,7 @@ const featuredProjects = allProjects
                 {project.data.heroImage && (
                   <Image 
                     src={project.data.heroImage} 
-                    alt={project.data.title}
+                    alt={`${project.data.title} - Proyecto realizado por Gestoo en Patagonia`}
                     width={800}
                     height={600}
                     format="webp"

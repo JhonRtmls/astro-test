@@ -10,7 +10,10 @@ import antartica from "../../assets/img/antartica.svg";
 const currentLang = Astro.currentLocale || 'es';
 ---
 
-<Layout title={currentLang === 'es' ? "Gestoo | Nosotros" : "Gestoo | About"}>
+<Layout 
+  title={currentLang === 'es' ? "Gestoo | Nosotros" : "Gestoo | About"}
+  keywords="agencia creativa patagonia, historia gestoo, equipo creativo punta arenas, visión empresarial, identidad regional, trayectoria logística"
+>
   <Navbar />
   <img src={antartica.src} alt="" class="bg-asset asset-antartica" />
   <main>

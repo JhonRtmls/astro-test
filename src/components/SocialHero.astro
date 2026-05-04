@@ -1,0 +1,61 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="hero-socials">
+  <div class="hero-socials-line"></div>
+  <a href="https://www.youtube.com/@AgenciaGestoo" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+    <img src={`${base}/img/redes_sociales_icons/youtube.svg`} alt="YouTube" width="20" height="20" />
+  </a>
+  <a href="https://www.instagram.com/agenciagestoo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <img src={`${base}/img/redes_sociales_icons/instagram.svg`} alt="Instagram" width="20" height="20" />
+  </a>
+  <a href="https://www.facebook.com/AgenciaGestoo" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+    <img src={`${base}/img/redes_sociales_icons/facebook.svg`} alt="Facebook" width="20" height="20" />
+  </a>
+  <a href="https://www.linkedin.com/in/agenciagestoo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+    <img src={`${base}/img/redes_sociales_icons/linkedin.svg`} alt="LinkedIn" width="20" height="20" />
+  </a>
+</div>
+
+<style>
+  .hero-socials {
+    position: absolute;
+    left: 4rem;
+    bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 20;
+    align-items: center;
+  }
+
+  .hero-socials-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to top, var(--accent-2), transparent);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-socials a {
+    transition: transform var(--t-base) var(--ease), opacity var(--t-base) var(--ease);
+    opacity: 0.7;
+  }
+
+  .hero-socials a:hover {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  .hero-socials img {
+    filter: brightness(0) invert(1);
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-socials {
+      display: none; /* Hide on mobile to avoid clutter */
+    }
+  }
+</style>

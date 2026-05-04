@@ -54,13 +54,42 @@ const currentLang = Astro.currentLocale || 'es';
               <div class="form-row">
                 <div class="form-group">
                   <label>{currentLang === 'es' ? 'Nombre Completo *' : 'Full Name *'}</label>
-                  <input type="text" placeholder={currentLang === 'es' ? "Ej: Juan Pérez" : "e.g. John Doe"} required />
+                  <input type="text" name="name" placeholder={currentLang === 'es' ? "Ej: Juan Pérez" : "e.g. John Doe"} required />
                 </div>
                 <div class="form-group">
                   <label>{currentLang === 'es' ? 'Empresa / Institución' : 'Company / Institution'}</label>
-                  <input type="text" placeholder={currentLang === 'es' ? "Nombre de tu organización" : "Your organization"} />
+                  <input type="text" name="company" placeholder={currentLang === 'es' ? "Nombre de tu organización" : "Your organization"} />
                 </div>
               </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>{currentLang === 'es' ? 'Email Corporativo *' : 'Corporate Email *'}</label>
+                  <input type="email" name="email" placeholder="email@ejemplo.com" required />
+                </div>
+                <div class="form-group">
+                  <label>{currentLang === 'es' ? 'Teléfono de Contacto' : 'Phone Number'}</label>
+                  <input type="tel" name="phone" placeholder="+56 9 ..." />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>{currentLang === 'es' ? 'Servicio de Interés' : 'Service of Interest'}</label>
+                <select name="service">
+                  <option value="">{currentLang === 'es' ? 'Selecciona una opción' : 'Select an option'}</option>
+                  <option value="branding">{currentLang === 'es' ? 'Branding & Identidad' : 'Branding & Identity'}</option>
+                  <option value="mice">{currentLang === 'es' ? 'Turismo MICE' : 'MICE Tourism'}</option>
+                  <option value="produccion">{currentLang === 'es' ? 'Producción Técnica' : 'Technical Production'}</option>
+                  <option value="logistica">{currentLang === 'es' ? 'Logística Patagonia' : 'Patagonia Logistics'}</option>
+                  <option value="otros">{currentLang === 'es' ? 'Otros / No estoy seguro' : 'Others / Not sure'}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>{currentLang === 'es' ? 'Mensaje o Requerimiento *' : 'Message or Request *'}</label>
+                <textarea name="message" rows="4" placeholder={currentLang === 'es' ? "¿En qué podemos ayudarte?" : "How can we help you?"} required></textarea>
+              </div>
+
               <div class="form-submit">
                 <button type="submit" class="btn-orange-glow" id="submitBtn">
                   {currentLang === 'es' ? 'Enviar Requerimiento →' : 'Send Request →'}
@@ -75,18 +104,35 @@ const currentLang = Astro.currentLocale || 'es';
   <Footer />
 
   <script is:inline>
-    const contactForm = document.getElementById("contactForm");
-    if (contactForm) {
-      contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const btn = document.getElementById("submitBtn");
-        btn.textContent = "Enviando...";
-        btn.disabled = true;
-        setTimeout(() => {
-          alert("Solicitud recibida.");
-          this.reset();
-        }, 1200);
-      });
-    }
+    // Email Obfuscation
+    document.addEventListener('astro:page-load', () => {
+        const emailLink = document.querySelector('.email-link');
+        if (emailLink) {
+            const user = emailLink.getAttribute('data-name');
+            const domain = emailLink.getAttribute('data-domain');
+            const fullEmail = `${user}@${domain}`;
+            emailLink.href = `mailto:${fullEmail}`;
+            emailLink.textContent = fullEmail;
+        }
+
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const btn = document.getElementById("submitBtn");
+            const originalText = btn.textContent;
+            btn.textContent = "Enviando...";
+            btn.disabled = true;
+            
+            // Simulación de envío
+            setTimeout(() => {
+              alert("Gracias. Hemos recibido tu requerimiento y te contactaremos a la brevedad.");
+              btn.textContent = originalText;
+              btn.disabled = false;
+              contactForm.reset();
+            }, 1500);
+          });
+        }
+    });
   </script>
 </Layout>

@@ -4,12 +4,12 @@ import { glob } from 'astro/loaders';
 const projects = defineCollection({
 	// Loader para Astro 5/6
 	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
+		heroImage: image().optional(),
 		category: z.string(),
 		tag: z.string().optional(),
 		featured: z.boolean().optional(),

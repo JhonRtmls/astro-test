@@ -175,10 +175,16 @@ const featuredProjects = allProjects
         </div>
         <div class="solver-layer layer-solution">
           <div class="container content-contained">
-            <span class="status-badge white">{t('cta.solution')} {t('cta.solution_accent')}</span>
-            <h2 class="solver-text">{t('home.manifesto.desc')}</h2>
+            <span class="status-badge white">{lang === 'es' ? 'La Solución' : 'The Solution'}</span>
+            <h2 class="solver-text">
+              {lang === 'es' 
+                ? 'TE AYUDAMOS A QUE CADA PROYECTO SEA UNA INVERSIÓN, NO UN GASTO.' 
+                : 'WE HELP YOU MAKE EVERY PROJECT AN INVESTMENT, NOT AN EXPENSE.'}
+            </h2>
             <div class="solver-actions">
-              <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-primary">{t('cta.button')}</a>
+              <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-primary">
+                {lang === 'es' ? 'COTIZA TU SOLUCIÓN' : 'QUOTE YOUR SOLUTION'}
+              </a>
             </div>
           </div>
         </div>

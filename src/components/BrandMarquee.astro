@@ -1,0 +1,114 @@
+---
+const brands = [
+  { name: "BID - Banco Interamericano de Desarrollo", img: "bancointeramericanodedesarrollo.svg" },
+  { name: "Gobierno Regional de Magallanes", img: "gobiernoregionaldemagallanesyantarticachilena.svg" },
+  { name: "CORFO", img: "corfo.svg" },
+  { name: "UMAG - Universidad de Magallanes", img: "UMAG.svg" },
+  { name: "Cámara Chilena de la Construcción", img: "camarachilenadelaconstruccion.svg" },
+  { name: "Municipalidad de Punta Arenas", img: "municipalidaddepuntaarenas.svg" },
+  { name: "Instituto Nacional de Deportes", img: "institutonacionaldedeportes.svg" },
+  { name: "EDELMAG", img: "edelmag.svg" },
+  { name: "La Araucana", img: "laaraucana.svg" },
+  { name: "Marca Perú", img: "marcaperú.svg" },
+  { name: "Visit Saudi", img: "visitsaudi.svg" },
+  { name: "Tourism Fiji", img: "tourismfiji.svg" },
+  { name: "Colegio Dentistas Chile", img: "colegiodentistaschile.svg" },
+  { name: "AOBAC", img: "AOBAC.svg" },
+  { name: "NEMa", img: "NEMa.svg" },
+  { name: "CORMAG", img: "cormag.svg" },
+  { name: "Adventure Travel", img: "adventuretravel.svg" },
+  { name: "El Águila MTS", img: "elaguilamts.svg" }
+];
+
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="brand-marquee-container reveal">
+  <div class="brand-marquee">
+    <div class="brand-track">
+      {/* Duplicamos la lista para un scroll infinito suave */}
+      {[...brands, ...brands].map((brand) => (
+        <div class="brand-item">
+          <img 
+            src={`${base}/img/marcas/${brand.img}`} 
+            alt={`Partner estratégico: ${brand.name}`} 
+            title={brand.name}
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .brand-marquee-container {
+    padding: 4rem 0;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .brand-marquee {
+    width: 100%;
+    overflow: hidden;
+    /* Máscara para bordes difuminados */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+
+  .brand-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 60s linear infinite;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .brand-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 80px;
+  }
+
+  .brand-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Filtro para el azul claro (#5fa3c3) */
+    filter: brightness(0) saturate(100%) invert(67%) sepia(35%) saturate(543%) hue-rotate(161deg) brightness(88%) contrast(93%);
+    opacity: 0.8;
+    transition: all 0.4s ease;
+  }
+
+  .brand-item:hover img {
+    /* Filtro para el blanco puro */
+    filter: brightness(0) invert(1);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Pausa al pasar el ratón */
+  .brand-marquee:hover .brand-track {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 768px) {
+    .brand-track {
+      gap: 3rem;
+      animation-duration: 40s;
+    }
+    .brand-item {
+      width: 120px;
+    }
+  }
+</style>

@@ -25,7 +25,7 @@ export const ui = {
     'home.manifesto.title_04': 'CREATIVAS',
     'home.manifesto.title_05': 'A DESAFÍOS',
     'home.manifesto.title_06': 'COMPLEJOS.',
-    'home.manifesto.desc': 'Con más de 500 eventos producidos con éxito, transformamos visiones en impacto real desde el corazón de Magallanes para el mundo.',
+    'home.manifesto.desc': 'Gestoo es la agencia líder en la Patagonia Chilena especializada en la producción técnica y logística integral para eventos corporativos, congresos MICE y consultoría de marca de alto impacto.',
     
     // Services
     'services.tag': 'Ecosistema Gestoo',
@@ -100,7 +100,7 @@ export const ui = {
     'home.manifesto.title_04': 'CREATIVE',
     'home.manifesto.title_05': 'SOLUTIONS TO',
     'home.manifesto.title_06': 'COMPLEX CHALLENGES.',
-    'home.manifesto.desc': 'With over 500 successfully produced events, we transform visions into real impact from the heart of Magallanes to the world.',
+    'home.manifesto.desc': 'Gestoo is the leading agency in Chilean Patagonia specialized in technical production and comprehensive logistics for corporate events, MICE congresses, and high-impact brand consulting.',
     
     // Services
     'services.tag': 'Gestoo Ecosystem',

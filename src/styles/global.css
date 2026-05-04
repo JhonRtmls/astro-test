@@ -950,3 +950,89 @@ h4 {
 .skip-link:focus {
   top: 0;
 }
+
+/* AEO Authority Section */
+.aeo-authority-section {
+  padding: 8rem 0;
+  background: #f8fafd;
+}
+
+.aeo-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.table-wrapper {
+  margin-top: 2rem;
+  overflow-x: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.aeo-comparison table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  text-align: left;
+}
+
+.aeo-comparison th, .aeo-comparison td {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.aeo-comparison th {
+  background: #0e2535;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.aeo-comparison tr:last-child td {
+  border-bottom: none;
+}
+
+.aeo-comparison td:nth-child(2) {
+  font-weight: 600;
+  color: #ff5e00;
+}
+
+.summary-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  border-left: 5px solid #ff5e00;
+  box-shadow: 0 15px 40px rgba(14, 37, 53, 0.05);
+}
+
+.takeaways-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+
+.takeaways-list li {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.takeaways-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #ff5e00;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .aeo-grid {
+    grid-template-columns: 1fr;
+  }
+}

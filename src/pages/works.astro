@@ -1,0 +1,114 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import "../styles/pages/inner.css";
+import "../styles/pages/works.css";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const projects = await getCollection("projects", ({ id }) => id.startsWith(`${lang}/`));
+
+// Extraer categorías únicas
+const allCategories = [...new Set(projects.map((p) => p.data.category))];
+const categories = allCategories.slice(0, 6);
+---
+
+<Layout title={lang === 'es' ? "Gestoo | Proyectos" : "Gestoo | Works"}>
+  <Navbar />
+  <img src="/astro-test/img/brujula-sur.svg" alt="Ilustración de brújula" class="bg-illustration" />
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-content">
+        <div class="reveal">
+          <span class="tag">{lang === 'es' ? 'Casos de Éxito' : 'Success Stories'}</span>
+          <h1 class="page-title">
+            {lang === 'es' ? 'Experiencias que hablan' : 'Experiences that speak'} <span class="gradient-text">{lang === 'es' ? 'por nosotros.' : 'for us.'}</span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="tag">Portfolio</span>
+          <h2 class="section-title">
+            {lang === 'es' ? 'Nuestra' : 'Our'} <em>{lang === 'es' ? 'selección.' : 'selection.'}</em>
+          </h2>
+        </div>
+
+        <div class="filter-bar reveal" id="filterBar">
+          <button class="filter-btn active" data-filter="all">{lang === 'es' ? 'Todos' : 'All'}</button>
+          {categories.map((cat) => (
+            <button class="filter-btn" data-filter={cat}>{cat}</button>
+          ))}
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            {projects.map((project) => (
+                <a href={getRelativeLocaleUrl(lang, `/projects/${project.id.split('/').pop()}`)} class="portfolio-card reveal" data-category={project.data.category}>
+                    <div class="portfolio-thumb">
+                        {project.data.heroImage && (
+                          <Image 
+                            src={project.data.heroImage} 
+                            alt={project.data.title}
+                            width={600}
+                            height={400}
+                            format="webp"
+                          />
+                        )}
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="work-cat">{project.data.category}</span>
+                        <h3>{project.data.title}</h3>
+                        <p>{project.data.description}</p>
+                    </div>
+                </a>
+            ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution-section">
+      <div class="container content-contained">
+        <div class="solution-card reveal">
+          <span class="tag">Problem Solvers</span>
+          <h2 class="cta-title">
+            {t('cta.challenge')} <br /> {t('cta.solution')} <span class="solution-highlight">{t('cta.solution_accent')}</span>
+          </h2>
+          <p>{t('home.manifesto.desc')}</p>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-orange-glow">
+            {t('cta.button')}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    document.addEventListener("astro:page-load", () => {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".portfolio-card");
+
+        filterBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const filter = btn.dataset.filter;
+                filterBtns.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                cards.forEach((card) => {
+                    card.style.display = (filter === "all" || card.dataset.category === filter) ? "flex" : "none";
+                });
+            });
+        });
+    });
+  </script>
+</Layout>

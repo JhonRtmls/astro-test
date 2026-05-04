@@ -9,6 +9,9 @@
     "preview": "npx astro preview",
     "astro": "npx astro"
   },
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
     "@astrojs/sitemap": "^3.7.2",

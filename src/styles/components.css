@@ -127,6 +127,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 .hub-container {
@@ -483,6 +484,8 @@
 /* -- Problem Solver Card (Internal Pages CTA) -- */
 .solution-section {
   padding: 120px 0;
+  position: relative;
+  z-index: 10;
 }
 
 .solution-card {

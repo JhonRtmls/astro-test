@@ -17,6 +17,11 @@ body {
   overflow-x: hidden;
 }
 
+main {
+  position: relative;
+  z-index: 5; /* Elevar todo el contenido sobre el fondo morphic */
+}
+
 .container {
   width: 100%;
   max-width: var(--container-width);
@@ -26,6 +31,8 @@ body {
 
 .section {
   padding: var(--section-py) 0;
+  position: relative;
+  z-index: 10;
 }
 
 /* ── Typography ── */
@@ -395,6 +402,7 @@ h4 {
   position: relative;
   height: 100vh;
   width: 100%;
+  z-index: 10;
 }
 
 .hero-video-wrapper {
@@ -428,6 +436,7 @@ h4 {
   color: var(--text-dark);
   overflow: hidden;
   transition: color var(--t-base) var(--ease);
+  z-index: 10;
 }
 
 .manifesto-container {
@@ -537,6 +546,8 @@ h4 {
   overflow: hidden;
   padding: 2rem 0;
   /* background-color: var(--bg); REMOVED */
+  position: relative;
+  z-index: 10;
 }
 
 .marquee-track {

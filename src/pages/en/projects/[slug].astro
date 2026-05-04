@@ -8,7 +8,7 @@ import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 
 export async function getStaticPaths() {
-	const projects = await getCollection('projects', ({ id }) => id.startsWith('es/'));
+	const projects = await getCollection('projects', ({ id }) => id.startsWith('en/'));
 	return projects.map((project) => ({
 		params: { slug: project.id.split('/').pop() },
 		props: { project },
@@ -28,7 +28,7 @@ const t = useTranslations(lang);
             <div class="container content-contained">
                 <span class="tag">{project.data.category}</span>
                 <h1 class="page-title">{project.data.title}</h1>
-                <p class="project-meta">{lang === 'es' ? 'Publicado el' : 'Published on'} {project.data.pubDate.toLocaleDateString(lang)}</p>
+                <p class="project-meta">Published on {project.data.pubDate.toLocaleDateString(lang)}</p>
             </div>
             {project.data.heroImage && (
                 <div class="hero-image-wrapper container">
@@ -54,8 +54,8 @@ const t = useTranslations(lang);
         <section class="cta-section">
             <div class="container content-contained">
                 <div class="solution-card reveal">
-                    <span class="tag">{lang === 'es' ? '¿Tienes un desafío similar?' : 'Have a similar challenge?'}</span>
-                    <h2>{lang === 'es' ? 'HAGAMOS QUE TU PRÓXIMO PROYECTO SEA' : 'LET\'S MAKE YOUR NEXT PROJECT'} <span class="solution-highlight">{lang === 'es' ? 'MEMORABLE.' : 'MEMORABLE.'}</span></h2>
+                    <span class="tag">Have a similar challenge?</span>
+                    <h2>LET'S MAKE YOUR NEXT PROJECT <span class="solution-highlight">MEMORABLE.</span></h2>
                     <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-primary">{t('nav.contact')}</a>
                 </div>
             </div>
@@ -65,6 +65,7 @@ const t = useTranslations(lang);
 </Layout>
 
 <style>
+    /* Usando el mismo estilo que la versión en español para consistencia */
     .project-detail-page {
         padding-top: var(--header-height);
     }

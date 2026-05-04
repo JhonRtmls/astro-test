@@ -1,21 +1,25 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 import '../../../styles/pages/inner.css';
 
 export async function getStaticPaths() {
     const posts = await getCollection('posts');
     return posts.map((post) => ({
-        params: { slug: post.id },
+        params: { slug: post.id.split('/').pop() },
         props: { post },
     }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const base = import.meta.env.BASE_URL;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Metadata dinámica
 const title = `${post.data.title} | Insights | Gestoo`;
@@ -25,23 +29,34 @@ const description = post.data.description;
 <Layout title={title} description={description}>
     <Navbar />
 
-    <main>
+    <main id="main-content">
         <article class="post-full">
             <header class="post-header">
                 <div class="container content-contained">
                     <div class="reveal">
-                        <span class="post-meta">{post.data.category} • {post.data.pubDate.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span class="post-meta">{post.data.category} • {post.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                         <h1 class="post-title">{post.data.title}</h1>
                         <p class="post-excerpt">{post.data.description}</p>
                         <div class="post-author">
-                            <span>Por <strong>{post.data.author}</strong></span>
+                            <span>{lang === 'es' ? 'Por' : 'By'} <strong>{post.data.author}</strong></span>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <div class="post-hero-image reveal">
-                <img src={post.data.heroImage ? (post.data.heroImage.startsWith('/') ? `${base}${post.data.heroImage}` : post.data.heroImage) : `${base}/img/news-default.jpg`} alt={post.data.title} />
+            <div class="post-hero-image container reveal">
+                {post.data.heroImage ? (
+                  <Image 
+                    src={post.data.heroImage} 
+                    alt={post.data.title}
+                    width={1400}
+                    height={800}
+                    format="webp"
+                    loading="eager"
+                  />
+                ) : (
+                  <div class="placeholder-img"></div>
+                )}
             </div>
 
             <section class="post-content-wrap">
@@ -57,7 +72,7 @@ const description = post.data.description;
                             ))}
                         </div>
                         <div class="post-share">
-                            <a href={`${base}/insights`} class="back-link">← Volver a Insights</a>
+                            <a href={getRelativeLocaleUrl(lang, '/insights')} class="back-link">← {lang === 'es' ? 'Volver a Insights' : 'Back to Insights'}</a>
                         </div>
                     </div>
                 </div>
@@ -108,8 +123,9 @@ const description = post.data.description;
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
-        height: 60vh;
-        border-radius: 4px;
+        height: auto;
+        aspect-ratio: 16/9;
+        border-radius: 24px;
         overflow: hidden;
     }
 
@@ -149,7 +165,7 @@ const description = post.data.description;
     }
 
     .post-body :global(li) {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
     }
 
     .post-footer {
@@ -183,7 +199,6 @@ const description = post.data.description;
 
     @media (max-width: 768px) {
         .post-hero-image {
-            height: 40vh;
             border-radius: 0;
         }
     }

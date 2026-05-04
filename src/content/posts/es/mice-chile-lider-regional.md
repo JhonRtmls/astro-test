@@ -2,7 +2,7 @@
 title: "MICE Chile 2026: ¿Por qué nuestro país es el líder regional en eventos?"
 description: "Analizamos el crecimiento del turismo de reuniones en Chile y por qué la infraestructura nacional nos posiciona como el mejor destino MICE de Sudamérica."
 pubDate: 2026-04-30
-heroImage: "/img/news-mice-chile.jpg"
+heroImage: "../../../assets/img/work-6.jpeg"
 category: "Industria"
 author: "Equipo Gestoo"
 tags: ["MICE Chile", "Eventos Corporativos", "Turismo de Reuniones"]

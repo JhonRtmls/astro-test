@@ -7,6 +7,7 @@ import Testimonials from "../../components/Testimonials.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import "../../styles/pages/home.css";
 
 // Assets
@@ -15,21 +16,26 @@ import work1 from "../../assets/img/work-1.webp";
 import work2 from "../../assets/img/work-2.jpeg";
 import work3 from "../../assets/img/work-3.webp";
 
-const currentLang = Astro.currentLocale || 'en';
-const allProjects = await getCollection("projects", ({ id }) => id.startsWith(`${currentLang}/`));
-const projects = allProjects
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Fetch projects from Content Collections
+const allProjects = await getCollection("projects", ({ id }) => id.startsWith(`${lang}/`));
+const featuredProjects = allProjects
   .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 4);
 ---
 
-<Layout title="Gestoo — Creative Agency" description="Leading creative agency in Chilean Patagonia specializing in MICE, branding and technical production.">
+<Layout title={lang === 'es' ? "Gestoo | Producción Técnica y Creativa en Patagonia" : "Gestoo | Technical and Creative Production in Patagonia"}>
   <Navbar />
-  <main>
+  <main id="main-content">
+    <!-- ============ HERO ============ -->
     <section class="hero" id="home">
       <div class="hero-video-wrapper">
         <Image
           src={heroImage}
-          alt="Gestoo Hero — Creative Agency"
+          alt="Gestoo Hero — Leading Creative Agency in Patagonia"
           class="hero-video"
           loading="eager"
           fetchpriority="high"
@@ -38,9 +44,19 @@ const projects = allProjects
           format="webp"
         />
         <div class="hero-overlay"></div>
+        <div class="hero-content container">
+          <div class="reveal">
+            <span class="tag">{t('home.hero.tag')}</span>
+            <h1 class="hero-title">
+               {t('home.hero.title')} <br />
+               <span class="gradient-text">{t('home.hero.highlight')}</span>
+            </h1>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- ============ MANIFESTO ============ -->
     <section class="manifesto-premium" id="about">
       <div class="manifesto-ghost-illustration" aria-hidden="true">
         <img src="/astro-test/img/infinito.svg" alt="Infinity symbol" />
@@ -48,59 +64,90 @@ const projects = allProjects
 
       <div class="manifesto-container">
         <div class="manifesto-images">
-          <Image src={work1} class="floating-img img-1" alt="Event production" width={300} height={400} format="webp" />
-          <Image src={work2} class="floating-img img-2" alt="Brand design" width={240} height={320} format="webp" />
-          <Image src={work3} class="floating-img img-3" alt="MICE tourism" width={260} height={350} format="webp" />
+          <Image src={work1} class="floating-img img-1" alt="Technical production" width={300} height={400} format="webp" />
+          <Image src={work2} class="floating-img img-2" alt="B2B Design" width={240} height={320} format="webp" />
+          <Image src={work3} class="floating-img img-3" alt="MICE Patagonia" width={260} height={350} format="webp" />
         </div>
 
         <div class="manifesto-content">
-          <h1 class="manifesto-title">
-            WE ARE <br />
-            FOR THOSE <br />
-            SEEKING <br />
-            CREATIVE <br />
-            SOLUTIONS TO <br />
-            COMPLEX CHALLENGES.
-          </h1>
-        </div>
-
-        <div class="manifesto-detail-box">
-          <p>
-            Creating unique experiences from the heart of Chilean Patagonia for the entire world.
-          </p>
+          <h2 class="manifesto-title">
+            {t('home.manifesto.title_01')} <br />
+            {t('home.manifesto.title_02')} <br />
+            {t('home.manifesto.title_03')} <br />
+            {t('home.manifesto.title_04')} <br />
+            {t('home.manifesto.title_05')} <br />
+            {t('home.manifesto.title_06')}
+          </h2>
+          <div class="manifesto-detail-box reveal">
+            <p>{t('home.manifesto.desc')}</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ STRATEGIC MARQUEE 1 ============ -->
+    <!-- ============ STRATEGIC MARQUEE ============ -->
     <div class="marquee-wrap strategic-marquee" aria-hidden="true">
       <div class="marquee-track">
         <div class="marquee-block">
-          <span>Creativity</span><span class="dot"></span>
-          <span>Events</span><span class="dot"></span>
+          <span>{lang === 'es' ? 'Creatividad' : 'Creativity'}</span><span class="dot"></span>
+          <span>{lang === 'es' ? 'Eventos' : 'Events'}</span><span class="dot"></span>
           <span>MICE</span><span class="dot"></span>
           <span>Branding</span><span class="dot"></span>
           <span>Patagonia</span><span class="dot"></span>
-          <span>Solutions</span><span class="dot"></span>
+          <span>{lang === 'es' ? 'Soluciones' : 'Solutions'}</span><span class="dot"></span>
         </div>
       </div>
     </div>
 
-    <!-- ============ WORKS / PORTFOLIO ============ -->
+    <!-- ============ SERVICES HUB ============ -->
+    <section class="services-hub" id="services">
+      <div class="container hub-container">
+        <div class="hub-center">
+          <div class="hub-center-circle">
+            <h3>{t('services.lead')}</h3>
+          </div>
+        </div>
+
+        <div class="hub-cards">
+          {[1, 2, 3, 4].map((num) => (
+            <a href={getRelativeLocaleUrl(lang, '/services')} class={`hub-card card-${num}`}>
+              <div class="hub-card-image" style={`background-image: url('/astro-test/img/service-${num === 1 ? 'marca' : num === 2 ? 'mice' : num === 3 ? 'produccion' : 'renting'}.jpg')`}></div>
+              <div class="hub-card-content">
+                <span class="hub-card-num">0{num}</span>
+                <h4>{t(`services.0${num}.title` as any)}</h4>
+                <p class="short-desc">{t(`services.0${num}.desc` as any)}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORKS ============ -->
     <section class="works-section" id="works">
       <div class="container">
         <div class="section-header content-contained">
-          <span class="tag">Selection</span>
-          <h2 class="section-title">Success <em>stories.</em></h2>
+          <span class="tag">Portfolio</span>
+          <h2 class="section-title">
+            {lang === 'es' ? 'Casos de' : 'Success'} <em>{lang === 'es' ? 'éxito.' : 'stories.'}</em>
+          </h2>
         </div>
       </div>
 
       <div class="works-grid">
-        {projects.length > 0 ? projects.map((project) => (
-          <a href={getRelativeLocaleUrl(currentLang, `/projects/${project.id.replace(`${currentLang}/`, '')}`)} class="work-link">
+        {featuredProjects.map((project) => (
+          <a href={getRelativeLocaleUrl(lang, `/projects/${project.id.split('/').pop()}`)} class="work-link">
             <article class="work-card">
               <div class="work-media">
-                <img src={project.data.heroImage ? (project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage) : `/astro-test/img/work-default.jpg`} alt={project.data.title} />
+                {project.data.heroImage && (
+                  <Image 
+                    src={project.data.heroImage} 
+                    alt={project.data.title}
+                    width={800}
+                    height={600}
+                    format="webp"
+                  />
+                )}
               </div>
               <div class="work-overlay">
                 <span class="work-cat">{project.data.category}</span>
@@ -109,26 +156,29 @@ const projects = allProjects
               </div>
             </article>
           </a>
-        )) : <p style="text-align:center; padding: 50px; color: var(--text-2);">Coming soon. English projects are being uploaded.</p>}
+        ))}
       </div>
     </section>
 
     <Testimonials />
 
+    <!-- ============ PROBLEM SOLVER ============ -->
     <section class="solver-section" id="contact">
       <div class="solver-sticky">
         <div class="solver-layer layer-problem">
           <div class="container content-contained">
-            <span class="status-badge">The Problem</span>
-            <h2 class="solver-text">NEED PRODUCTION AND LOGISTICS FOR YOUR NEXT PROJECT?</h2>
+            <span class="status-badge">{t('cta.challenge')}</span>
+            <h2 class="solver-text">
+              {lang === 'es' ? '¿NECESITAS PRODUCCIÓN Y LOGÍSTICA PARA TU PRÓXIMO PROYECTO?' : 'NEED PRODUCTION AND LOGISTICS FOR YOUR NEXT PROJECT?'}
+            </h2>
           </div>
         </div>
         <div class="solver-layer layer-solution">
           <div class="container content-contained">
-            <span class="status-badge white">The Solution</span>
-            <h2 class="solver-text">WE HELP YOU MAKE EVERY PROJECT AN INVESTMENT, NOT AN EXPENSE.</h2>
+            <span class="status-badge white">{t('cta.solution')} {t('cta.solution_accent')}</span>
+            <h2 class="solver-text">{t('home.manifesto.desc')}</h2>
             <div class="solver-actions">
-              <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-primary">QUOTE YOUR SOLUTION</a>
+              <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-primary">{t('cta.button')}</a>
             </div>
           </div>
         </div>
@@ -138,3 +188,11 @@ const projects = allProjects
   <FAQ />
   <Footer />
 </Layout>
+
+<style>
+    .work-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>

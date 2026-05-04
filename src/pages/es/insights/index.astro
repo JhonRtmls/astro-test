@@ -3,27 +3,31 @@ import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 import '../../../styles/pages/inner.css';
 
-const base = import.meta.env.BASE_URL;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const posts = (await getCollection('posts')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 // Metadata para SEO
-const title = "Insights & Noticias | MICE Chile y Logística Patagonia | Gestoo";
-const description = "Explora las últimas noticias y análisis sobre el sector MICE en Chile, logística en la Patagonia y tendencias en eventos corporativos de la mano de los expertos de Gestoo.";
+const title = lang === 'es' ? "Insights & Noticias | Gestoo" : "Insights & News | Gestoo";
+const description = lang === 'es' ? "Explora las últimas noticias y análisis sobre el sector MICE y logística." : "Explore the latest news and analysis on the MICE and logistics sector.";
 ---
 
 <Layout title={title} description={description}>
     <Navbar />
     
-    <main>
+    <main id="main-content">
         <section class="page-hero">
             <div class="container page-hero-content">
                 <div class="reveal">
-                    <span class="tag">Conocimiento</span>
-                    <h1 class="page-title">Nuestros <br><span class="gradient-text">Insights.</span></h1>
+                    <span class="tag">{lang === 'es' ? 'Conocimiento' : 'Knowledge'}</span>
+                    <h1 class="page-title">{lang === 'es' ? 'Nuestros' : 'Our'} <br><span class="gradient-text">Insights.</span></h1>
                 </div>
             </div>
         </section>
@@ -34,15 +38,25 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
             <div class="container">
                 <div class="insights-grid">
                     {posts.map((post) => (
-                        <a href={`${base}/insights/${post.id}`} class="insight-link">
+                        <a href={getRelativeLocaleUrl(lang, `/insights/${post.id.split('/').pop()}`)} class="insight-link">
                             <article class="insight-card reveal">
                                 <div class="insight-image">
-                                    <img src={post.data.heroImage ? (post.data.heroImage.startsWith('/') ? `${base}${post.data.heroImage}` : post.data.heroImage) : `${base}/img/news-default.jpg`} alt={post.data.title} loading="lazy" />
+                                    {post.data.heroImage ? (
+                                      <Image 
+                                        src={post.data.heroImage} 
+                                        alt={post.data.title}
+                                        width={400}
+                                        height={250}
+                                        format="webp"
+                                      />
+                                    ) : (
+                                      <div class="placeholder-img"></div>
+                                    )}
                                     <span class="insight-category">{post.data.category}</span>
                                 </div>
                                 <div class="insight-content">
                                     <time datetime={post.data.pubDate.toISOString()}>
-                                        {post.data.pubDate.toLocaleDateString('es-ES', {
+                                        {post.data.pubDate.toLocaleDateString(lang, {
                                             year: 'numeric',
                                             month: 'long',
                                             day: 'numeric',
@@ -50,7 +64,7 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
                                     </time>
                                     <h3>{post.data.title}</h3>
                                     <p>{post.data.description}</p>
-                                    <span class="read-more">Leer más →</span>
+                                    <span class="read-more">{lang === 'es' ? 'Leer más →' : 'Read more →'}</span>
                                 </div>
                             </article>
                         </a>
@@ -79,7 +93,7 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
     .insight-card {
         background: var(--blue-800);
         border: 1px solid rgba(255,255,255,0.05);
-        border-radius: 24px; /* Estilo redondeado Gestoo */
+        border-radius: 24px;
         overflow: hidden;
         transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s ease, box-shadow 0.4s ease;
         height: 100%;
@@ -97,8 +111,8 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
         position: relative;
         height: 240px;
         overflow: hidden;
-        margin: 10px; /* Margen interno para que no toque el borde de la tarjeta si queremos */
-        border-radius: 18px; /* Un poco menos que la tarjeta para encajar */
+        margin: 10px;
+        border-radius: 18px;
     }
 
     .insight-image img {
@@ -123,7 +137,7 @@ const description = "Explora las últimas noticias y análisis sobre el sector M
         font-weight: var(--fw-bold);
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        border-radius: 100px; /* Pill style */
+        border-radius: 100px;
     }
 
     .insight-content {

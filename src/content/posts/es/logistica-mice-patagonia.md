@@ -2,7 +2,7 @@
 title: "Logística MICE en la Patagonia: El valor de un partner local experto"
 description: "Descubre cómo Gestoo resuelve los desafíos de producir eventos de alta gama en el fin del mundo, combinando técnica avanzada y dominio del terreno."
 pubDate: 2026-04-29
-heroImage: "/img/news-patagonia-logistics.jpg"
+heroImage: "../../../assets/img/work-3.webp"
 category: "Logística"
 author: "Equipo Gestoo"
 tags: ["MICE Magallanes", "Patagonia", "Producción Técnica"]

@@ -50,7 +50,7 @@ const currentLang = Astro.currentLocale || 'es';
       </div>
     </section>
 
-    <section class="section" style="background: var(--surface);">
+    <section class="section">
       <div class="container">
         <div class="testimonial-inner reveal" style="max-width:800px; margin:0 auto; text-align:center; position:relative;">
           <blockquote>
@@ -61,6 +61,136 @@ const currentLang = Astro.currentLocale || 'es';
             </p>
           </blockquote>
           <cite><strong>{currentLang === 'es' ? 'El Equipo Gestoo' : 'The Gestoo Team'}</strong></cite>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="tag">{currentLang === 'es' ? 'Metodología' : 'Methodology'}</span>
+          <h2 class="section-title">
+            {currentLang === 'es' ? 'Nuestros pilares' : 'Our strategic'} <br /><em>{currentLang === 'es' ? 'estratégicos.' : 'pillars.'}</em>
+          </h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-icon">01</div>
+            <h3>{currentLang === 'es' ? 'Pensamiento Estratégico' : 'Strategic Thinking'}</h3>
+            <p>
+              {currentLang === 'es'
+                ? 'No solo ejecutamos; analizamos tus objetivos de negocio para que cada evento y marca sea una inversión medida.'
+                : 'We don\'t just execute; we analyze your business objectives so that every event and brand is a measured investment.'}
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">02</div>
+            <h3>{currentLang === 'es' ? 'Ingeniería de Experiencias' : 'Experience Engineering'}</h3>
+            <p>
+              {currentLang === 'es'
+                ? 'Combinamos logística compleja con tecnología audiovisual avanzada para crear momentos sin fricción.'
+                : 'We combine complex logistics with advanced audiovisual technology to create frictionless moments.'}
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">03</div>
+            <h3>{currentLang === 'es' ? 'Ejecución Impecable' : 'Impeccable Execution'}</h3>
+            <p>
+              {currentLang === 'es'
+                ? 'Desde el primer boceto hasta el desmontaje, nuestra atención al detalle en la Patagonia es quirúrgica.'
+                : 'From the first sketch to disassembly, our attention to detail in Patagonia is surgical.'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="tag">{currentLang === 'es' ? 'Capital Humano' : 'Human Capital'}</span>
+          <h2 class="section-title">
+            {currentLang === 'es' ? 'El equipo detrás de' : 'The team behind'} <br /><em>{currentLang === 'es' ? 'la magia.' : 'the magic.'}</em>
+          </h2>
+        </div>
+        <div class="team-grid">
+          <!-- Miembro 1 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member1.jpg" alt="Jaime Almonacid" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">{currentLang === 'es' ? 'Director Creativo' : 'Creative Director'}</span>
+              <h3>Jaime Almonacid</h3>
+              <p>{currentLang === 'es' ? 'Estratega creativo con enfoque en soluciones B2B y experiencias de marca.' : 'Creative strategist focused on B2B solutions and brand experiences.'}</p>
+            </div>
+          </div>
+
+          <!-- Miembro 2 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member2.jpg" alt="Paola Almonacid Vargas" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">{currentLang === 'es' ? 'Producción Técnica' : 'Technical Production'}</span>
+              <h3>Paola Almonacid Vargas</h3>
+              <p>{currentLang === 'es' ? 'Experto en ingeniería audiovisual y logística de eventos de alto impacto.' : 'Expert in audiovisual engineering and logistics for high-impact events.'}</p>
+            </div>
+          </div>
+
+          <!-- Miembro 3 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member3.jpg" alt="Cristina Vilicic" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">{currentLang === 'es' ? 'Administración' : 'Administration'}</span>
+              <h3>Cristina Vilicic</h3>
+              <p>{currentLang === 'es' ? 'Encargada del área contable y administrativa de Gestoo.' : 'Head of Gestoo\'s accounting and administrative area.'}</p>
+            </div>
+          </div>
+
+          <!-- Miembro 4 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member4.jpg" alt="Elizabeth Espinoza" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">{currentLang === 'es' ? 'Logística Senior' : 'Senior Logistics'}</span>
+              <h3>Elizabeth Espinoza</h3>
+              <p>{currentLang === 'es' ? 'Especialista en operaciones de campo y montaje en condiciones extremas.' : 'Specialist in field operations and assembly in extreme conditions.'}</p>
+            </div>
+          </div>
+
+          <!-- Miembro 5 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member5.jpg" alt="Javier Alvear" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">{currentLang === 'es' ? 'Diseño Visual' : 'Visual Design'}</span>
+              <h3>Javier Alvear</h3>
+              <p>{currentLang === 'es' ? 'Responsable de la narrativa visual y piezas gráficas de los eventos.' : 'Responsible for the visual narrative and graphic pieces of events.'}</p>
+            </div>
+          </div>
+
+          <!-- Miembro 6 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member6.jpg" alt="Cristian Valle" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">{currentLang === 'es' ? 'Producción' : 'Production'}</span>
+              <h3>Cristian Valle</h3>
+              <p>{currentLang === 'es' ? 'Ingeniero de sonido y especialista en sistemas de iluminación LED.' : 'Sound engineer and LED lighting systems specialist.'}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

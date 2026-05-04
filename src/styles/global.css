@@ -519,19 +519,17 @@ h4 {
 
 .manifesto-detail-box {
   margin-top: 50px;
-  padding: 1.2rem 3rem;
-  background-color: var(--blue-400);
-  color: var(--white);
-  border-radius: var(--radius-pill);
-  max-width: 700px;
+  max-width: 800px;
   z-index: 3;
-  box-shadow: 0 10px 30px rgba(90, 155, 192, 0.2);
 }
 
 .manifesto-detail-box p {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: var(--fw-medium);
+  color: var(--blue-900);
   margin: 0;
+  line-height: 1.6;
+  opacity: 0.8;
 }
 
 /* ── MARQUEE (v.1 Style) ── */

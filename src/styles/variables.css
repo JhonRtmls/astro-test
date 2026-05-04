@@ -2,6 +2,23 @@
     GESTOO — Design System v.4
    ================================================ */
 
+/* ---- Local Fonts ---- */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   /* ── Escala de Azules Patagónicos (Refinada para contraste) ── */
   --blue-50: #f0f7ff; /* Casi blanco azulado */

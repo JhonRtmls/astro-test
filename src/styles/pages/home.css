@@ -14,12 +14,35 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+  background: #000;
 }
 
-.hero-video {
+.hero-video-placeholder,
+.hero-video-container {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 1.5s ease;
+}
+
+.hero-video-placeholder {
+  z-index: 2;
+  filter: brightness(0.7);
+}
+
+.hero-video-container {
+  z-index: 1;
+  /* Sobredimensionar para ocultar bordes e interfaz de YouTube */
+  transform: scale(1.15);
+}
+
+.hero-video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none; /* Evita clics accidentales en el video */
 }
 
 .hero-overlay {

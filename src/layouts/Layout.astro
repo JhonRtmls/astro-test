@@ -12,6 +12,7 @@ import '../styles/global.css';
 import '../styles/components.css';
 import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
+import MorphicBackground from '../components/MorphicBackground.astro';
 
 const currentLang = Astro.currentLocale || 'es';
 const site = Astro.site || new URL('https://jhonrtmls.github.io/astro-test');
@@ -54,14 +55,10 @@ const breadcrumbs = [
 		<!-- End Google Tag Manager -->
         <meta name="author" content="Gestoo" />
         <meta name="owner" content="Gestoo" />
+        <link rel="preload" href="/fonts/Montserrat-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
 
-        <!-- Fonts Preconnect & Load -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-        
         <!-- Security Headers (Meta tag equivalent) -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://www.youtube.com https://youtube.com; child-src https://www.youtube.com https://youtube.com;" />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://www.youtube.com https://youtube.com; child-src https://www.youtube.com https://youtube.com;" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
 
         <!-- Language targeting (SEO) -->
@@ -137,8 +134,8 @@ const breadcrumbs = [
                     },
                     "geo": {
                         "@type": "GeoCoordinates",
-                        "latitude": -53.1626,
-                        "longitude": -70.9078
+                        "latitude": -53.1627,
+                        "longitude": -70.9081
                     },
                     "telephone": "+56981887723",
                     "email": "contacto@gestoo.cl",
@@ -214,6 +211,7 @@ const breadcrumbs = [
         </script>
 	</head>
 	<body>
+        <MorphicBackground />
         <a href="#main-content" class="skip-link">{currentLang === 'es' ? 'Saltar al contenido principal' : 'Skip to content'}</a>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3TDG6QC"

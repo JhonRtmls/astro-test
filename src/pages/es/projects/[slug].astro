@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import Layout from '../../../layouts/Layout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('projects', ({ id }) => id.startsWith('es/'));
@@ -16,6 +17,15 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const currentLang = Astro.currentLocale || 'es';
+const base = import.meta.env.BASE_URL;
+
+// Lógica para encontrar la imagen en assets
+const images = import.meta.glob<{ default: ImageMetadata }>('../../../assets/img/*.{jpeg,jpg,png,gif,webp}');
+const fileName = project.data.heroImage?.split('/').pop()?.split('.')[0];
+const imagePath = Object.keys(images).find(key => key.includes(fileName)) || '';
+
+// Intentar cargar la imagen optimizada, si no existe usamos fallback
+const optimizedImage = images[imagePath];
 ---
 
 <Layout title={`${project.data.title} | Gestoo`} description={project.data.description}>
@@ -29,10 +39,21 @@ const currentLang = Astro.currentLocale || 'es';
             </div>
             {project.data.heroImage && (
                 <div class="hero-image-wrapper">
-                    <img 
-                        src={project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage} 
-                        alt={project.data.title} 
-                    />
+                    {optimizedImage ? (
+                        <Image 
+                            src={optimizedImage()} 
+                            alt={project.data.title}
+                            width={1200}
+                            height={600}
+                            format="webp"
+                            loading="eager"
+                        />
+                    ) : (
+                        <img 
+                            src={project.data.heroImage.startsWith('/') ? `/astro-test${project.data.heroImage}` : project.data.heroImage} 
+                            alt={project.data.title} 
+                        />
+                    )}
                 </div>
             )}
         </header>

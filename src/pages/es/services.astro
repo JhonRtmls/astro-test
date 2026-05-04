@@ -16,6 +16,48 @@ const currentLang = Astro.currentLocale || 'es';
 >
     <Navbar />
     <img src="/astro-test/img/arbol.svg" alt="Ilustración de árbol de la Patagonia" class="bg-illustration">
+    <!-- Schema.org for AI -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "MICE Chile & Agencia Creativa",
+      "description": "Planificación integral, logística y producción técnica para el sector MICE en Chile: Congresos, Incentivos, Convenciones y Eventos de Marca.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Gestoo",
+        "url": "https://jhonrtmls.github.io/astro-test/"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catálogo de Servicios MICE y B2B",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Organización de Congresos y Convenciones Chile",
+              "description": "Gestión integral de eventos corporativos y científicos a nivel nacional."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Logística MICE Patagonia",
+              "description": "Operaciones especializadas en Punta Arenas, Torres del Paine y Puerto Natales."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Producción Audiovisual de Impacto",
+              "description": "Ingeniería técnica para eventos masivos y corporativos en Chile."
+            }
+          }
+        ]
+      }
+    })} />
     <main>
         <section class="page-hero">
             <div class="container page-hero-content">
@@ -56,6 +98,21 @@ const currentLang = Astro.currentLocale || 'es';
                         <span class="service-num">03</span>
                         <h3>{currentLang === 'es' ? 'Producción Audiovisual' : 'Audiovisual Production'}</h3>
                         <p>{currentLang === 'es' ? 'Ingeniería técnica audiovisual avanzada para eventos corporativos.' : 'Advanced audiovisual technical engineering for corporate events.'}</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">04</span>
+                        <h3>{currentLang === 'es' ? 'Renting & Equipos' : 'Equipment Rental'}</h3>
+                        <p>{currentLang === 'es' ? 'Soporte de infraestructura mediante alquiler de audio, pantallas LED y mobiliario móvil premium.' : 'Infrastructure support through rental of audio, LED screens and premium mobile furniture.'}</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">05</span>
+                        <h3>{currentLang === 'es' ? 'Eventos Corporativos' : 'Corporate Events'}</h3>
+                        <p>{currentLang === 'es' ? 'Desde lanzamientos de productos hasta galas de fin de año. Detalles que hablan bien de ti.' : 'From product launches to year-end galas. Details that speak well of you.'}</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">06</span>
+                        <h3>{currentLang === 'es' ? 'Operación Regional' : 'Regional Operation'}</h3>
+                        <p>{currentLang === 'es' ? 'Conocimiento profundo del terreno en Magallanes. Operamos en locaciones remotas.' : 'Deep knowledge of the terrain in Magallanes. We operate in remote locations.'}</p>
                     </div>
                 </div>
             </div>

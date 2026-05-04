@@ -4,8 +4,6 @@ interface Props {
     description?: string;
 }
 
-const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística." } = Astro.props;
-
 import '../styles/reset.css';
 import '../styles/variables.css';
 import '../styles/global.css';
@@ -13,27 +11,31 @@ import '../styles/components.css';
 import '../styles/lenis.css';
 import { ClientRouter } from 'astro:transitions';
 import MorphicBackground from '../components/MorphicBackground.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
-const currentLang = Astro.currentLocale || 'es';
+const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística." } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const site = Astro.site || new URL('https://jhonrtmls.github.io/astro-test');
 const canonicalURL = new URL(Astro.url.pathname, site);
 
 // Breadcrumb Logic for AI
 const pathSegments = Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, '').split('/').filter(Boolean);
 const breadcrumbs = [
-    { name: currentLang === 'es' ? 'Inicio' : 'Home', item: `${site.href}/${currentLang}/` },
+    { name: lang === 'es' ? 'Inicio' : 'Home', item: `${site.href}/${lang}/` },
     ...pathSegments.map((segment, index) => {
         const path = pathSegments.slice(0, index + 1).join('/');
         return {
             name: segment.charAt(0).toUpperCase() + segment.slice(1),
-            item: `${site.href}/${currentLang}/${path}`
+            item: `${site.href}/${lang}/${path}`
         };
     })
 ];
 ---
 
 <!doctype html>
-<html lang={currentLang}>
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -53,36 +55,18 @@ const breadcrumbs = [
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-T3TDG6QC');</script>
 		<!-- End Google Tag Manager -->
+        
         <meta name="author" content="Gestoo" />
-        <meta name="owner" content="Gestoo" />
         <link rel="preload" href="/fonts/Montserrat-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
-
-        <!-- Security Headers (Meta tag equivalent) -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://www.youtube.com https://youtube.com; child-src https://www.youtube.com https://youtube.com;" />
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
 
         <!-- Language targeting (SEO) -->
         <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
         <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/en'), site)} />
         <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
         
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalURL} />
-        <meta property="og:site_name" content="Gestoo" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={new URL('/astro-test/img/hero.jpg', site)} />
-
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={canonicalURL} />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={new URL('/astro-test/img/hero.jpg', site)} />
-
         <link rel="canonical" href={canonicalURL} />
 
+        <!-- Schema.org -->
         <script type="application/ld+json" is:inline set:html={JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
@@ -93,37 +77,15 @@ const breadcrumbs = [
                     "url": site.href,
                     "logo": {
                         "@type": "ImageObject",
-                        "url": new URL('/astro-test/img/logo-dark.png', site).href,
-                        "width": 600,
-                        "height": 600
-                    },
-                    "image": {
-                        "@id": `${site.href}#logo`
-                    },
-                    "sameAs": [
-                        "https://www.linkedin.com/in/agenciagestoo/",
-                        "https://www.instagram.com/agenciagestoo/",
-                        "https://www.facebook.com/AgenciaGestoo",
-                        "https://www.youtube.com/@AgenciaGestoo"
-                    ],
-                    "description": currentLang === 'es' ? "Agencia creativa líder en la Patagonia Chilena..." : "Leading creative agency in Chilean Patagonia..."
-                },
-                {
-                    "@type": "WebSite",
-                    "@id": `${site.href}#website`,
-                    "url": site.href,
-                    "name": "Gestoo",
-                    "publisher": {
-                        "@id": `${site.href}#organization`
-                    },
-                    "inLanguage": currentLang
+                        "url": new URL('/astro-test/img/logo-dark.png', site).href
+                    }
                 },
                 {
                     "@type": "ProfessionalService",
-                    "@id": `${canonicalURL}#service`,
                     "name": "Gestoo",
                     "url": canonicalURL,
-                    "image": new URL('/astro-test/img/hero.jpg', site).href,
+                    "telephone": "+56981887723",
+                    "email": "contacto@gestoo.cl",
                     "address": {
                         "@type": "PostalAddress",
                         "streetAddress": "Av. Independencia 313",
@@ -131,100 +93,35 @@ const breadcrumbs = [
                         "addressRegion": "Magallanes",
                         "postalCode": "6200000",
                         "addressCountry": "CL"
-                    },
-                    "geo": {
-                        "@type": "GeoCoordinates",
-                        "latitude": -53.1627,
-                        "longitude": -70.9081
-                    },
-                    "telephone": "+56981887723",
-                    "email": "contacto@gestoo.cl",
-                    "priceRange": "$$$",
-                    "areaServed": ["Chile", "Patagonia", "Magallanes", "Punta Arenas", "Puerto Natales", "Torres del Paine"],
-                    "knowsAbout": ["Turismo MICE", "Congresos y Convenciones", "Viajes de Incentivo", "Branding", "Producción Audiovisual", "Marketing B2B", "Logística en Climas Extremos"]
+                    }
                 }
             ]
         })} />
 
-        <!-- GSAP & Lenis optimized (added defer to prevent render blocking) -->
+        <!-- GSAP & Lenis optimized -->
         <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
         <script is:inline defer src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
         
-        <!-- FontAwesome optimized -->
         <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
         <ClientRouter />
 
-        <script type="application/ld+json" is:inline set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": breadcrumbs.map((bc, i) => ({
-                "@type": "ListItem",
-                "position": i + 1,
-                "name": bc.name,
-                "item": bc.item
-            }))
-        })} />
-
-        <!-- Script de Reseteo Crítico y Utilidades -->
         <script is:inline>
-            if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-            }
-
-            function decodeEmails() {
-                document.querySelectorAll('.email-link').forEach(link => {
-                    const user = link.getAttribute('data-name');
-                    const domain = link.getAttribute('data-domain');
-                    if (user && domain) {
-                        const email = `${user}@${domain}`;
-                        link.href = `mailto:${email}`;
-                        link.textContent = email;
-                    }
-                });
-            }
-
-            // Forzar scroll manual para evitar que el navegador decida por nosotros
-            if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-            }
-
-            // 1. Antes de que la página cambie, preparamos el reset
-            document.addEventListener('astro:before-preparation', () => {
-                window.scrollTo(0, 0);
-                if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-            });
-
-            // 2. Cuando la nueva página se ha cargado/intercambiado
             document.addEventListener('astro:page-load', () => {
-                // Pequeño retraso para asegurar que el DOM y Lenis estén sincronizados
-                requestAnimationFrame(() => {
-                    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-                    if (window.lenis) {
-                        window.lenis.scrollTo(0, { immediate: true });
-                    }
-                });
-                
-                decodeEmails();
+                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
             });
         </script>
 	</head>
 	<body>
         <MorphicBackground />
-        <a href="#main-content" class="skip-link">{currentLang === 'es' ? 'Saltar al contenido principal' : 'Skip to content'}</a>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3TDG6QC"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
-		<div class="cursor"></div>
-        <div class="cursor-follower"></div>
+        <a href="#main-content" class="skip-link">{t('nav.about') === 'Nosotros' ? 'Saltar al contenido' : 'Skip to content'}</a>
 		<slot />
-        
-        <!-- Scripts -->
         <script is:inline src="/astro-test/js/main.js"></script>
 	</body>
 </html>
+
 
 <style is:global>
 	/* Global styles if needed */

@@ -11,7 +11,9 @@ const projects = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
 		category: z.string(),
+		tag: z.string().optional(),
 		featured: z.boolean().optional(),
+		client: z.string().optional(),
 	}),
 });
 

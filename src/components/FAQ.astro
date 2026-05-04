@@ -1,13 +1,31 @@
 ---
-const base = import.meta.env.BASE_URL;
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// FAQ Schema for AI Search Readiness (Generated Server-Side for GEO)
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [1, 2, 3, 4].map(i => ({
+        "@type": "Question",
+        "name": t(`faq.q${i}` as any),
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": t(`faq.a${i}` as any)
+        }
+    }))
+};
 ---
+
 <section class="section faq-section" id="faq">
     <div class="container">
         <div class="faq-grid">
-            <!-- Columna Izquierda: Imagen -->
+            <!-- Columna Izquierda: Imagen (Optimización GEO: Authoritative Visual) -->
             <div class="faq-image-side reveal">
                 <div class="faq-image-container">
-                    <img src={`${base}/img/work-3.webp`} alt="Gestoo MICE & Logistics" loading="lazy" />
+                    <img src="/astro-test/img/work-3.webp" alt="Gestoo MICE & Logistics Experts in Patagonia" loading="lazy" />
                     <div class="image-accent-box"></div>
                 </div>
             </div>
@@ -15,20 +33,20 @@ const base = import.meta.env.BASE_URL;
             <!-- Columna Derecha: Contenido -->
             <div class="faq-content-side">
                 <div class="section-header reveal">
-                    <span class="tag" data-i18n="faq-tag">Consultas</span>
-                    <h2 class="section-title" data-i18n="faq-title">Preguntas <em>frecuentes.</em></h2>
+                    <span class="tag">{t('faq.tag')}</span>
+                    <h2 class="section-title">{t('faq.title')} <em>{t('faq.title_accent')}</em></h2>
                 </div>
 
                 <div class="faq-accordion reveal">
                     {[1, 2, 3, 4].map((i) => (
                         <div class="faq-item">
                             <button class="faq-trigger" aria-expanded="false" id={`faq-btn-${i}`}>
-                                <span data-i18n={`faq-q${i}`}>Pregunta...</span>
+                                <span>{t(`faq.q${i}` as any)}</span>
                                 <span class="faq-icon"></span>
                             </button>
                             <div class="faq-content">
                                 <div class="faq-body">
-                                    <p data-i18n={`faq-a${i}`}>Respuesta...</p>
+                                    <p>{t(`faq.a${i}` as any)}</p>
                                 </div>
                             </div>
                         </div>
@@ -38,6 +56,9 @@ const base = import.meta.env.BASE_URL;
         </div>
     </div>
 </section>
+
+<!-- Schema Injection (Server-Side) -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 
 <style>
     .faq-section {
@@ -53,7 +74,6 @@ const base = import.meta.env.BASE_URL;
         align-items: start;
     }
 
-    /* Lado Imagen */
     .faq-image-side {
         position: sticky;
         top: 140px;
@@ -62,7 +82,6 @@ const base = import.meta.env.BASE_URL;
     .faq-image-container {
         position: relative;
         border-radius: 4px;
-        overflow: visible; /* Cambiado para que el box de acento se vea */
     }
 
     .faq-image-container img {
@@ -70,16 +89,12 @@ const base = import.meta.env.BASE_URL;
         height: auto;
         aspect-ratio: 4/5;
         object-fit: cover;
-        border-radius: 24px; /* Estilo Gestoo: bordes muy redondeados */
-        box-shadow: 0 30px 60px rgba(0,0,0,0.4); /* Sombra profunda para dar relieve */
+        border-radius: 24px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         position: relative;
         z-index: 2;
-        transform: rotate(-1.5deg); /* Ligera inclinación para dinamismo */
+        transform: rotate(-1.5deg);
         transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .faq-image-container:hover img {
-        transform: rotate(0deg) scale(1.02);
     }
 
     .image-accent-box {
@@ -89,29 +104,12 @@ const base = import.meta.env.BASE_URL;
         width: 100%;
         height: 100%;
         border: 2px solid var(--accent);
-        border-radius: 24px; /* Match corners */
+        border-radius: 24px;
         z-index: 1;
         opacity: 0.2;
-        transform: rotate(1.5deg); /* Inclinación opuesta para el box */
+        transform: rotate(1.5deg);
     }
 
-    /* Lado Contenido */
-    .faq-content-side {
-        padding-top: 2rem;
-    }
-
-    .faq-content-side .section-header {
-        margin-bottom: 4rem;
-    }
-
-    .faq-accordion {
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .faq-item {
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    
     .faq-trigger {
         width: 100%;
         display: flex;
@@ -128,10 +126,6 @@ const base = import.meta.env.BASE_URL;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         transition: color 0.3s ease;
-    }
-    
-    .faq-trigger:hover {
-        color: var(--accent);
     }
     
     .faq-icon {
@@ -160,27 +154,19 @@ const base = import.meta.env.BASE_URL;
         opacity: 0;
     }
     
-    .faq-trigger[aria-expanded="true"] {
-        color: var(--accent);
-    }
-
     .faq-content {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    .faq-body {
-        padding: 0 0 3rem;
-    }
-    
     .faq-body p {
         color: rgba(255,255,255,0.6);
         font-size: 1.1rem;
         line-height: 1.7;
+        padding-bottom: 3rem;
     }
 
-    /* Breakpoint más bajo para forzar el modo escritorio en más pantallas */
     @media (max-width: 900px) {
         .faq-grid {
             grid-template-columns: 1fr;
@@ -188,11 +174,6 @@ const base = import.meta.env.BASE_URL;
         }
         .faq-image-side {
             position: static;
-            max-width: 100%;
-            margin-bottom: 2rem;
-        }
-        .image-accent-box {
-            display: none;
         }
     }
 </style>
@@ -205,9 +186,7 @@ const base = import.meta.env.BASE_URL;
                 const expanded = trigger.getAttribute('aria-expanded') === 'true';
                 const content = trigger.nextElementSibling;
                 
-                // Usamos requestAnimationFrame para evitar layout thrashing
                 requestAnimationFrame(() => {
-                    // Cerrar otros
                     triggers.forEach(t => {
                         if (t !== trigger) {
                             t.setAttribute('aria-expanded', 'false');
@@ -215,54 +194,12 @@ const base = import.meta.env.BASE_URL;
                         }
                     });
 
-                    // Alternar actual
                     const nextState = !expanded;
                     trigger.setAttribute('aria-expanded', nextState);
-                    
-                    if (nextState) {
-                        // Leemos la medida una sola vez
-                        const height = content.scrollHeight;
-                        content.style.maxHeight = height + "px";
-                    } else {
-                        content.style.maxHeight = null;
-                    }
+                    content.style.maxHeight = nextState ? content.scrollHeight + "px" : null;
                 });
             });
         });
     }
     document.addEventListener('astro:page-load', initAccordion);
-</script>
-
-<!-- FAQ Schema for AI Search Readiness -->
-<script is:inline>
-    (function() {
-        // Obtenemos las traducciones (asumiendo que translations.js ya cargó)
-        // Usamos un pequeño delay para asegurar que el diccionario esté disponible
-        setTimeout(() => {
-            if (typeof translations === 'undefined') return;
-            
-            // Detectamos el idioma actual (siguiendo la lógica de i18n.js)
-            const currentLang = localStorage.getItem('preferredLanguage') || 'es';
-            const t = translations[currentLang];
-            
-            const schema = {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [1, 2, 3, 4].map(i => ({
-                    "@type": "Question",
-                    "name": t[`faq-q${i}`],
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": t[`faq-a${i}`]
-                    }
-                }))
-            };
-
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.id = 'faq-schema';
-            script.text = JSON.stringify(schema);
-            document.head.appendChild(script);
-        }, 500);
-    })();
 </script>

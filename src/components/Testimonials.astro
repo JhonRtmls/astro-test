@@ -1,62 +1,53 @@
 ---
-const base = import.meta.env.BASE_URL;
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const testimonials = [
-  {
-    nombre: "Ariel Bravo",
-    cargo: "Branch Manager",
-    empresa: "Ultramar",
-    testimonio: "La experiencia de Gestoo para nuestra fiesta de aniversario Nº 65 fue cautivadora e innovadora. El equipo se preocupó hasta del más mínimo detalle, mostrando todo su profesionalismo en eventos de alto nivel.",
-    imagen: "/img/testimonials/ariel.jpg"
-  },
-  {
-    nombre: "Ximena Castro",
-    cargo: "Gerenta",
-    empresa: "Parque del Estrecho",
-    testimonio: "Siempre nos han brindado experiencias memorables; su profesionalismo, creatividad y atención al detalle han sido claves para el éxito. Recomiendo a Gestoo como un socio confiable y talentoso.",
-    imagen: "/img/testimonials/ximena.jpg"
-  },
-  {
-    nombre: "Claudio Magallanes",
-    cargo: "Outdoorsttv",
-    empresa: "",
-    testimonio: "Fue un agrado trabajar con una empresa que se notó profesional en todo momento. En Chile no es fácil encontrar partners que cubran la gestión y logística con este nivel de excelencia.",
-    imagen: "/img/testimonials/claudio.jpg"
-  },
-  {
-    nombre: "Miriam Urra",
-    cargo: "Mamá Outdoor",
-    empresa: "",
-    testimonio: "Fue una experiencia extraordinaria. En todo momento me sentí segura y acompañada. Se notó el trabajo previo de organización porque realmente fue todo un éxito. Preocupados de cada detalle.",
-    imagen: "/img/testimonials/miriam.jpg"
-  },
-  {
-    nombre: "Facundo Armas",
-    cargo: "Cantante",
-    empresa: "Argentina",
-    testimonio: "He trabajado con muchos productores, pero la experiencia con Gestoo fue de las mejores. Profesionalidad, gran atención y un hermoso grupo humano. Saludos desde Argentina.",
-    imagen: "/img/testimonials/facundo.jpg"
-  },
-  {
-    nombre: "César Ulloa Serón",
-    cargo: "Diseñador Gráfico",
-    empresa: "Sucvisual",
-    testimonio: "Llevamos años siendo soporte de producción y ha sido una experiencia laboral enriquecedora. Esperamos seguir realizando proyectos junto a ellos por mucho tiempo.",
-    imagen: "/img/testimonials/cesar.jpg"
-  }
+  { id: '01' },
+  { id: '02' },
+  { id: '03' }
 ];
+
+// Schema.org ItemList (Server-Side for GEO)
+const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": testimonials.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": t(`testimonials.${item.id}.name` as any)
+            },
+            "reviewBody": t(`testimonials.${item.id}.text` as any),
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Gestoo"
+            }
+        }
+    }))
+};
 ---
 
 <section class="testimonials-section section" id="testimonials">
   <div class="container">
     <div class="section-header reveal text-center">
-      <span class="tag" data-i18n="testimonials-tag">Experiencias</span>
-      <h2 class="section-title" data-i18n="testimonials-title">Lo que dicen de <em>nosotros.</em></h2>
+      <span class="tag">{t('testimonials.tag')}</span>
+      <h2 class="section-title">{t('testimonials.title')} <em>{t('testimonials.title_accent')}</em></h2>
     </div>
 
     <div class="testimonials-container reveal">
       <div class="testimonials-track">
-        {testimonials.map((t) => (
+        {testimonials.map((item) => (
           <div class="testimonial-card">
             <figure class="testimonial-figure">
               <div class="testimonial-quote">
@@ -65,12 +56,12 @@ const testimonials = [
                 </svg>
               </div>
               <blockquote class="testimonial-text">
-                <p>"{t.testimonio}"</p>
+                <p>"{t(`testimonials.${item.id}.text` as any)}"</p>
               </blockquote>
               <figcaption class="testimonial-author">
                 <div class="author-info">
-                  <cite class="author-name">{t.nombre}</cite>
-                  <span class="author-role">{t.cargo} {t.empresa ? `| ${t.empresa}` : ''}</span>
+                  <cite class="author-name">{t(`testimonials.${item.id}.name` as any)}</cite>
+                  <span class="author-role">{t(`testimonials.${item.id}.role` as any)}</span>
                 </div>
               </figcaption>
             </figure>
@@ -79,10 +70,10 @@ const testimonials = [
       </div>
       
       <div class="testimonials-nav">
-        <button class="nav-btn prev" aria-label="Anterior">
+        <button class="nav-btn prev" aria-label={t('nav.prev')}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         </button>
-        <button class="nav-btn next" aria-label="Siguiente">
+        <button class="nav-btn next" aria-label={t('nav.next')}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
         </button>
       </div>
@@ -90,43 +81,8 @@ const testimonials = [
   </div>
 </section>
 
-<!-- SEO & GEO Schema for Testimonials -->
-<script is:inline define:vars={{ testimonials }}>
-  (function() {
-    setTimeout(() => {
-      const schema = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": testimonials.map((t, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "item": {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": t.nombre
-            },
-            "reviewBody": t.testimonio,
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "Gestoo"
-            }
-          }
-        }))
-      };
-
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.text = JSON.stringify(schema);
-      document.head.appendChild(script);
-    }, 1000);
-  })();
-</script>
+<!-- Schema Injection -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify(reviewSchema)} />
 
 <style>
   .testimonials-section {
@@ -226,21 +182,23 @@ const testimonials = [
   }
 </style>
 
-<script>
+<script is:inline>
   function initTestimonials() {
     const track = document.querySelector('.testimonials-track');
     const cards = document.querySelectorAll('.testimonial-card');
     const nextBtn = document.querySelector('.nav-btn.next');
     const prevBtn = document.querySelector('.nav-btn.prev');
     
-    if (!track || cards.length === 0) return;
+    // GUARD: Check if all elements exist and cast to HTMLElement for .style access
+    if (!track || !nextBtn || !prevBtn || cards.length === 0) return;
 
     let currentIndex = 0;
+    const trackEl = track;
 
     function updateCarousel() {
       requestAnimationFrame(() => {
         const offset = currentIndex * -100;
-        track.style.transform = `translateX(${offset}%)`;
+        trackEl.style.transform = `translateX(${offset}%)`;
       });
     }
 
@@ -255,7 +213,6 @@ const testimonials = [
     });
   }
 
-  // Ejecutar al cargar y después de transiciones
   initTestimonials();
-  document.addEventListener('astro:after-swap', initTestimonials);
+  document.addEventListener('astro:page-load', initTestimonials);
 </script>

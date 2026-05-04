@@ -4,24 +4,26 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import FAQ from '../../components/FAQ.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import '../../styles/pages/inner.css';
 import '../../styles/pages/services.css';
 
-const currentLang = Astro.currentLocale || 'es';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout 
-    title={currentLang === 'es' ? "MICE Chile | Agencia Líder en Congresos y Eventos Corporativos | Gestoo" : "MICE Chile | Leading Agency for Congresses and Corporate Events | Gestoo"}
-    description={currentLang === 'es' ? "Especialistas en MICE Chile. Producción técnica y logística en Patagonia." : "MICE specialists in Chile. Technical production and logistics in Patagonia."}
+    title={lang === 'es' ? "MICE Chile | Agencia Líder en Congresos y Eventos Corporativos | Gestoo" : "MICE Chile | Leading Agency for Congresses and Corporate Events | Gestoo"}
+    description={lang === 'es' ? "Especialistas en MICE Chile. Producción técnica y logística en Patagonia." : "MICE specialists in Chile. Technical production and logistics in Patagonia."}
 >
     <Navbar />
     <img src="/astro-test/img/arbol.svg" alt="Ilustración de árbol de la Patagonia" class="bg-illustration">
-    <!-- Schema.org for AI -->
+    
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
       "serviceType": "MICE Chile & Agencia Creativa",
-      "description": "Planificación integral, logística y producción técnica para el sector MICE en Chile: Congresos, Incentivos, Convenciones y Eventos de Marca.",
+      "description": "Planificación integral, logística y producción técnica para el sector MICE en Chile.",
       "provider": {
         "@type": "ProfessionalService",
         "name": "Gestoo",
@@ -35,36 +37,29 @@ const currentLang = Astro.currentLocale || 'es';
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Organización de Congresos y Convenciones Chile",
-              "description": "Gestión integral de eventos corporativos y científicos a nivel nacional."
+              "name": t('services.02.title'),
+              "description": t('services.02.desc')
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Logística MICE Patagonia",
-              "description": "Operaciones especializadas en Punta Arenas, Torres del Paine y Puerto Natales."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Producción Audiovisual de Impacto",
-              "description": "Ingeniería técnica para eventos masivos y corporativos en Chile."
+              "name": t('services.03.title'),
+              "description": t('services.03.desc')
             }
           }
         ]
       }
     })} />
-    <main>
+
+    <main id="main-content">
         <section class="page-hero">
             <div class="container page-hero-content">
                 <div class="reveal">
-                    <span class="tag">Ecosistema Gestoo</span>
+                    <span class="tag" data-i18n="services.tag">{t('services.tag')}</span>
                     <h1 class="page-title">
-                        {currentLang === 'es' ? 'Soluciones diseñadas para' : 'Solutions designed for'} <br><span class="gradient-text">{currentLang === 'es' ? 'cada desafío.' : 'every challenge.'}</span>
+                        {t('services.title')} <br><span class="gradient-text">{t('services.title_accent')}</span>
                     </h1>
                 </div>
             </div>
@@ -76,44 +71,17 @@ const currentLang = Astro.currentLocale || 'es';
             <div class="container content-contained">
                 <div class="section-header reveal">
                     <span class="tag">Especialidades</span>
-                    <h2 class="section-title">{currentLang === 'es' ? 'Nuestra' : 'Our'} <em>{currentLang === 'es' ? 'oferta B2B.' : 'B2B offer.'}</em></h2>
-                    <p class="lead-text">
-                        {currentLang === 'es' 
-                            ? 'Somos la empresa de MICE líder en Magallanes, especializada en transformar desafíos complejos en experiencias memorables.'
-                            : 'We are the leading MICE company in Magallanes, specializing in transforming complex challenges into memorable experiences.'}
-                    </p>
+                    <h2 class="section-title">{t('services.title')} <em>{t('services.title_accent')}</em></h2>
+                    <p class="lead-text">{t('services.lead')}</p>
                 </div>
                 <div class="services-grid">
-                    <div class="service-card reveal">
-                        <span class="service-num">01</span>
-                        <h3>{currentLang === 'es' ? 'Consultoría de Marca' : 'Brand Consulting'}</h3>
-                        <p>{currentLang === 'es' ? 'Estrategia de identidad corporativa y narrativa de marca para el sector B2B.' : 'Corporate identity strategy and brand narrative for the B2B sector.'}</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <span class="service-num">02</span>
-                        <h3>Turismo MICE</h3>
-                        <p>{currentLang === 'es' ? 'Planificación integral y logística de congresos e incentivos en la Patagonia.' : 'Comprehensive planning and logistics for congresses and incentives in Patagonia.'}</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <span class="service-num">03</span>
-                        <h3>{currentLang === 'es' ? 'Producción Audiovisual' : 'Audiovisual Production'}</h3>
-                        <p>{currentLang === 'es' ? 'Ingeniería técnica audiovisual avanzada para eventos corporativos.' : 'Advanced audiovisual technical engineering for corporate events.'}</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <span class="service-num">04</span>
-                        <h3>{currentLang === 'es' ? 'Renting & Equipos' : 'Equipment Rental'}</h3>
-                        <p>{currentLang === 'es' ? 'Soporte de infraestructura mediante alquiler de audio, pantallas LED y mobiliario móvil premium.' : 'Infrastructure support through rental of audio, LED screens and premium mobile furniture.'}</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <span class="service-num">05</span>
-                        <h3>{currentLang === 'es' ? 'Eventos Corporativos' : 'Corporate Events'}</h3>
-                        <p>{currentLang === 'es' ? 'Desde lanzamientos de productos hasta galas de fin de año. Detalles que hablan bien de ti.' : 'From product launches to year-end galas. Details that speak well of you.'}</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <span class="service-num">06</span>
-                        <h3>{currentLang === 'es' ? 'Operación Regional' : 'Regional Operation'}</h3>
-                        <p>{currentLang === 'es' ? 'Conocimiento profundo del terreno en Magallanes. Operamos en locaciones remotas.' : 'Deep knowledge of the terrain in Magallanes. We operate in remote locations.'}</p>
-                    </div>
+                    {[1, 2, 3, 4, 5, 6].map((num) => (
+                        <div class="service-card reveal">
+                            <span class="service-num">0{num}</span>
+                            <h3>{t(`services.0${num}.title` as any)}</h3>
+                            <p>{t(`services.0${num}.desc` as any)}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
@@ -125,10 +93,10 @@ const currentLang = Astro.currentLocale || 'es';
                 <div class="solution-card reveal">
                     <span class="tag">Problem Solvers</span>
                     <h2 class="cta-title">
-                        {currentLang === 'es' ? '¿Tienes un desafío?' : 'Have a challenge?'} <br /> {currentLang === 'es' ? 'Somos la' : 'We are the'} <span class="solution-highlight">{currentLang === 'es' ? 'solución.' : 'solution.'}</span>
+                        {t('cta.challenge')} <br /> {t('cta.solution')} <span class="solution-highlight">{t('cta.solution_accent')}</span>
                     </h2>
-                    <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-orange-glow">
-                        {currentLang === 'es' ? 'Cotiza tu solución ahora →' : 'Quote your solution now →'}
+                    <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-orange-glow">
+                        {t('cta.button')}
                     </a>
                 </div>
             </div>
@@ -136,3 +104,4 @@ const currentLang = Astro.currentLocale || 'es';
     </main>
     <Footer />
 </Layout>
+

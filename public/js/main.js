@@ -3,54 +3,39 @@
    ================================================ */
 
 document.addEventListener("astro:page-load", () => {
-  // ── Scroll Reset ──
-  window.scrollTo(0, 0);
+  const isReload = performance.navigation && performance.navigation.type === 1;
+
+  // ── Scroll Reset (Only on fresh navigate, not reload) ──
+  if (!isReload) {
+    window.scrollTo(0, 0);
+  }
 
   // ── Lenis Smooth Scroll ──
   if (window.lenis) {
     window.lenis.destroy();
   }
   
-  const lenis = new Lenis({
+  window.lenis = new Lenis({
     lerp: 0.1,
     smoothWheel: true
   });
-  window.lenis = lenis;
-  lenis.scrollTo(0, { immediate: true });
+  
+  if (!isReload) {
+    window.lenis.scrollTo(0, { immediate: true });
+  }
 
-  lenis.on("scroll", ScrollTrigger.update);
+  window.lenis.on("scroll", ScrollTrigger.update);
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+  if (!window.lenisTicker) {
+    window.lenisTicker = (time) => {
+      if (window.lenis) window.lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(window.lenisTicker);
+    gsap.ticker.lagSmoothing(0);
+  }
 
-  gsap.ticker.lagSmoothing(0);
-
-  // ── Dynamic Background Color Scrub (Only for Home/Manifesto) ──
   const manifestoSection = document.querySelector(".manifesto-premium");
   const body = document.body;
-  
-  if (manifestoSection) {
-    const bgBlue = getComputedStyle(document.documentElement).getPropertyValue('--blue-900').trim() || "#152A3C";
-    const bgWhite = "#FFFFFF";
-
-    // Iniciamos en blanco solo si estamos en el Home
-    gsap.set(body, { backgroundColor: bgWhite });
-
-    // Transición: Blanco -> Azul al hacer scroll
-    gsap.to(body, {
-      backgroundColor: bgBlue,
-      scrollTrigger: {
-        trigger: ".strategic-marquee",
-        start: "top 90%",
-        end: "top 20%",
-        scrub: true,
-      },
-    });
-  } else {
-    // En cualquier otra página, aseguramos que el fondo sea el oscuro por defecto
-    gsap.set(body, { backgroundColor: "var(--blue-900)" });
-  }
 
   // ── Utility: Split text into spans (Words) ──
   const splitText = (el) => {
@@ -69,6 +54,18 @@ document.addEventListener("astro:page-load", () => {
     }
   };
   window.addEventListener("scroll", updateNavbar, { passive: true });
+
+  if (navbar && manifestoSection) {
+    ScrollTrigger.create({
+      trigger: manifestoSection,
+      start: "top 80px",
+      end: "bottom 80px",
+      onEnter: () => navbar.classList.add("nav-dark-text"),
+      onLeave: () => navbar.classList.remove("nav-dark-text"),
+      onEnterBack: () => navbar.classList.add("nav-dark-text"),
+      onLeaveBack: () => navbar.classList.remove("nav-dark-text"),
+    });
+  }
 
   // ── Mobile Menu ──
   const burger = document.getElementById("navBurger");
@@ -142,6 +139,47 @@ document.addEventListener("astro:page-load", () => {
     }, { once: true });
   }
 
+  // ── Hero Morphing Animation (v.6) ──
+  const heroVisual = document.querySelector("#heroVisual");
+  const manifestoTitle = document.querySelector(".manifesto-title");
+  const heroSocials = document.querySelector(".hero-socials");
+
+  if (heroVisual && manifestoSection) {
+    // 1. Main Hero Parallax Morph
+    const morphTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // Morph the image: perfectly calculated to land on the manifesto title
+    morphTl.fromTo(heroVisual, 
+      {
+        y: 0,
+        x: 0,
+        width: "100%",
+        height: "100vh",
+        borderRadius: 0
+      },
+      {
+        y: () => document.querySelector(".hero").offsetHeight + (window.innerWidth > 992 ? 200 : 100),
+        x: () => window.innerWidth * 0.52,
+        width: "42vw",
+        height: "55vh",
+        borderRadius: "40px",
+        ease: "none"
+      }, 0);
+
+    // Fade out hero socials
+    if (heroSocials) {
+      morphTl.to(heroSocials, { opacity: 0, y: -50, duration: 0.2 }, 0);
+    }
+  }
+
   // ── Manifesto Animations (v.2 style) ──
   if (manifestoSection) {
     const title = manifestoSection.querySelector(".manifesto-title");
@@ -161,40 +199,6 @@ document.addEventListener("astro:page-load", () => {
       },
     });
 
-
-    // Floating images parallax
-    gsap.to(".img-1", {
-      y: -120,
-      rotate: 5,
-      scrollTrigger: {
-        trigger: ".manifesto-premium",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.5,
-      },
-    });
-
-    gsap.to(".img-2", {
-      y: -200,
-      rotate: -8,
-      scrollTrigger: {
-        trigger: ".manifesto-premium",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
-      },
-    });
-
-    gsap.to(".img-3", {
-      y: -150,
-      rotate: 3,
-      scrollTrigger: {
-        trigger: ".manifesto-premium",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.2,
-      },
-    });
 
     // Detail box reveal
     gsap.from(".manifesto-detail-box", {

@@ -162,13 +162,6 @@ const breadcrumbs = [
         <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
         <ClientRouter />
-
-        <script is:inline>
-            document.addEventListener('astro:page-load', () => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-                if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-            });
-        </script>
 	</head>
 	<body>
         <a href="#main-content" class="skip-link">{t('nav.about') === 'Nosotros' ? 'Saltar al contenido' : 'Skip to content'}</a>

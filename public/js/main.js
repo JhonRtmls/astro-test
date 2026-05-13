@@ -78,7 +78,6 @@ document.addEventListener("astro:page-load", () => {
     burger.addEventListener("click", () => {
       const isOpen = mobileMenu.classList.toggle("open");
       burger.classList.toggle("active", isOpen);
-      document.body.style.overflow = isOpen ? "hidden" : "";
     });
 
     const closeBtn = document.getElementById("mobileMenuClose");
@@ -86,7 +85,6 @@ document.addEventListener("astro:page-load", () => {
       closeBtn.addEventListener("click", () => {
         mobileMenu.classList.remove("open");
         burger.classList.remove("active");
-        document.body.style.overflow = "";
       });
     }
 
@@ -94,7 +92,6 @@ document.addEventListener("astro:page-load", () => {
       link.addEventListener("click", () => {
         mobileMenu.classList.remove("open");
         burger.classList.remove("active");
-        document.body.style.overflow = "";
       });
     });
   }

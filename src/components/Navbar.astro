@@ -6,55 +6,85 @@ const currentLang = Astro.currentLocale || 'es';
 <header class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href={getRelativeLocaleUrl(currentLang, '/')} class="nav-logo">
-      <img src="/astro-test/img/logo.png" alt="Gestoo" />
+      <img src="/astro-test/img/logo_gestoo.svg" alt="Gestoo" class="logo-default" />
+      <img src="/astro-test/img/gestoo_ojos.svg" alt="Gestoo" class="logo-scrolled" />
     </a>
-    <nav class="nav-menu">
-      <a href={getRelativeLocaleUrl(currentLang, '/')} data-i18n="nav-home">{currentLang === 'es' ? 'Inicio' : 'Home'}</a>
-      <a href={getRelativeLocaleUrl(currentLang, '/about')} data-i18n="nav-about">{currentLang === 'es' ? 'Nosotros' : 'About'}</a>
-      <a href={getRelativeLocaleUrl(currentLang, '/services')} data-i18n="nav-services">{currentLang === 'es' ? 'Servicios' : 'Services'}</a>
-      <a href={getRelativeLocaleUrl(currentLang, '/works')} data-i18n="nav-works">{currentLang === 'es' ? 'Proyectos' : 'Works'}</a>
-      <a href={getRelativeLocaleUrl(currentLang, '/insights')} data-i18n="nav-insights">Insights</a>
-    </nav>
+    
+    <!-- Desktop menu links removed to move them into the burger menu as requested -->
 
     <div class="nav-actions">
+      <div class="desktop-lang-switcher">
+        <a href={getRelativeLocaleUrl('en', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))} class={currentLang === 'en' ? 'active' : ''}>EN</a>
+        <a href={getRelativeLocaleUrl('es', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))} class={currentLang === 'es' ? 'active' : ''}>ES</a>
+      </div>
+
       <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-nav" data-i18n="nav-contact">
         {currentLang === 'es' ? 'Hablemos' : 'Let\'s talk'}
       </a>
-      <div class="lang-switcher">
-        <button class="lang-btn" id="langBtn">
-          <span class="lang-code">{currentLang.toUpperCase()}</span>
-          <svg class="lang-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
-            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </button>
-        <ul class="lang-dropdown">
-          <li><a href={getRelativeLocaleUrl('es', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>ES</a></li>
-          <li><a href={getRelativeLocaleUrl('en', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>EN</a></li>
-        </ul>
-      </div>
+
+      <button class="nav-burger" id="navBurger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <button class="nav-burger" id="navBurger" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
 
-<!-- Mobile Menu -->
+<!-- Mobile/Main Menu Overlay -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
-    <span></span><span></span>
-  </button>
-  <nav>
-    <a href={getRelativeLocaleUrl(currentLang, '/')} data-i18n="nav-home">{currentLang === 'es' ? 'Inicio' : 'Home'}</a>
-    <a href={getRelativeLocaleUrl(currentLang, '/about')} data-i18n="nav-about">{currentLang === 'es' ? 'Nosotros' : 'About'}</a>
-    <a href={getRelativeLocaleUrl(currentLang, '/services')} data-i18n="nav-services">{currentLang === 'es' ? 'Servicios' : 'Services'}</a>
-    <a href={getRelativeLocaleUrl(currentLang, '/works')} data-i18n="nav-works">{currentLang === 'es' ? 'Proyectos' : 'Works'}</a>
-    <a href={getRelativeLocaleUrl(currentLang, '/insights')} data-i18n="nav-insights">Insights</a>
-    <a href={getRelativeLocaleUrl(currentLang, '/contact')} data-i18n="nav-contact">{currentLang === 'es' ? 'Contacto' : 'Contact'}</a>
-    <div class="mobile-lang">
-      <a href={getRelativeLocaleUrl('es', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>ES</a>
-      <span>|</span>
-      <a href={getRelativeLocaleUrl('en', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))}>EN</a>
+  <div class="mobile-menu-header">
+    <a href={getRelativeLocaleUrl(currentLang, '/')} class="mobile-logo">
+      <img src="/astro-test/img/logo_gestoo.svg" alt="Gestoo" />
+    </a>
+    <div class="mobile-menu-actions">
+      <div class="mobile-lang-switcher">
+        <a href={getRelativeLocaleUrl('en', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))} class={currentLang === 'en' ? 'active' : ''}>EN</a>
+        <a href={getRelativeLocaleUrl('es', Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, ''))} class={currentLang === 'es' ? 'active' : ''}>ES</a>
+      </div>
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
-  </nav>
+  </div>
+
+  <div class="mobile-menu-content">
+    <div class="menu-grid">
+      <div class="menu-col">
+        <a href={getRelativeLocaleUrl(currentLang, '/about')} class="menu-link" data-i18n="nav-about">
+          {currentLang === 'es' ? 'NOSOTROS' : 'ABOUT'}
+        </a>
+        <a href={getRelativeLocaleUrl(currentLang, '/services')} class="menu-link" data-i18n="nav-services">
+          {currentLang === 'es' ? 'SERVICIOS' : 'SERVICES'}
+        </a>
+        <a href={getRelativeLocaleUrl(currentLang, '/works')} class="menu-link" data-i18n="nav-works">
+          {currentLang === 'es' ? 'PROYECTOS' : 'WORKS'}
+        </a>
+      </div>
+      <div class="menu-col">
+        <a href={getRelativeLocaleUrl(currentLang, '/insights')} class="menu-link">
+          INSIGHTS
+        </a>
+        <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="menu-link" data-i18n="nav-contact">
+          {currentLang === 'es' ? 'CONTACTO' : 'CONTACT'}
+        </a>
+        
+        <div class="menu-socials">
+          <a href="https://www.facebook.com/AgenciaGestoo" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/agenciagestoo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/agenciagestoo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.youtube.com/@AgenciaGestoo" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

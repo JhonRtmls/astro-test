@@ -24,8 +24,9 @@
 
 .btn-nav {
   padding: 0.6rem 1.8rem;
+  background-color: var(--accent-2);
+  color: var(--white);
   border: 1.5px solid var(--accent-2);
-  color: var(--accent-2);
   border-radius: var(--radius-pill);
   font-size: 0.85rem;
   font-weight: var(--fw-bold);
@@ -34,8 +35,8 @@
 }
 
 .btn-nav:hover {
-  background-color: var(--accent-2);
-  color: var(--white);
+  background-color: transparent;
+  color: var(--accent-2);
 }
 
 .btn-orange-glow {

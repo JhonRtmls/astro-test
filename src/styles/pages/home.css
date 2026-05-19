@@ -6,8 +6,9 @@
 .hero {
   position: relative;
   min-height: 100svh;
-  overflow: hidden;
-  background: var(--bg);
+  overflow: visible;
+  background: transparent;
+  z-index: 20;
 }
 
 .hero-video-wrapper {

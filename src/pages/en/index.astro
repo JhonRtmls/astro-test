@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import BrandMarquee from "../../components/BrandMarquee.astro";
 import Navbar from "../../components/Navbar.astro";
+import HeroVisual from "../../components/HeroVisual.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
 import Testimonials from "../../components/Testimonials.astro";
@@ -14,9 +15,6 @@ import "../../styles/pages/home.css";
 
 // Assets
 import heroImage from "../../assets/img/hero.jpg";
-import work1 from "../../assets/img/work-1.webp";
-import work2 from "../../assets/img/work-2.jpeg";
-import work3 from "../../assets/img/work-3.webp";
 import imgMarca from "../../assets/img/service-marca.jpg";
 import imgMice from "../../assets/img/service-mice.jpg";
 import imgProduccion from "../../assets/img/service-produccion.jpg";
@@ -42,29 +40,10 @@ const featuredProjects = allProjects
   <main id="main-content">
     <!-- ============ HERO ============ -->
     <section class="hero" id="home">
-      <div class="hero-video-wrapper">
-        <Image
-          src={heroImage}
-          alt="Gestoo Hero — Leading Creative Agency in Patagonia"
-          class="hero-video"
-          loading="eager"
-          fetchpriority="high"
-          widths={[400, 800, 1200, 1920]}
-          sizes="(max-width: 768px) 100vw, 100vw"
-          format="webp"
-        />
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-          <div class="reveal">
-            <span class="tag">{t('home.hero.tag')}</span>
-            <h1 class="hero-title">
-               {t('home.hero.title')} <br />
-               <span class="gradient-text">{t('home.hero.highlight')}</span>
-            </h1>
-          </div>
-        </div>
-        <SocialHero />
+      <HeroVisual />
+      <div class="hero-content container">
       </div>
+      <SocialHero />
     </section>
 
     <!-- ============ MANIFESTO ============ -->
@@ -74,23 +53,23 @@ const featuredProjects = allProjects
       </div>
 
       <div class="manifesto-container">
-        <div class="manifesto-images">
-          <Image src={work1} class="floating-img img-1" alt="Technical production" width={300} height={400} format="webp" />
-          <Image src={work2} class="floating-img img-2" alt="B2B Design" width={240} height={320} format="webp" />
-          <Image src={work3} class="floating-img img-3" alt="MICE Patagonia" width={260} height={350} format="webp" />
-        </div>
-
-        <div class="manifesto-content">
-          <h2 class="manifesto-title">
-            {t('home.manifesto.title_01')} <br />
-            {t('home.manifesto.title_02')} <br />
-            {t('home.manifesto.title_03')} <br />
-            {t('home.manifesto.title_04')} <br />
-            {t('home.manifesto.title_05')} <br />
-            {t('home.manifesto.title_06')}
-          </h2>
-          <div class="manifesto-detail-box reveal">
-            <p>{t('home.manifesto.desc')}</p>
+        <div class="manifesto-grid">
+          <div class="manifesto-left">
+            <h2 class="manifesto-title">
+              {t('home.manifesto.title_01')} <br />
+              {t('home.manifesto.title_02')} <br />
+              {t('home.manifesto.title_03')} <br />
+              {t('home.manifesto.title_04')} <br />
+              {t('home.manifesto.title_05')} <br />
+              {t('home.manifesto.title_06')}
+            </h2>
+            <p class="manifesto-subtitle reveal">{t('home.hero.tag')}</p>
+            <div class="manifesto-detail-box reveal">
+              <p>{t('home.manifesto.desc')}</p>
+            </div>
+          </div>
+          <div class="manifesto-right">
+            <div class="hero-target-space" id="heroTarget"></div>
           </div>
         </div>
       </div>

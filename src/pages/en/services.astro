@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations } from '../../i18n/utils';
+import '../../styles/pages/inner.css';
+import '../../styles/pages/services.css';
+import arbol from "../../assets/img/arbol.svg";
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout 
+    title="MICE Chile | Leading Agency for Congresses and Corporate Events | Gestoo"
+    description="MICE specialists in Chile. Technical production and logistics in Patagonia."
+    keywords="creative services, event organization, corporate branding, technical production patagonia, punta arenas logistics, mice tourism chile"
+>
+    <Navbar />
+    <img src={arbol.src} alt="" class="bg-asset asset-arbol" />
+    
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "MICE Chile & Creative Agency",
+      "description": "Comprehensive planning, logistics and technical production for the MICE sector in Chile.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Gestoo",
+        "url": "https://jhonrtmls.github.io/astro-test/"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "MICE and B2B Services Catalog",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": t('services.02.title'),
+              "description": t('services.02.desc')
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": t('services.03.title'),
+              "description": t('services.03.desc')
+            }
+          }
+        ]
+      }
+    })} />
+
+    <main id="main-content">
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="reveal">
+                    <span class="tag">{t('services.tag')}</span>
+                    <h1 class="page-title">
+                        {t('services.title')} <br><span class="gradient-text">{t('services.title_accent')}</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag">Specialties</span>
+                    <h2 class="section-title">{t('services.title')} <em>{t('services.title_accent')}</em></h2>
+                    <p class="lead-text">{t('services.lead')}</p>
+                </div>
+                <div class="services-grid">
+                    {[1, 2, 3, 4, 5, 6].map((num) => (
+                        <div class="service-card reveal">
+                            <span class="service-num">0{num}</span>
+                            <h3>{t(`services.0${num}.title` as any)}</h3>
+                            <p>{t(`services.0${num}.desc` as any)}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <FAQ />
+
+        <section class="section solution-section">
+            <div class="container content-contained">
+                <div class="solution-card reveal">
+                    <span class="tag">Problem Solvers</span>
+                    <h2 class="cta-title">
+                        {t('cta.challenge')} <br /> {t('cta.solution')} <span class="solution-highlight">{t('cta.solution_accent')}</span>
+                    </h2>
+                    <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-orange-glow">
+                        {t('cta.button')}
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

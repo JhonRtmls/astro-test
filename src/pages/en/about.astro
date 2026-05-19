@@ -1,0 +1,199 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import "../../styles/pages/inner.css";
+import "../../styles/pages/about.css";
+import antartica from "../../assets/img/antartica.svg";
+
+const currentLang = 'en';
+---
+
+<Layout 
+  title="Gestoo | About"
+  keywords="creative agency patagonia, gestoo history, creative team punta arenas, business vision, regional identity, logistics track record"
+>
+  <Navbar />
+  <img src={antartica.src} alt="" class="bg-asset asset-antartica" />
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-content">
+        <div class="reveal">
+          <span class="tag">Patagonian DNA</span>
+          <h1 class="page-title">
+            We transform vision into <br /><span class="gradient-text">real impact.</span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="about-intro">
+          <div class="about-intro-text reveal">
+            <h2>
+              A creative agency designing the future of events in Patagonia.
+            </h2>
+            <p>
+              We were born with the conviction that an event is not just a gathering of people: it is an opportunity to create something memorable. We are a team passionate about details, narrative, and emotional impact.
+            </p>
+            <br />
+            <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-primary">
+              Work with us
+            </a>
+          </div>
+          <div class="about-img-block reveal">
+            <img src="/astro-test/img/team.jpg" alt="Gestoo Team" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="testimonial-inner reveal" style="max-width:800px; margin:0 auto; text-align:center; position:relative;">
+          <blockquote>
+            <p>
+              We don't just organize events. We design experiences that transform moments into lifelong memories.
+            </p>
+          </blockquote>
+          <cite><strong>The Gestoo Team</strong></cite>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="tag">Methodology</span>
+          <h2 class="section-title">
+            Our strategic <br /><em>pillars.</em>
+          </h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-icon">01</div>
+            <h3>Strategic Thinking</h3>
+            <p>
+              We don't just execute; we analyze your business objectives so that every event and brand is a measured investment.
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">02</div>
+            <h3>Experience Engineering</h3>
+            <p>
+              We combine complex logistics with advanced audiovisual technology to create frictionless moments.
+            </p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">03</div>
+            <h3>Impeccable Execution</h3>
+            <p>
+              From the first sketch to disassembly, our attention to detail in Patagonia is surgical.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="tag">Human Capital</span>
+          <h2 class="section-title">
+            The team behind <br /><em>the magic.</em>
+          </h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member1.jpg" alt="Jaime Almonacid" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">Creative Director</span>
+              <h3>Jaime Almonacid</h3>
+              <p>Creative strategist focused on B2B solutions and brand experiences.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member2.jpg" alt="Paola Almonacid Vargas" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">Technical Production</span>
+              <h3>Paola Almonacid Vargas</h3>
+              <p>Expert in audiovisual engineering and logistics for high-impact events.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member3.jpg" alt="Cristina Vilicic" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">Administration</span>
+              <h3>Cristina Vilicic</h3>
+              <p>Head of Gestoo's accounting and administrative area.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member4.jpg" alt="Elizabeth Espinoza" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">Senior Logistics</span>
+              <h3>Elizabeth Espinoza</h3>
+              <p>Specialist in field operations and assembly in extreme conditions.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member5.jpg" alt="Javier Alvear" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">Visual Design</span>
+              <h3>Javier Alvear</h3>
+              <p>Responsible for the visual narrative and graphic pieces of events.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-img-wrapper">
+              <div class="team-img-placeholder"></div>
+              <img src="/astro-test/img/team/member6.jpg" alt="Cristian Valle" class="team-img" onerror="this.style.display='none'" />
+            </div>
+            <div class="team-info">
+              <span class="team-role">Production</span>
+              <h3>Cristian Valle</h3>
+              <p>Sound engineer and LED lighting systems specialist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution-section">
+      <div class="container content-contained">
+        <div class="solution-card reveal">
+          <span class="tag">Problem Solvers</span>
+          <h2 class="cta-title">
+            Have a challenge? <br /> We are the <span class="solution-highlight">solution.</span>
+          </h2>
+          <a href={getRelativeLocaleUrl(currentLang, '/contact')} class="btn-orange-glow">
+            Quote your solution now →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -5,18 +5,18 @@ import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 import { Image } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getLangFromUrl } from '../../../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 import '../../../styles/pages/inner.css';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const posts = (await getCollection('posts', ({ id }) => id.startsWith(`${lang}/`))).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// Metadata para SEO
-const title = lang === 'es' ? "Insights & Noticias | Gestoo" : "Insights & News | Gestoo";
-const description = lang === 'es' ? "Explora las últimas noticias y análisis sobre el sector MICE y logística." : "Explore the latest news and analysis on the MICE and logistics sector.";
+const title = "Insights & News | Gestoo";
+const description = "Explore the latest news and analysis on the MICE and logistics sector.";
 ---
 
 <Layout title={title} description={description}>
@@ -26,8 +26,8 @@ const description = lang === 'es' ? "Explora las últimas noticias y análisis s
         <section class="page-hero">
             <div class="container page-hero-content">
                 <div class="reveal">
-                    <span class="tag">{lang === 'es' ? 'Conocimiento' : 'Knowledge'}</span>
-                    <h1 class="page-title">{lang === 'es' ? 'Nuestros' : 'Our'} <br><span class="gradient-text">Insights.</span></h1>
+                    <span class="tag">Knowledge</span>
+                    <h1 class="page-title">Our <br><span class="gradient-text">Insights.</span></h1>
                 </div>
             </div>
         </section>
@@ -64,7 +64,7 @@ const description = lang === 'es' ? "Explora las últimas noticias y análisis s
                                     </time>
                                     <h3>{post.data.title}</h3>
                                     <p>{post.data.description}</p>
-                                    <span class="read-more">{lang === 'es' ? 'Leer más →' : 'Read more →'}</span>
+                                    <span class="read-more">Read more →</span>
                                 </div>
                             </article>
                         </a>

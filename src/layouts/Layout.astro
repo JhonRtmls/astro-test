@@ -23,18 +23,10 @@ const t = useTranslations(lang);
 const site = Astro.site || new URL('https://jhonrtmls.github.io/astro-test');
 const canonicalURL = new URL(Astro.url.pathname, site);
 
-// Breadcrumb Logic for AI
-const pathSegments = Astro.url.pathname.replace('/astro-test', '').replace(/^\/?(es|en)/, '').split('/').filter(Boolean);
-const breadcrumbs = [
-    { name: lang === 'es' ? 'Inicio' : 'Home', item: `${site.href}/${lang}/` },
-    ...pathSegments.map((segment, index) => {
-        const path = pathSegments.slice(0, index + 1).join('/');
-        return {
-            name: segment.charAt(0).toUpperCase() + segment.slice(1),
-            item: `${site.href}/${lang}/${path}`
-        };
-    })
-];
+const isEn = lang === 'en';
+const schemaServices = isEn
+    ? { name: "Production Services", items: ["Branding & Identity", "MICE Tourism", "Technical Event Production", "Patagonia Logistics"] }
+    : { name: "Servicios de Producción", items: ["Branding & Identidad", "Turismo MICE", "Producción Técnica de Eventos", "Logística en Patagonia"] };
 ---
 
 <!doctype html>
@@ -134,13 +126,11 @@ const breadcrumbs = [
                     ],
                     "hasOfferCatalog": {
                         "@type": "OfferCatalog",
-                        "name": "Servicios de Producción",
-                        "itemListElement": [
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding & Identidad" } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Turismo MICE" } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Producción Técnica de Eventos" } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Logística en Patagonia" } }
-                        ]
+                        "name": schemaServices.name,
+                        "itemListElement": schemaServices.items.map((name) => ({
+                            "@type": "Offer",
+                            "itemOffered": { "@type": "Service", name }
+                        }))
                     },
                     "address": {
                         "@type": "PostalAddress",

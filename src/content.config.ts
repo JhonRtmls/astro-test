@@ -1,15 +1,19 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { z } from 'zod';
+import { z } from 'zod/v4';
+
+const dateSchema = z.union([
+	z.date(),
+	z.string().transform((val) => new Date(val)),
+]);
 
 const projects = defineCollection({
-	// Loader para Astro 5/6
 	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
+		pubDate: dateSchema,
+		updatedDate: dateSchema.optional(),
 		heroImage: image().optional(),
 		category: z.string(),
 		tag: z.string().optional(),
@@ -23,8 +27,8 @@ const posts = defineCollection({
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
+		pubDate: dateSchema,
+		updatedDate: dateSchema.optional(),
 		heroImage: image().optional(),
 		category: z.string().default('Noticias'),
 		author: z.string().default('Equipo Gestoo'),

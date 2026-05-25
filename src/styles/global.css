@@ -210,7 +210,7 @@ h4 {
 }
 
 .navbar.nav-dark-text .logo-default {
-  filter: invert(1) brightness(0.2);
+  filter: brightness(0) saturate(100%) invert(13%) sepia(18%) saturate(1200%) hue-rotate(175deg) brightness(95%) contrast(90%);
 }
 
 /* ── Navbar Contrast (for white bg) ── */
@@ -224,7 +224,7 @@ h4 {
 }
 
 .navbar.nav-dark-text .nav-logo img {
-  filter: brightness(0); /* Black logo on white */
+  filter: brightness(0) saturate(100%) invert(13%) sepia(18%) saturate(1200%) hue-rotate(175deg) brightness(95%) contrast(90%);
 }
 
 .navbar.nav-dark-text.scrolled {
@@ -470,11 +470,31 @@ h4 {
 /* ── MANIFESTO (v.2 Style) ── */
 .manifesto-premium {
   position: relative;
-  padding: 200px 0;
+  padding: 200px 0 300px;
   background-color: var(--white);
   color: var(--text-dark);
   overflow: visible; /* Allow hero to fly over */
   z-index: 10;
+}
+
+.manifesto-premium::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(
+    to bottom,
+    var(--white) 0%,
+    rgba(21, 42, 60, 0.02) 20%,
+    rgba(21, 42, 60, 0.08) 40%,
+    rgba(21, 42, 60, 0.2) 60%,
+    rgba(21, 42, 60, 0.5) 80%,
+    var(--blue-900) 100%
+  );
+  pointer-events: none;
+  z-index: 5;
 }
 
 .manifesto-container {

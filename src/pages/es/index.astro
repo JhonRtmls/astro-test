@@ -14,7 +14,6 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import "../../styles/pages/home.css";
 
 // Assets
-import heroImage from "../../assets/img/hero.jpg";
 import imgMarca from "../../assets/img/service-marca.jpg";
 import imgMice from "../../assets/img/service-mice.jpg";
 import imgProduccion from "../../assets/img/service-produccion.jpg";
@@ -32,7 +31,7 @@ const featuredProjects = allProjects
   .slice(0, 4);
 ---
 
-<Layout 
+<Layout
   title={lang === 'es' ? "Gestoo | Producción Técnica y Creativa en Patagonia" : "Gestoo | Technical and Creative Production in Patagonia"}
   keywords="branding, turismo mice, producción de eventos, punta arenas, patagonia, chile, logística, eventos corporativos, agencia creativa patagonia"
 >
@@ -74,20 +73,6 @@ const featuredProjects = allProjects
         </div>
       </div>
     </section>
-
-    <!-- ============ STRATEGIC MARQUEE ============ -->
-    <div class="marquee-wrap strategic-marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-block">
-          <span>{lang === 'es' ? 'Creatividad' : 'Creativity'}</span><span class="dot"></span>
-          <span>{lang === 'es' ? 'Eventos' : 'Events'}</span><span class="dot"></span>
-          <span>MICE</span><span class="dot"></span>
-          <span>Branding</span><span class="dot"></span>
-          <span>Patagonia</span><span class="dot"></span>
-          <span>{lang === 'es' ? 'Soluciones' : 'Solutions'}</span><span class="dot"></span>
-        </div>
-      </div>
-    </div>
 
     <!-- ============ SERVICES HUB ============ -->
     <section class="services-hub" id="services">
@@ -172,7 +157,19 @@ const featuredProjects = allProjects
 
     <Testimonials />
 
-
+    <!-- ============ STRATEGIC MARQUEE ============ -->
+    <div class="marquee-wrap strategic-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-block">
+          <span>{lang === 'es' ? 'Creatividad' : 'Creativity'}</span><span class="dot"></span>
+          <span>{lang === 'es' ? 'Eventos' : 'Events'}</span><span class="dot"></span>
+          <span>MICE</span><span class="dot"></span>
+          <span>Branding</span><span class="dot"></span>
+          <span>Patagonia</span><span class="dot"></span>
+          <span>{lang === 'es' ? 'Soluciones' : 'Solutions'}</span><span class="dot"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- ============ PROBLEM SOLVER ============ -->
     <section class="solver-section" id="contact">
@@ -189,7 +186,7 @@ const featuredProjects = allProjects
           <div class="container content-contained">
             <span class="status-badge white">{lang === 'es' ? 'La Solución' : 'The Solution'}</span>
             <h2 class="solver-text">
-              {lang === 'es' 
+              {lang === 'es'
                 ? 'TE AYUDAMOS A QUE CADA PROYECTO SEA UNA INVERSIÓN, NO UN GASTO.' 
                 : 'WE HELP YOU MAKE EVERY PROJECT AN INVESTMENT, NOT AN EXPENSE.'}
             </h2>

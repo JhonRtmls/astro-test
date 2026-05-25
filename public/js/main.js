@@ -3,7 +3,8 @@
    ================================================ */
 
 document.addEventListener("astro:page-load", () => {
-  const isReload = performance.navigation && performance.navigation.type === 1;
+  const nav = performance.getEntriesByType("navigation")[0];
+  const isReload = nav && nav.type === "reload";
 
   // ── Scroll Reset (Only on fresh navigate, not reload) ──
   if (!isReload) {
@@ -35,7 +36,6 @@ document.addEventListener("astro:page-load", () => {
   }
 
   const manifestoSection = document.querySelector(".manifesto-premium");
-  const body = document.body;
 
   // ── Utility: Split text into spans (Words) ──
   const splitText = (el) => {
@@ -46,20 +46,33 @@ document.addEventListener("astro:page-load", () => {
 
   // ── Navbar Scroll Effect ──
   const navbar = document.getElementById("navbar");
-  const updateNavbar = () => {
-    if (window.scrollY > 50) {
+  const updateNavbar = ({ scroll }) => {
+    if (scroll > 50) {
       navbar.classList.add("scrolled");
     } else {
       navbar.classList.remove("scrolled");
     }
   };
-  window.addEventListener("scroll", updateNavbar, { passive: true });
+  window.lenis.on("scroll", updateNavbar);
 
   if (navbar && manifestoSection) {
     ScrollTrigger.create({
       trigger: manifestoSection,
       start: "top 80px",
       end: "bottom 80px",
+      onEnter: () => navbar.classList.add("nav-dark-text"),
+      onLeave: () => navbar.classList.remove("nav-dark-text"),
+      onEnterBack: () => navbar.classList.add("nav-dark-text"),
+      onLeaveBack: () => navbar.classList.remove("nav-dark-text"),
+    });
+  }
+
+  // ─ Solver Section (white background) ─
+  if (navbar && document.querySelector(".solver-section")) {
+    ScrollTrigger.create({
+      trigger: ".layer-solution",
+      start: "top+=30% top",
+      end: "bottom top",
       onEnter: () => navbar.classList.add("nav-dark-text"),
       onLeave: () => navbar.classList.remove("nav-dark-text"),
       onEnterBack: () => navbar.classList.add("nav-dark-text"),
@@ -141,7 +154,6 @@ document.addEventListener("astro:page-load", () => {
 
   // ── Hero Morphing Animation (v.6) ──
   const heroVisual = document.querySelector("#heroVisual");
-  const manifestoTitle = document.querySelector(".manifesto-title");
   const heroSocials = document.querySelector(".hero-socials");
 
   if (heroVisual && manifestoSection) {
@@ -327,7 +339,7 @@ document.addEventListener("astro:page-load", () => {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute("href"));
       if (target) {
-        lenis.scrollTo(target);
+        window.lenis.scrollTo(target);
       }
     });
   });

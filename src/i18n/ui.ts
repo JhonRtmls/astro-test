@@ -12,12 +12,12 @@ export const ui = {
     'nav.services': 'Servicios',
     'nav.works': 'Proyectos',
     'nav.contact': 'Hablemos',
-    
+
     // Home - Hero
     'home.hero.title': 'Lideramos la producción técnica y creativa en la',
     'home.hero.highlight': 'Patagonia Chilena.',
-    'home.hero.tag': '15+ Años de Trayectoria',
-    
+    'home.hero.tag': '13+ Años de Trayectoria',
+
     // Home - Manifesto
     'home.manifesto.title_01': 'SOMOS',
     'home.manifesto.title_02': 'PARA QUIENES',
@@ -26,7 +26,7 @@ export const ui = {
     'home.manifesto.title_05': 'A DESAFÍOS',
     'home.manifesto.title_06': 'COMPLEJOS.',
     'home.manifesto.desc': 'Gestoo es la agencia líder en la Patagonia Chilena especializada en la producción técnica y logística integral para eventos corporativos, congresos MICE y consultoría de marca de alto impacto.',
-    
+
     // Services
     'services.tag': 'Ecosistema Gestoo',
     'services.title': 'Soluciones diseñadas para',
@@ -44,7 +44,7 @@ export const ui = {
     'services.05.desc': 'Lanzamientos y galas con ejecución impecable. El 95% de nuestros clientes B2B vuelven a contratarnos.',
     'services.06.title': 'Operación Regional',
     'services.06.desc': 'Dominamos la logística en Punta Arenas, Puerto Natales y Torres del Paine bajo cualquier condición climática.',
-    
+
     // FAQ Section (GEO Optimized)
     'faq.tag': 'Consultas',
     'faq.title': 'Preguntas ',
@@ -87,12 +87,12 @@ export const ui = {
     'nav.services': 'Services',
     'nav.works': 'Projects',
     'nav.contact': 'Contact',
-    
+
     // Home - Hero
     'home.hero.title': 'Leading technical and creative production in',
     'home.hero.highlight': 'Chilean Patagonia.',
-    'home.hero.tag': '15+ Years of Experience',
-    
+    'home.hero.tag': '13+ Years of Experience',
+
     // Home - Manifesto
     'home.manifesto.title_01': 'WE ARE',
     'home.manifesto.title_02': 'FOR THOSE',
@@ -101,7 +101,7 @@ export const ui = {
     'home.manifesto.title_05': 'SOLUTIONS TO',
     'home.manifesto.title_06': 'COMPLEX CHALLENGES.',
     'home.manifesto.desc': 'Gestoo is the leading agency in Chilean Patagonia specialized in technical production and comprehensive logistics for corporate events, MICE congresses, and high-impact brand consulting.',
-    
+
     // Services
     'services.tag': 'Gestoo Ecosystem',
     'services.title': 'Solutions designed for',
@@ -119,7 +119,7 @@ export const ui = {
     'services.05.desc': 'Launches and galas with impeccable execution. 95% of our B2B clients hire us again.',
     'services.06.title': 'Regional Operation',
     'services.06.desc': 'We master logistics in Punta Arenas, Puerto Natales, and Torres del Paine under any weather conditions.',
-    
+
     // FAQ Section (GEO Optimized)
     'faq.tag': 'Queries',
     'faq.title': 'Frequently Asked ',

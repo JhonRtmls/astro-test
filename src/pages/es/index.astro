@@ -74,45 +74,42 @@ const featuredProjects = allProjects
       </div>
     </section>
 
-    <!-- ============ SERVICES HUB ============ -->
-    <section class="services-hub" id="services">
-      <div class="container hub-container">
-        <div class="hub-center">
-          <div class="hub-center-circle">
-            <h3>{t('services.lead')}</h3>
-          </div>
-        </div>
+    <!-- ============ SERVICES PILARES ============ -->
+    <section class="pilares-section" id="services">
+      <div class="pilares-header container">
+        <span class="tag">{t('services.tag')}</span>
+        <h2 class="section-title">
+          {t('services.title')} <em>{t('services.title_accent')}</em>
+        </h2>
+      </div>
 
-        <!-- Anillos concéntricos de fondo -->
-        <div class="hub-rings">
-          <div class="hub-ring ring-1"></div>
-          <div class="hub-ring ring-2"></div>
-          <div class="hub-ring ring-3"></div>
-        </div>
-
-        <div class="hub-cards">
-          {
-            [1, 2, 3, 4].map((num) => {
-              const imgMap = {
-                1: imgMarca,
-                2: imgMice,
-                3: imgProduccion,
-                4: imgRenting
-              };
-              const imgAsset = imgMap[num as keyof typeof imgMap];
-              return (
-                <a href={getRelativeLocaleUrl(lang, '/services')} class={`hub-card card-${num}`}>
-                  <div class="hub-card-image" style={`background-image: url('${imgAsset.src}')`}></div>
-                  <div class="hub-card-content">
-                    <span class="hub-card-num">0{num}</span>
-                    <h4>{t(`services.0${num}.title` as any)}</h4>
-                    <p class="short-desc">{t(`services.0${num}.desc` as any)}</p>
-                  </div>
-                </a>
-              )
-            })
-          }
-        </div>
+      <div class="pilares-grid">
+        {
+          [1, 2, 3, 4].map((num) => {
+            const imgMap = {
+              1: imgMarca,
+              2: imgMice,
+              3: imgProduccion,
+              4: imgRenting
+            };
+            const imgAsset = imgMap[num as keyof typeof imgMap];
+            return (
+              <a href={getRelativeLocaleUrl(lang, '/services')} class="pilar-card">
+                <div class="pilar-bg" style={`background-image: url('${imgAsset.src}')`}></div>
+                <div class="pilar-overlay"></div>
+                <div class="pilar-content">
+                  <span class="pilar-num">0{num}</span>
+                  <h3 class="pilar-title">{t(`services.0${num}.title` as any)}</h3>
+                  <p class="pilar-desc">{t(`services.0${num}.desc` as any)}</p>
+                  <span class="pilar-cta">
+                    {lang === 'es' ? 'Ver más' : 'Learn more'}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </a>
+            )
+          })
+        }
       </div>
     </section>
 

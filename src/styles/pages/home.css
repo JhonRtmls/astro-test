@@ -35,7 +35,6 @@
 
 .hero-video-container {
   z-index: 1;
-  /* Sobredimensionar para ocultar bordes e interfaz de YouTube */
   transform: scale(1.15);
 }
 
@@ -43,7 +42,7 @@
   width: 100%;
   height: 100%;
   border: none;
-  pointer-events: none; /* Evita clics accidentales en el video */
+  pointer-events: none;
 }
 
 .hero-overlay {
@@ -72,124 +71,173 @@
   max-width: 1400px;
 }
 
-/* ---- SERVICES VISUAL GRID (4 Pilares con Imagen) ---- */
-.services-visual-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin-top: 3rem;
-  padding: 0;
-  max-width: 100%;
+/* ================================================
+   PILARES DE SERVICIOS — 4 Rectángulos
+   ================================================ */
+
+.pilares-section {
+  padding: var(--section-py) 0 0;
 }
 
-.service-visual-item {
-  position: relative;
-  height: 600px;
-  /* Altura espectacular para las fotos */
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
+.pilares-header {
+  margin-bottom: 3.5rem;
+}
+
+/* Contenedor: flex en desktop para efecto de expansión */
+.pilares-grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: all 0.8s var(--ease);
+  width: 100%;
+  height: 560px;
 }
 
-.service-overlay {
+/* Tarjeta pilar */
+.pilar-card {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  transition: flex 0.6s var(--ease);
+  cursor: pointer;
+}
+
+.pilar-card:last-child {
+  border-right: none;
+}
+
+.pilar-card:hover {
+  flex: 1.5;
+}
+
+/* Imagen de fondo */
+.pilar-bg {
   position: absolute;
   inset: 0;
-  /* Cambiamos a un degradado para un look más premium */
-  background: linear-gradient(to bottom, rgba(13, 27, 38, 0.5) 0%, rgba(13, 27, 38, 0.85) 100%);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s var(--ease);
+}
+
+.pilar-card:hover .pilar-bg {
+  transform: scale(1.06);
+}
+
+/* Overlay degradado */
+.pilar-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 21, 30, 0.2) 0%,
+    rgba(10, 21, 30, 0.55) 40%,
+    rgba(10, 21, 30, 0.92) 100%
+  );
   transition: background 0.5s ease;
   z-index: 1;
 }
 
-.service-visual-item:hover .service-overlay {
-  background: rgba(13, 27, 38, 0.7);
-  /* Se aclara un poco al hover */
+.pilar-card:hover .pilar-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 21, 30, 0.1) 0%,
+    rgba(10, 21, 30, 0.45) 35%,
+    rgba(10, 21, 30, 0.88) 100%
+  );
 }
 
-.service-visual-item:hover {
-  transform: scale(1.02);
-  z-index: 2;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-}
-
-.service-content {
+/* Contenido */
+.pilar-content {
   position: relative;
   z-index: 2;
-  padding: 2rem;
-  max-width: 400px;
+  padding: 2.4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
-.service-content .service-num {
-  display: block;
-  font-size: 0.8rem;
+.pilar-num {
+  font-size: 0.7rem;
   font-weight: var(--fw-bold);
+  letter-spacing: 0.25em;
   color: var(--accent-2);
-  margin-bottom: 2rem;
-  letter-spacing: 0.2em;
-}
-
-.service-content h3 {
-  font-size: 1.8rem;
-  font-weight: var(--fw-bold);
   text-transform: uppercase;
-  color: var(--white);
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
 }
 
-.service-content p {
-  font-size: 1rem;
+.pilar-title {
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.pilar-desc {
+  font-size: 0.85rem;
   color: var(--text-2);
   line-height: 1.6;
-  opacity: 0.9;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s var(--ease), opacity 0.4s ease 0.1s;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-  .services-visual-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .service-visual-item {
-    height: 450px;
-  }
+.pilar-card:hover .pilar-desc {
+  max-height: 120px;
+  opacity: 1;
 }
 
-@media (max-width: 768px) {
-  .services-visual-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-visual-item {
-    height: 400px;
-  }
+.pilar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-top: 0.4rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
 }
 
-/* ---- RESPONSIVE ---- */
-@media (max-width: 1300px) {
-  .services-agency-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.pilar-cta svg {
+  transition: transform 0.3s ease;
 }
 
-@media (max-width: 900px) {
-  .services-agency-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.pilar-card:hover .pilar-cta {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@media (max-width: 600px) {
-  .services-agency-grid {
-    grid-template-columns: 1fr;
-  }
+.pilar-card:hover .pilar-cta svg {
+  transform: translateX(4px);
 }
 
-/* ---- PORTFOLIO AGENCY GRID (2 Columnas Pegadas) ---- */
-/* ---- PORTFOLIO AGENCY GRID (2 Columnas Pegadas) ---- */
+/* Línea de acento inferior */
+.pilar-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--accent-2);
+  transition: width 0.5s var(--ease);
+  z-index: 3;
+}
+
+.pilar-card:hover::after {
+  width: 100%;
+}
+
+/* ---- PORTFOLIO AGENCY GRID ---- */
 .works-grid-agency {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -201,7 +249,6 @@
   padding: 100px 0 60px;
 }
 
-/* Reusing work-card from previous styles but cleaned up */
 .work-card {
   position: relative;
   width: 100%;
@@ -238,17 +285,49 @@
   transition: transform 0.6s var(--ease);
 }
 
-/* ---- SOLUTION B2B SECTION ---- */
-/* ---- RESPONSIVE ---- */
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+
+/* Tablet: pilares pasan a 2 columnas en grid */
 @media (max-width: 1100px) {
-  .services-agency-grid {
-    grid-template-columns: 1fr 1fr;
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+
+  .pilar-card {
+    height: 380px;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* En grid el hover no expande; mostrar desc y cta siempre */
+  .pilar-desc {
+    max-height: 120px;
+    opacity: 1;
+  }
+
+  .pilar-cta {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 768px) {
-  .services-agency-grid {
+/* Móvil: 1 columna */
+@media (max-width: 600px) {
+  .pilares-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pilar-card {
+    height: 320px;
+    border-right: none;
+  }
+
+  .pilares-header {
+    margin-bottom: 2rem;
   }
 
   .works-grid-agency {

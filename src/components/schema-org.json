@@ -2,9 +2,9 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Gestoo",
-  "url": "https://gestoo.cl/astro-test/",
-  "logo": "https://gestoo.cl/astro-test/img/logo-dark.png",
-  "image": "https://gestoo.cl/astro-test/img/hero.jpg",
+  "url": "https://gestoo.cl/",
+  "logo": "https://gestoo.cl/img/logo_gestoo.svg",
+  "image": "https://gestoo.cl/img/hero.jpg",
   "description": "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística B2B.",
   "address": {
     "@type": "PostalAddress",

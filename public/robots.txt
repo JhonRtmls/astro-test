@@ -1,6 +1,60 @@
+# robots.txt - Gestoo - Agencia Creativa & MICE Patagonia
 # https://www.robotstxt.org/robotstxt.html
+
+# --- ALLOW ALL BENIGN BOTS ---
 User-agent: *
 Allow: /
+Crawl-delay: 5
 
-# Sitemap location
-Sitemap: https://jhonrtmls.github.io/astro-test/sitemap-index.xml
+# --- AI SEARCH ENGINE BOTS (GEO Optimization) ---
+# ChatGPT / OpenAI
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 5
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 5
+
+# Claude / Anthropic
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 5
+
+# Google AI / SGE
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 5
+
+# Bing / Copilot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Microsoft Copilot
+Allow: /
+
+# --- BAD BOTS (BLOCK) ---
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemaps
+Sitemap: https://gestoo.cl/sitemap-index.xml

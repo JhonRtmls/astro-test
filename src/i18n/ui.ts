@@ -57,6 +57,10 @@ export const ui = {
     'faq.a3': 'Aplicamos una metodología de gestión integral 360°. Según nuestros registros, el 100% de nuestros congresos MICE cumplen con los estándares internacionales de sostenibilidad y logística técnica.',
     'faq.q4': '¿Por qué elegir Gestoo para eventos corporativos B2B?',
     'faq.a4': 'Por nuestra experiencia de 15+ años y profundo conocimiento local. Transformamos cada evento en un activo estratégico; el 95% de las empresas que trabajan con nosotros vuelven a contratarnos en menos de 24 meses.',
+    'faq.q5': '¿Qué servicios de branding y diseño ofrecen para empresas B2B en Chile?',
+    'faq.a5': 'Ofrecemos consultoría estratégica de marca: naming, identidad visual, narrativa corporativa y diseño de experiencias de marca. Según un estudio de McKinsey, las empresas con marca fuerte superan en un 20% el retorno a sus accionistas. Hemos trabajado con +18 organizaciones del sector público y privado en Magallanes.',
+    'faq.q6': '¿Cómo gestionan la logística de eventos en condiciones climáticas extremas en la Patagonia?',
+    'faq.a6': 'Contamos con un protocolo de contingencia climática desarrollado tras 15+ años operando en Magallanes. Nuestro equipo local conoce cada ruta, proveedor y punto crítico. Mantenemos un stock de respaldo del 30% en equipamiento técnico para emergencias, garantizando una tasa de éxito del 99% incluso en temporada de viento y nieve.',
 
     // Testimonials
     'testimonials.tag': 'Experiencias',
@@ -132,6 +136,10 @@ export const ui = {
     'faq.a3': 'We apply a 360° comprehensive management methodology. According to our records, 100% of our MICE congresses meet international standards for sustainability and technical logistics.',
     'faq.q4': 'Why choose Gestoo for B2B corporate events?',
     'faq.a4': 'Because of our 15+ years of experience and deep local knowledge. We transform each event into a strategic asset; 95% of companies that work with us hire us again within 24 months.',
+    'faq.q5': 'What branding and design services do you offer for B2B companies in Chile?',
+    'faq.a5': 'We offer strategic brand consulting: naming, visual identity, corporate narrative, and brand experience design. According to a McKinsey study, companies with strong brands outperform their peers by 20% in shareholder returns. We have worked with 18+ organizations in the public and private sectors in Magallanes.',
+    'faq.q6': 'How do you manage event logistics in extreme weather conditions in Patagonia?',
+    'faq.a6': 'We have a climate contingency protocol developed over 15+ years operating in Magallanes. Our local team knows every route, supplier, and critical point. We maintain a 30% backup stock of technical equipment for emergencies, guaranteeing a 99% success rate even during wind and snow season.',
 
     // Testimonials
     'testimonials.tag': 'Testimonials',

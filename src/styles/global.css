@@ -231,8 +231,15 @@ h4 {
   background: rgba(255, 255, 255, 0.9);
 }
 
-.navbar.nav-dark-text .nav-burger span {
-  background-color: var(--blue-900);
+/* Override: when scrolled, hide default logo and show ojos logo */
+.navbar.nav-dark-text.scrolled .logo-default {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar.nav-dark-text.scrolled .logo-scrolled {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ── Burger Menu Button ── */

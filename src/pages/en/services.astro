@@ -24,34 +24,24 @@ const t = useTranslations(lang);
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
-      "serviceType": "MICE Chile & Creative Agency",
-      "description": "Comprehensive planning, logistics and technical production for the MICE sector in Chile.",
+      "serviceType": "MICE Chile & Creative B2B Agency",
+      "description": "Comprehensive planning, logistics and technical production for the MICE sector in Chile and Patagonia.",
       "provider": {
         "@type": "ProfessionalService",
         "name": "Gestoo",
-        "url": "https://jhonrtmls.github.io/astro-test/"
+        "url": "https://gestoo.cl/"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "MICE and B2B Services Catalog",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": t('services.02.title'),
-              "description": t('services.02.desc')
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": t('services.03.title'),
-              "description": t('services.03.desc')
-            }
+        "name": "Complete MICE and B2B Services Catalog",
+        "itemListElement": [1, 2, 3, 4, 5, 6].map(i => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": t(`services.0${i}.title` as any),
+            "description": t(`services.0${i}.desc` as any)
           }
-        ]
+        }))
       }
     })} />
 

@@ -1,6 +1,6 @@
 ---
 const currentYear = new Date().getFullYear();
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <footer class="footer">
@@ -8,12 +8,8 @@ const base = import.meta.env.BASE_URL;
     <div class="footer-grid">
       <div class="footer-brand">
         <a href={`${base}`} class="footer-logo">
-          <img src={`${base}/img/logo.png`} alt="Gestoo" />
+          <img src={`${base}/img/logo_gestoo.svg`} alt="Gestoo" />
         </a>
-        <p data-i18n="footer-desc">
-          Potenciando negocios a través de experiencias creativas.<br />Punta
-          Arenas, Chile.
-        </p>
       </div>
 
       <div class="footer-nav-group">
@@ -36,7 +32,7 @@ const base = import.meta.env.BASE_URL;
         </div>
         <div class="footer-contact">
           <h3 data-i18n="footer-contact">Contacto</h3>
-          <a href="#" class="email-link" data-name="contacto" data-domain="gestoo.cl">Cargando email...</a>
+          <a href="mailto:contacto@gestoo.cl" class="email-link" data-name="contacto" data-domain="gestoo.cl">contacto@gestoo.cl</a>
           <p>Punta Arenas, Chile</p>
         </div>
       </div>

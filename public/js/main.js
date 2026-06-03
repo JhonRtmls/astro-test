@@ -67,19 +67,6 @@ document.addEventListener("astro:page-load", () => {
     });
   }
 
-  // ─ Solver Section (white background) ─
-  if (navbar && document.querySelector(".solver-section")) {
-    ScrollTrigger.create({
-      trigger: ".layer-solution",
-      start: "top+=30% top",
-      end: "bottom top",
-      onEnter: () => navbar.classList.add("nav-dark-text"),
-      onLeave: () => navbar.classList.remove("nav-dark-text"),
-      onEnterBack: () => navbar.classList.add("nav-dark-text"),
-      onLeaveBack: () => navbar.classList.remove("nav-dark-text"),
-    });
-  }
-
   // ── Mobile Menu ──
   const burger = document.getElementById("navBurger");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -114,7 +101,7 @@ document.addEventListener("astro:page-load", () => {
     // Usamos quickTo para máxima fluidez y evitar saltos (GSAP 3.10+)
     const xTo = gsap.quickTo(cursor, "x", { duration: 0.1, ease: "power3" });
     const yTo = gsap.quickTo(cursor, "y", { duration: 0.1, ease: "power3" });
-    
+
     const xFollowerTo = gsap.quickTo(follower, "x", { duration: 0.4, ease: "power2.out" });
     const yFollowerTo = gsap.quickTo(follower, "y", { duration: 0.4, ease: "power2.out" });
 
@@ -328,9 +315,32 @@ document.addEventListener("astro:page-load", () => {
           pin: true,
           anticipatePin: 0.5,
           invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (!navbar) return;
+            const vh = window.innerHeight;
+            const navbarH = navbar.offsetHeight;
+            const threshold = 1 - navbarH / vh;
+            if (self.progress > threshold) {
+              navbar.classList.add("nav-dark-text");
+            } else {
+              navbar.classList.remove("nav-dark-text");
+            }
+          },
         },
       },
     );
+
+    // Remove dark text when solution scrolls past (FAQ enters viewport)
+    ScrollTrigger.create({
+      trigger: ".faq-section",
+      start: "top top",
+      onEnter: () => {
+        if (navbar) navbar.classList.remove("nav-dark-text");
+      },
+      onLeaveBack: () => {
+        if (navbar) navbar.classList.add("nav-dark-text");
+      },
+    });
   }
 
   // ── Smooth Anchors ──

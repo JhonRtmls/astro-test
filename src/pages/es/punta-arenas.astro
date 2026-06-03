@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import '../../styles/pages/inner.css';
+import pinguino from "../../assets/img/pinguino.svg";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout 
+    title="Agencia Creativa en Punta Arenas | Gestoo — Producción de Eventos y MICE en Magallanes"
+    description="Somos la agencia creativa líder en Punta Arenas, Magallanes. Especialistas en producción técnica de eventos, turismo MICE, branding B2B y logística en la Patagonia Chilena. 15+ años de experiencia."
+    keywords="agencia creativa punta arenas, producción de eventos punta arenas, mice magallanes, agencia b2b patagonia, logística eventos punta arenas, branding punta arenas, congresos punta arenas, turismo reuniones magallanes"
+>
+    <Navbar />
+    <img src={pinguino.src} alt="" class="bg-asset asset-pinguino" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Agencia Creativa en Punta Arenas | Gestoo",
+      "description": "Agencia creativa y productora de eventos en Punta Arenas, Magallanes. Especialistas en MICE, branding y producción técnica.",
+      "about": {
+        "@type": "City",
+        "name": "Punta Arenas",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Magallanes y Antártica Chilena"
+        }
+      }
+    })} />
+
+    <main id="main-content">
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="reveal">
+                    <span class="tag">ADN Patagónico</span>
+                    <h1 class="page-title">
+                        Agencia Creativa en <br><span class="gradient-text">Punta Arenas.</span>
+                    </h1>
+                    <p class="lead-text" style="max-width:700px; margin-top:2rem;">
+                        Desde 2012, somos el partner creativo y técnico de referencia en Magallanes. 
+                        Producimos eventos corporativos, congresos MICE y estrategias de branding para 
+                        organizaciones que exigen excelencia en el fin del mundo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag">Presencia Local</span>
+                    <h2 class="section-title">Expertos en Punta Arenas <br><em>y toda la Región de Magallanes.</em></h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <span class="service-num">01</span>
+                        <h3>Producción Técnica de Eventos en Punta Arenas</h3>
+                        <p>Gestionamos el 100% de la logística técnica: pantallas LED, sonido profesional, iluminación y montaje en los principales recintos de Punta Arenas y la región con stock propio de más de 200 activos.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">02</span>
+                        <h3>Turismo MICE en Magallanes</h3>
+                        <p>Organizamos congresos internacionales, viajes de incentivo y convenciones en Punta Arenas, Torres del Paine y Tierra del Fuego. El 100% de nuestros eventos MICE cumple estándares internacionales de sostenibilidad.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">03</span>
+                        <h3>Branding B2B desde la Patagonia</h3>
+                        <p>Consultoría de marca para empresas B2B con enfoque en resultados medibles. Más de 18 organizaciones del sector público y privado confían en nuestra estrategia de marca en Magallanes.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">04</span>
+                        <h3>Logística en Condiciones Extremas</h3>
+                        <p>Operamos en toda la región con un 99% de tasa de éxito operativa. Nuestro protocolo de contingencia climática nos permite producir eventos incluso en temporada de viento y nieve en Magallanes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--blue-800);">
+            <div class="container content-contained">
+                <div class="section-header reveal" style="text-align:center;">
+                    <span class="tag">¿Por qué Punta Arenas?</span>
+                    <h2 class="section-title">La capital de la <em>Patagonia Chilena.</em></h2>
+                    <p class="lead-text" style="max-width:700px; margin: 0 auto;">
+                        Punta Arenas es el centro logístico, comercial y turístico de la Región de Magallanes. 
+                        Con un creciente ecosistema de innovación y turismo de reuniones, la ciudad se posiciona 
+                        como un destino estratégico para el sector MICE y corporativo a nivel nacional e internacional.
+                    </p>
+                </div>
+                <div class="values-grid" style="margin-top: 4rem;">
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">15+</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Años de experiencia en la región</p>
+                    </div>
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">99%</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Tasa de éxito operativa</p>
+                    </div>
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">18+</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Clientes B2B activos en Magallanes</p>
+                    </div>
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">95%</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Tasa de recompra en 24 meses</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag">Servicios Locales</span>
+                    <h2 class="section-title">Todo lo que tu evento necesita <br><em>en Punta Arenas.</em></h2>
+                </div>
+                <div class="about-intro">
+                    <div class="about-intro-text reveal">
+                        <p style="font-size:1.15rem; line-height:1.8;">
+                            Nuestra oficina está en Av. Independencia 313, en el corazón de Punta Arenas. 
+                            Desde aquí coordinamos operaciones para toda la Patagonia, incluyendo Puerto Natales, 
+                            Torres del Paine, Tierra del Fuego y la Antártica.
+                        </p>
+                        <ul style="list-style:none; padding:0; margin:2rem 0;">
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Producción audiovisual con equipamiento propio en Magallanes</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Logística MICE para congresos internacionales en Punta Arenas</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Renting de mobiliario premium y tecnología de punta</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Estrategia de marca y branding corporativo B2B</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Eventos corporativos, lanzamientos y galas en la Patagonia</li>
+                        </ul>
+                        <br />
+                        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-primary">
+                            Solicita una cotización →
+                        </a>
+                    </div>
+                    <div class="about-img-block reveal">
+                        <img src="/img/logo_gestoo.svg" alt="Gestoo - Agencia Creativa Punta Arenas" style="border-radius:24px; background:var(--blue-800); padding:3rem; width:200px; height:auto;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section solution-section">
+            <div class="container content-contained">
+                <div class="solution-card reveal">
+                    <span class="tag">¿Estás en Punta Arenas o planeas un evento en Magallanes?</span>
+                    <h2 class="cta-title">
+                        Hablemos de tu <br /> <span class="solution-highlight">próximo proyecto.</span>
+                    </h2>
+                    <p style="color:rgba(255,255,255,0.6); margin-bottom:2rem; font-size:1.1rem;">
+                        Respuesta en menos de 24 horas. Cotización sin compromiso.
+                    </p>
+                    <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-orange-glow">
+                        Cotiza tu solución ahora →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

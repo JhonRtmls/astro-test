@@ -28,7 +28,7 @@ const title = `${post.data.title} | Insights | Gestoo`;
 const description = post.data.description;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} pubDate={post.data.pubDate} updatedDate={post.data.updatedDate}>
     <Navbar />
 
     <main id="main-content">

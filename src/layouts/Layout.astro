@@ -1,8 +1,11 @@
 ---
 interface Props {
-	title: string;
-    description?: string;
-    keywords?: string;
+  title: string;
+  description?: string;
+  keywords?: string;
+  pubDate?: Date;
+  updatedDate?: Date;
+  breadcrumb?: { name: string; url: string }[];
 }
 
 import '../styles/reset.css';
@@ -16,152 +19,262 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import fontNormal from '../assets/fonts/Montserrat-VariableFont_wght.ttf';
 import fontItalic from '../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf';
 
-const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística.", keywords } = Astro.props;
+const { title, description = "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística.", keywords, pubDate, updatedDate, breadcrumb } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const site = Astro.site || new URL('https://jhonrtmls.github.io/astro-test');
-const canonicalURL = new URL(Astro.url.pathname, site);
+const astroSite = Astro.site || new URL('https://gestoo.cl');
+const site = new URL('/', astroSite.origin);
+const canonicalURL = new URL(Astro.url.pathname, astroSite);
 
 const isEn = lang === 'en';
+const locale = isEn ? 'en_US' : 'es_CL';
+const ogType = Astro.props.pubDate ? 'article' : 'website';
+
 const schemaServices = isEn
     ? { name: "Production Services", items: ["Branding & Identity", "MICE Tourism", "Technical Event Production", "Patagonia Logistics"] }
     : { name: "Servicios de Producción", items: ["Branding & Identidad", "Turismo MICE", "Producción Técnica de Eventos", "Logística en Patagonia"] };
+
+const pagePath = Astro.url.pathname.replace(/^\/(en|es)/, '');
+const pageSlug = pagePath.replace(/\/$/, '') || '/';
+
+const breadcrumbItems = breadcrumb ?? (
+  pageSlug === '/'
+    ? []
+    : [
+        { name: isEn ? 'Home' : 'Inicio', url: '/' },
+        ...(pageSlug.split('/').filter(Boolean).length > 1
+          ? [{ name: pageSlug.split('/').filter(Boolean)[0], url: `/${pageSlug.split('/').filter(Boolean)[0]}` }]
+          : []),
+        { name: title.split('|')[0].trim(), url: pageSlug }
+      ]
+);
 ---
 
 <!doctype html>
 <html lang={lang}>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/astro-test/img/favicon.png" />
-		<meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        {keywords && <meta name="keywords" content={keywords} />}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
 
-        <!-- Performance: Preconnect to Analytics/GTM -->
-        <link rel="preconnect" href="https://www.googletagmanager.com">
-        <link rel="preconnect" href="https://www.google-analytics.com">
+    <!-- Performance: Preconnects -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-        <!-- Google Tag Manager -->
-		<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-T3TDG6QC');</script>
-		<!-- End Google Tag Manager -->
-        
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalURL} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={new URL('/astro-test/img/hero.jpg', site)} />
+    <!-- Google Tag Manager (via Partytown) -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T3TDG6QC');</script>
+    <!-- End Google Tag Manager -->
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={canonicalURL} />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={new URL('/astro-test/img/hero.jpg', site)} />
-        
-        <meta name="author" content="Gestoo" />
-        <!-- Critical Font Preloading -->
-        <link rel="preload" href={fontNormal} as="font" type="font/ttf" crossorigin="anonymous" />
-        <link rel="preload" href={fontItalic} as="font" type="font/ttf" crossorigin="anonymous" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/img/hero.jpg', astroSite)} />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content="Gestoo" />
+    {pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
+    {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
 
-        <!-- Language targeting (SEO) -->
-        <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
-        <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/en'), site)} />
-        <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
-        
-        <link rel="canonical" href={canonicalURL} />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL('/img/hero.jpg', astroSite)} />
 
-        <!-- Security Meta Tags (Foglift Quick Wins) -->
-        <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="author" content="Gestoo" />
 
-        <!-- Schema.org -->
-        <script type="application/ld+json" is:inline set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    "@id": `${site.href}#organization`,
-                    "name": "Gestoo",
-                    "url": site.href,
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": new URL('/astro-test/img/logo-dark.png', site).href
-                    }
-                },
-                {
-                    "@type": "ProfessionalService",
-                    "name": "Gestoo",
-                    "url": canonicalURL,
-                    "telephone": "+56981887723",
-                    "email": "contacto@gestoo.cl",
-                    "priceRange": "$$$",
-                    "areaServed": ["Punta Arenas", "Magallanes", "Chile", "Antarctica", "Patagonia"],
-                    "customer": [
-                        { "@type": "Organization", "name": "Banco Interamericano de Desarrollo (BID)", "sameAs": "https://www.iadb.org" },
-                        { "@type": "Organization", "name": "Gobierno Regional de Magallanes y Antártica Chilena", "sameAs": "https://www.goremagallanes.cl" },
-                        { "@type": "Organization", "name": "CORFO - Corporación de Fomento de la Producción", "sameAs": "https://www.corfo.cl" },
-                        { "@type": "Organization", "name": "Universidad de Magallanes (UMAG)", "sameAs": "https://www.umag.cl" },
-                        { "@type": "Organization", "name": "Cámara Chilena de la Construcción (CChC)", "sameAs": "https://www.cchc.cl" },
-                        { "@type": "Organization", "name": "Municipalidad de Punta Arenas", "sameAs": "https://www.puntaarenas.cl" },
-                        { "@type": "Organization", "name": "Marca Perú", "sameAs": "https://www.peru.info" },
-                        { "@type": "Organization", "name": "Visit Saudi", "sameAs": "https://www.visitsaudi.com" },
-                        { "@type": "Organization", "name": "Tourism Fiji", "sameAs": "https://www.fiji.travel" },
-                        { "@type": "Organization", "name": "Instituto Nacional de Deportes (IND)", "sameAs": "https://www.ind.cl" },
-                        { "@type": "Organization", "name": "EDELMAG", "sameAs": "https://www.edelmag.cl" },
-                        { "@type": "Organization", "name": "La Araucana", "sameAs": "https://www.laaraucana.cl" },
-                        { "@type": "Organization", "name": "Colegio de Cirujano Dentistas de Chile", "sameAs": "https://www.colegiodentistas.cl" },
-                        { "@type": "Organization", "name": "AOBAC - Asociación Operadores de Bahía Almirantazgo" },
-                        { "@type": "Organization", "name": "NEMa - Nodos de Economía de Magallanes" },
-                        { "@type": "Organization", "name": "CORMAG - Corporación de Magallanes" },
-                        { "@type": "Organization", "name": "Adventure Travel Trade Association", "sameAs": "https://www.adventuretravel.biz" },
-                        { "@type": "Organization", "name": "El Águila MTS" }
-                    ],
-                    "hasOfferCatalog": {
-                        "@type": "OfferCatalog",
-                        "name": schemaServices.name,
-                        "itemListElement": schemaServices.items.map((name) => ({
-                            "@type": "Offer",
-                            "itemOffered": { "@type": "Service", name }
-                        }))
-                    },
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "Av. Independencia 313",
-                        "addressLocality": "Punta Arenas",
-                        "addressRegion": "Magallanes",
-                        "postalCode": "6200000",
-                        "addressCountry": "CL"
-                    }
-                }
-            ]
-        })} />
+    <!-- Critical Font Preloading -->
+    <link rel="preload" href={fontNormal} as="font" type="font/ttf" crossorigin="anonymous" />
+    <link rel="preload" href={fontItalic} as="font" type="font/ttf" crossorigin="anonymous" />
 
-        <!-- GSAP & Lenis optimized -->
-        <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-        <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-        <script is:inline defer src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-        
-        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload={"this.onload=null;this.rel='stylesheet'"} />
-        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
-        <ClientRouter />
-	</head>
-	<body>
-        <a href="#main-content" class="skip-link">{t('nav.about') === 'Nosotros' ? 'Saltar al contenido' : 'Skip to content'}</a>
-		<slot />
-        <WhatsAppButton phone="+56981887723" />
-        <script is:inline defer src="/astro-test/js/main.js"></script>
-	</body>
+    <!-- Language targeting (SEO) -->
+    <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
+    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/en'), site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), site)} />
+
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Security Meta Tags -->
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+    <!-- Schema.org: Combined @graph -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${site.href}#website`,
+          "name": "Gestoo",
+          "url": site.href,
+          "description": "Agencia creativa líder en Punta Arenas y la Patagonia Chilena. Especialistas en branding, turismo MICE, producción técnica de eventos y logística B2B.",
+          "inLanguage": lang === 'es' ? "es-CL" : "en-US",
+          "publisher": { "@id": `${site.href}#organization` },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${site.href}?q={search_term_string}`
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": `${site.href}#organization`,
+          "name": "Gestoo",
+          "alternateName": "Gestoo Agencia Creativa",
+          "url": site.href,
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL('/img/logo_gestoo.svg', astroSite).href
+          },
+          "image": new URL('/img/hero.jpg', astroSite).href,
+          "description": "Agencia creativa y productora de eventos líder en Punta Arenas, Patagonia Chilena. Especialistas en MICE, branding y producción técnica.",
+          "foundingDate": "2012",
+          "email": "contacto@gestoo.cl",
+          "telephone": "+56-9-8188-7723",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Independencia 313",
+            "addressLocality": "Punta Arenas",
+            "addressRegion": "Magallanes",
+            "postalCode": "6200000",
+            "addressCountry": "CL"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/gestoo",
+            "https://www.instagram.com/gestoo.cl",
+            "https://www.facebook.com/gestoo",
+            "https://www.youtube.com/@gestoo"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": `${site.href}#localbusiness`,
+          "name": "Gestoo",
+          "url": canonicalURL,
+          "image": new URL('/img/hero.jpg', astroSite).href,
+          "telephone": "+56981887723",
+          "email": "contacto@gestoo.cl",
+          "priceRange": "$$$",
+          "areaServed": [
+            { "@type": "City", "name": "Punta Arenas" },
+            { "@type": "State", "name": "Magallanes" },
+            { "@type": "Country", "name": "Chile" },
+            { "@type": "Continent", "name": "Antarctica" },
+            { "@type": "Area", "name": "Patagonia" }
+          ],
+          "customer": [
+            { "@type": "Organization", "name": "Banco Interamericano de Desarrollo (BID)", "sameAs": "https://www.iadb.org" },
+            { "@type": "Organization", "name": "Gobierno Regional de Magallanes y Antártica Chilena", "sameAs": "https://www.goremagallanes.cl" },
+            { "@type": "Organization", "name": "CORFO", "sameAs": "https://www.corfo.cl" },
+            { "@type": "Organization", "name": "Universidad de Magallanes (UMAG)", "sameAs": "https://www.umag.cl" },
+            { "@type": "Organization", "name": "Cámara Chilena de la Construcción (CChC)", "sameAs": "https://www.cchc.cl" },
+            { "@type": "Organization", "name": "Municipalidad de Punta Arenas", "sameAs": "https://www.puntaarenas.cl" },
+            { "@type": "Organization", "name": "Marca Perú", "sameAs": "https://www.peru.info" },
+            { "@type": "Organization", "name": "Visit Saudi", "sameAs": "https://www.visitsaudi.com" },
+            { "@type": "Organization", "name": "Tourism Fiji", "sameAs": "https://www.fiji.travel" },
+            { "@type": "Organization", "name": "Instituto Nacional de Deportes (IND)", "sameAs": "https://www.ind.cl" },
+            { "@type": "Organization", "name": "EDELMAG", "sameAs": "https://www.edelmag.cl" },
+            { "@type": "Organization", "name": "La Araucana", "sameAs": "https://www.laaraucana.cl" },
+            { "@type": "Organization", "name": "Colegio de Cirujano Dentistas de Chile", "sameAs": "https://www.colegiodentistas.cl" },
+            { "@type": "Organization", "name": "AOBAC - Asociación Operadores de Bahía Almirantazgo" },
+            { "@type": "Organization", "name": "NEMa - Nodos de Economía de Magallanes" },
+            { "@type": "Organization", "name": "CORMAG - Corporación de Magallanes" },
+            { "@type": "Organization", "name": "Adventure Travel Trade Association", "sameAs": "https://www.adventuretravel.biz" },
+            { "@type": "Organization", "name": "El Águila MTS" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": schemaServices.name,
+            "itemListElement": schemaServices.items.map((name) => ({
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", name }
+            }))
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Independencia 313",
+            "addressLocality": "Punta Arenas",
+            "addressRegion": "Magallanes",
+            "postalCode": "6200000",
+            "addressCountry": "CL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -53.1626,
+            "longitude": -70.9078
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ]
+        },
+        ...(breadcrumbItems.length > 0 ? [{
+          "@type": "BreadcrumbList",
+          "@id": `${canonicalURL}#breadcrumb`,
+          "itemListElement": breadcrumbItems.map((item, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": item.name,
+            "item": new URL(item.url === '/' ? '' : item.url, site).href
+          }))
+        }] : []),
+        {
+          "@type": "WebPage",
+          "@id": canonicalURL,
+          "url": canonicalURL,
+          "name": title,
+          "description": description,
+          "inLanguage": lang === 'es' ? "es-CL" : "en-US",
+          "isPartOf": { "@id": `${site.href}#website` },
+          "about": { "@id": `${site.href}#organization` },
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["h1", "h2", ".lead-text", ".faq-body p", ".manifesto-detail-box"]
+          }
+        }
+      ]
+    })} />
+
+    <!-- GSAP & Lenis optimized -->
+    <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script is:inline defer src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload={"this.onload=null;this.rel='stylesheet'"} />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
+    <ClientRouter />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">{isEn ? 'Skip to content' : 'Saltar al contenido'}</a>
+    <slot />
+    <WhatsAppButton phone="+56981887723" />
+    <script is:inline defer src="/js/main.js"></script>
+  </body>
 </html>
 
 
 <style is:global>
-	/* Global styles if needed */
+  /* Global styles if needed */
 </style>

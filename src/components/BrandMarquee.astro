@@ -9,7 +9,7 @@ const brands = [
   { name: "Instituto Nacional de Deportes", img: "institutonacionaldedeportes.svg" },
   { name: "EDELMAG", img: "edelmag.svg" },
   { name: "La Araucana", img: "laaraucana.svg" },
-  { name: "Marca Perú", img: "marcaperú.svg" },
+  { name: "Marca Perú", img: "marcaperu.svg" },
   { name: "Visit Saudi", img: "visitsaudi.svg" },
   { name: "Tourism Fiji", img: "tourismfiji.svg" },
   { name: "Colegio Dentistas Chile", img: "colegiodentistaschile.svg" },
@@ -20,7 +20,7 @@ const brands = [
   { name: "El Águila MTS", img: "elaguilamts.svg" }
 ];
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <div class="brand-marquee-container reveal">

@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations } from '../../i18n/utils';
+import '../../styles/pages/inner.css';
+import pinguino from "../../assets/img/pinguino.svg";
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout 
+    title="Creative Agency in Punta Arenas | Gestoo — Event Production & MICE in Magallanes"
+    description="We are the leading creative agency in Punta Arenas, Magallanes. Specialists in technical event production, MICE tourism, B2B branding and logistics in Chilean Patagonia. 15+ years of experience."
+    keywords="creative agency punta arenas, event production punta arenas, mice magallanes, b2b agency patagonia, event logistics punta arenas, branding punta arenas, conferences punta arenas, meeting tourism magallanes"
+>
+    <Navbar />
+    <img src={pinguino.src} alt="" class="bg-asset asset-pinguino" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Creative Agency in Punta Arenas | Gestoo",
+      "description": "Creative agency and event producer in Punta Arenas, Magallanes. Specialists in MICE, branding and technical production.",
+      "about": {
+        "@type": "City",
+        "name": "Punta Arenas",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Magallanes y Antártica Chilena"
+        }
+      }
+    })} />
+
+    <main id="main-content">
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <div class="reveal">
+                    <span class="tag">Patagonian DNA</span>
+                    <h1 class="page-title">
+                        Creative Agency in <br><span class="gradient-text">Punta Arenas.</span>
+                    </h1>
+                    <p class="lead-text" style="max-width:700px; margin-top:2rem;">
+                        Since 2012, we have been the leading creative and technical partner in Magallanes. 
+                        We produce corporate events, MICE congresses and branding strategies for 
+                        organizations that demand excellence at the end of the world.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag">Local Presence</span>
+                    <h2 class="section-title">Experts in Punta Arenas <br><em>and all of Magallanes Region.</em></h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <span class="service-num">01</span>
+                        <h3>Technical Event Production in Punta Arenas</h3>
+                        <p>We manage 100% of technical logistics: LED screens, professional sound, lighting and rigging at the main venues in Punta Arenas and the region with our own inventory of over 200 assets.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">02</span>
+                        <h3>MICE Tourism in Magallanes</h3>
+                        <p>We organize international congresses, incentive trips and conventions in Punta Arenas, Torres del Paine and Tierra del Fuego. 100% of our MICE events meet international sustainability standards.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">03</span>
+                        <h3>B2B Branding from Patagonia</h3>
+                        <p>Brand consulting for B2B companies focused on measurable results. More than 18 public and private sector organizations trust our brand strategy in Magallanes.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <span class="service-num">04</span>
+                        <h3>Extreme Conditions Logistics</h3>
+                        <p>We operate throughout the region with a 99% operational success rate. Our climate contingency protocol allows us to produce events even during wind and snow season in Magallanes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--blue-800);">
+            <div class="container content-contained">
+                <div class="section-header reveal" style="text-align:center;">
+                    <span class="tag">Why Punta Arenas?</span>
+                    <h2 class="section-title">The capital of <em>Chilean Patagonia.</em></h2>
+                    <p class="lead-text" style="max-width:700px; margin: 0 auto;">
+                        Punta Arenas is the logistical, commercial and tourism hub of the Magallanes Region. 
+                        With a growing innovation and meetings tourism ecosystem, the city is positioning 
+                        itself as a strategic destination for the MICE and corporate sector nationally and internationally.
+                    </p>
+                </div>
+                <div class="values-grid" style="margin-top: 4rem;">
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">15+</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Years of experience in the region</p>
+                    </div>
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">99%</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Operational success rate</p>
+                    </div>
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">18+</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Active B2B clients in Magallanes</p>
+                    </div>
+                    <div class="value-card reveal" style="text-align:center;">
+                        <h3 style="font-size:3rem; color:var(--accent); font-weight:900;">95%</h3>
+                        <p style="font-size:1.2rem; font-weight:700;">Repurchase rate in 24 months</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container content-contained">
+                <div class="section-header reveal">
+                    <span class="tag">Local Services</span>
+                    <h2 class="section-title">Everything your event needs <br><em>in Punta Arenas.</em></h2>
+                </div>
+                <div class="about-intro">
+                    <div class="about-intro-text reveal">
+                        <p style="font-size:1.15rem; line-height:1.8;">
+                            Our office is at Av. Independencia 313, in the heart of Punta Arenas. 
+                            From here we coordinate operations for all of Patagonia, including Puerto Natales, 
+                            Torres del Paine, Tierra del Fuego and Antarctica.
+                        </p>
+                        <ul style="list-style:none; padding:0; margin:2rem 0;">
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Audiovisual production with own equipment in Magallanes</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ MICE logistics for international congresses in Punta Arenas</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Premium furniture rental and cutting-edge technology</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Brand strategy and B2B corporate branding</li>
+                            <li style="padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05);">✓ Corporate events, launches and galas in Patagonia</li>
+                        </ul>
+                        <br />
+                        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-primary">
+                            Request a quote →
+                        </a>
+                    </div>
+                    <div class="about-img-block reveal">
+                        <img src="/img/logo_gestoo.svg" alt="Gestoo - Creative Agency Punta Arenas" style="border-radius:24px; background:var(--blue-800); padding:3rem; width:200px; height:auto;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section solution-section">
+            <div class="container content-contained">
+                <div class="solution-card reveal">
+                    <span class="tag">Are you in Punta Arenas or planning an event in Magallanes?</span>
+                    <h2 class="cta-title">
+                        Let's talk about your <br /> <span class="solution-highlight">next project.</span>
+                    </h2>
+                    <p style="color:rgba(255,255,255,0.6); margin-bottom:2rem; font-size:1.1rem;">
+                        Response within 24 hours. No-obligation quote.
+                    </p>
+                    <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn-orange-glow">
+                        Quote your solution now →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

@@ -21,7 +21,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title={`${project.data.title} | Gestoo`} description={project.data.description}>
+<Layout title={`${project.data.title} | Gestoo`} description={project.data.description} pubDate={project.data.pubDate} updatedDate={project.data.updatedDate}>
     <Navbar />
     <main class="project-detail-page" id="main-content">
         <header class="project-hero">
